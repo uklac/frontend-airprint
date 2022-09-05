@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+//theme for angular-material
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// Utilities
+@import "colors.scss";
+@import "palette.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $white;
+  font-family: 'Lato-Regular';
+  font-size: 12px;
+}
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+$airprint-typography: mat-typography-config( $font-family: 'Lato-Regular');
+@include mat-core($airprint-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$airprint-app-primary: mat-palette($airprint-primary, 500);
+$airprint-app-accent:  mat-palette($airprint-accent, 500);
+
+// The warn palette is optional (defaults to red).
+$airprint-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$airprint-app-theme: mat-light-theme($airprint-app-primary, $airprint-app-accent, $airprint-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($airprint-app-theme);

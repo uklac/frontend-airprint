@@ -1,16 +1,19 @@
 // Button.stories.ts
 
-import { Meta, Story } from '@storybook/angular';
-
+import { Story, Meta } from '@storybook/angular/types-6-0';
 import { ButtonComponent } from './button.component';
+import { moduleMetadata } from '@storybook/angular';
+import { MatButtonModule } from '@angular/material/button';
 
 export default {
-  /* 👇 The title prop is optional.
-  * See https://storybook.js.org/docs/angular/configure/overview#configure-story-loading
-  * to learn how to generate automatic titles
-  */
   title: 'ButtonMolly',
   component: ButtonComponent,
+  decorators: [
+    moduleMetadata({
+      declarations: [],
+      imports: [MatButtonModule],
+    })
+  ]
 } as Meta;
 
 export const Primary: Story = () => ({
