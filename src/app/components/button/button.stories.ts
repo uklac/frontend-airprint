@@ -21,27 +21,41 @@ export const List: Story = () => ({
     color: 'warn',
     text: 'Decline',
   },
+  
+  styles: [
+    `
+    .box {
+      padding: 100px;
+    }
+    
+    .box app-button {
+      padding-right: 10px;
+    }
+    `
+  ],
+
   template:`
-  <app-button >
-    Default
-  </app-button >
+    <div class="box">
+      <app-button >
+        Default
+       </app-button >
 
-  <app-button color='accent'>
-    Primary
-  </app-button>
+      <app-button color='accent'>
+        Primary
+      </app-button>
 
-  <app-button>
-    Secondary
-  </app-button >
+      <app-button>
+        Secondary
+      </app-button >
 
-  <app-button color='warn'>
-    Error
-  </app-button >
+      <app-button color='warn'>
+        Error
+      </app-button >
 
-  <app-button color='disabled'>
-    Disabled
-  </app-button >
+      <app-button color='disabled'>
+        Disabled
+      </app-button >
+    </div>
   `
-
 });
 
