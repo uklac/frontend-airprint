@@ -56,7 +56,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<!-- Toolbar -->\n<div class=\"toolbar\" role=\"banner\">\n\n  <app-button></app-button>\n\n</div>\n\n<router-outlet></router-outlet>\n"
+            "templateData": "<!-- Toolbar -->\n<div class=\"toolbar\" role=\"banner\">\n  <div class=\"example-button-row\">\n    <button mat-flat-button>Basic</button>\n    <button mat-flat-button color=\"primary\">Primary</button>\n    <button mat-flat-button color=\"accent\">Accent</button>\n    <button mat-flat-button color=\"warn\">Warn</button>\n    <button mat-flat-button disabled>Disabled</button>\n  </div>\n</div>\n\n<router-outlet></router-outlet>\n"
         },
         {
             "name": "ButtonComponent",
@@ -118,19 +118,19 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<p>button works!</p>\n"
+            "templateData": "<section>\n    <div class=\"example-label\">Flat</div>\n    <div class=\"example-button-row\">\n      <button mat-flat-button>Basic</button>\n      <button mat-flat-button color=\"primary\">Primary</button>\n      <button mat-flat-button color=\"accent\">Accent</button>\n      <button mat-flat-button color=\"warn\">Warn</button>\n      <button mat-flat-button disabled>Disabled</button>\n    </div>\n  </section>\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-eee5cca13dbd34b0cf00632802b18789f79292eb8213d4c049c9fac180a30f3f8bc284135f58c2895757f1b244635bba121ef9e48bb74824d1a095d8fb85105f",
+            "id": "module-AppModule-cf86f9d0073b2b87bcc34482ecb56aab5e088a1bd097eacf7a14d68dc6b012ba27d8a88039cb33f1af5f87dc2b566d0e83a8607fd081ca2e89987d1345de4ed7",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { ButtonComponent } from './components/button/button.component';\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    ButtonComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MaterialModule } from './material.module'\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    MaterialModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -141,9 +141,6 @@
                     "elements": [
                         {
                             "name": "AppComponent"
-                        },
-                        {
-                            "name": "ButtonComponent"
                         }
                     ]
                 },
@@ -152,6 +149,9 @@
                     "elements": [
                         {
                             "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "MaterialModule"
                         }
                     ]
                 },
@@ -182,6 +182,42 @@
             "file": "src/app/app-routing.module.ts",
             "methods": [],
             "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\n\nconst routes: Routes = [];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MaterialModule",
+            "id": "module-MaterialModule-599507898ec5b89cebd90d8bdba31ebc7b65d3daf8a2daf2b309983ad3bd28c9c50fb2c13a65dfd09c5269d083996232656afee95416fadddff928dc7db04332",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/material.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button'\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    MatButtonModule\n\t],\n})\nexport class MaterialModule { }\n",
             "children": [
                 {
                     "type": "providers",

@@ -6,7 +6,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { MatButtonModule } from '@angular/material/button';
 
 export default {
-  title: 'ButtonMolly',
+  title: 'Button',
   component: ButtonComponent,
   decorators: [
     moduleMetadata({
@@ -18,7 +18,31 @@ export default {
 
 export const Primary: Story = () => ({
   props: {
-    label: 'Button',
-    primary: true,
+    color: 'primary',
+    text: 'Accept',
   },
 });
+
+export const Accent: Story = () => ({
+  props: {
+    color: 'warn',
+    text: 'Decline',
+  },
+});
+
+export const List: Story = () => ({
+  props: {
+    color: 'warn',
+    text: 'Decline',
+  },
+  template:`
+  <app-button >
+    one
+  </app-button >
+  <app-button >
+    two
+  </app-button >
+  `
+
+});
+
