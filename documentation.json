@@ -56,11 +56,11 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<!-- Toolbar -->\n<div class=\"toolbar\" role=\"banner\">\n  <div class=\"example-button-row\">\n    <button mat-flat-button>Basic</button>\n    <button mat-flat-button color=\"primary\">Primary</button>\n    <button mat-flat-button color=\"accent\">Accent</button>\n    <button mat-flat-button color=\"warn\">Warn</button>\n    <button mat-flat-button disabled>Disabled</button>\n  </div>\n</div>\n\n<router-outlet></router-outlet>\n"
+            "templateData": "\n<app-button color=\"warn\">\n  Holagvg\n</app-button>\n\n<app-button text='HolaMO' color=\"warn\">\n  \n</app-button>\n\n"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-6f6493221cac8afeb21ea7cdf697b60b4c92c0255778b8e0596b18085f4f5de087ea5696d1781baf2350d513e423800a3d93188ef787ed5a209a1bb125937b32",
+            "id": "component-ButtonComponent-0749b6a22392521ebd49e7ace293a8d30ad9f5a28a2b78310b809baf6240e4849da3d65350f6a6477ca31735de8e3246a282e0fa1c600daa0064f524d820e180",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -76,7 +76,26 @@
                 "./button.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "\"primary\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [
@@ -86,7 +105,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -98,7 +117,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss']\n})\nexport class ButtonComponent implements OnInit {\n  @Input() color = \"primary\"; \n  @Input() text = '';\n\n  constructor() { }\n\n  ngOnInit(): void {\n  \n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -113,24 +132,24 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 8
+                "line": 10
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<section>\n    <div class=\"example-label\">Flat</div>\n    <div class=\"example-button-row\">\n      <button mat-flat-button>Basic</button>\n      <button mat-flat-button color=\"primary\">Primary</button>\n      <button mat-flat-button color=\"accent\">Accent</button>\n      <button mat-flat-button color=\"warn\">Warn</button>\n      <button mat-flat-button disabled>Disabled</button>\n    </div>\n  </section>\n"
+            "templateData": "\n<button mat-flat-button color='{{color}}'>\n  <ng-content></ng-content>\n  {{text}} \n</button>\n     \n \n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-cf86f9d0073b2b87bcc34482ecb56aab5e088a1bd097eacf7a14d68dc6b012ba27d8a88039cb33f1af5f87dc2b566d0e83a8607fd081ca2e89987d1345de4ed7",
+            "id": "module-AppModule-3730e9bc37246e838bc0a6d4f21f5197d41862adad5027b01eee215d42145b339bf37a682c481fc9f5e11cb1f355059325fe78ae0316115ea02020ce49198238",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MaterialModule } from './material.module'\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    MaterialModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MaterialModule } from './material.module'\nimport { ComponentsModule } from './components/components.module'\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    MaterialModule,\n    ComponentsModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -210,6 +229,54 @@
             ]
         },
         {
+            "name": "ComponentsModule",
+            "id": "module-ComponentsModule-46407646187e8af50a9a05e5590a300cb12e79419820d78355a94a866dc32eab81a44efef758e9930abffffc1881abdc232a6c8561683387a11d18c54f398976",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/components/components.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ButtonComponent } from './button/button.component';\nimport { MaterialModule} from '../material.module';\nconst components = [ButtonComponent];\n\n@NgModule({\n  declarations: components,\n  imports: [\n    CommonModule,\n    MaterialModule\n  ],\n  exports: components,\n})\nexport class ComponentsModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "MaterialModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
             "name": "MaterialModule",
             "id": "module-MaterialModule-599507898ec5b89cebd90d8bdba31ebc7b65d3daf8a2daf2b309983ad3bd28c9c50fb2c13a65dfd09c5269d083996232656afee95416fadddff928dc7db04332",
             "description": "",
@@ -249,6 +316,26 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "Accent",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n})"
+            },
+            {
+                "name": "components",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/components.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[ButtonComponent]"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -279,6 +366,16 @@
                 "defaultValue": "{\n  production: false\n}"
             },
             {
+                "name": "List",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n  template:`\n  <app-button >\n    one\n  </app-button >\n  <app-button >\n    two\n  </app-button >\n  `\n\n})"
+            },
+            {
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -286,7 +383,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "() => ({\n  props: {\n    label: 'Button',\n    primary: true,\n  },\n})"
+                "defaultValue": "() => ({\n  props: {\n    color: 'primary',\n    text: 'Accept',\n  },\n})"
             },
             {
                 "name": "require",
@@ -302,6 +399,50 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
+            "src/app/components/button/button.stories.ts": [
+                {
+                    "name": "Accent",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n})"
+                },
+                {
+                    "name": "List",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n  template:`\n  <app-button >\n    one\n  </app-button >\n  <app-button >\n    two\n  </app-button >\n  `\n\n})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    color: 'primary',\n    text: 'Accept',\n  },\n})"
+                }
+            ],
+            "src/app/components/components.module.ts": [
+                {
+                    "name": "components",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/components.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[ButtonComponent]"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -346,18 +487,6 @@
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
                 }
-            ],
-            "src/app/components/button/button.stories.ts": [
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "() => ({\n  props: {\n    label: 'Button',\n    primary: true,\n  },\n})"
-                }
             ]
         },
         "groupedFunctions": {},
@@ -397,7 +526,27 @@
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Accent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "List",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -406,6 +555,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/components.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "components",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

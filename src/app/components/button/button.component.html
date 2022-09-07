@@ -1,5 +1,5 @@
 
-<button mat-flat-button color='{{color}}'>
+<button mat-flat-button [color]="color" [disabled]="isDisabled">
   <ng-content></ng-content>
   {{text}}
 </button>

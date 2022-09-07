@@ -16,20 +16,6 @@ export default {
   ]
 } as Meta;
 
-export const Primary: Story = () => ({
-  props: {
-    color: 'primary',
-    text: 'Accept',
-  },
-});
-
-export const Accent: Story = () => ({
-  props: {
-    color: 'warn',
-    text: 'Decline',
-  },
-});
-
 export const List: Story = () => ({
   props: {
     color: 'warn',
@@ -37,10 +23,23 @@ export const List: Story = () => ({
   },
   template:`
   <app-button >
-    one
+    Default
   </app-button >
-  <app-button >
-    two
+
+  <app-button color='accent'>
+    Primary
+  </app-button>
+
+  <app-button>
+    Secondary
+  </app-button >
+
+  <app-button color='warn'>
+    Error
+  </app-button >
+
+  <app-button color='disabled'>
+    Disabled
   </app-button >
   `
 
