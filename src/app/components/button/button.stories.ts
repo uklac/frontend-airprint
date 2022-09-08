@@ -16,12 +16,12 @@ export default {
   ]
 } as Meta;
 
-export const List: Story = () => ({
+export const Buttons: Story = () => ({
   props: {
     color: 'warn',
     text: 'Decline',
   },
-  
+
   styles: [
     `
     .box {
