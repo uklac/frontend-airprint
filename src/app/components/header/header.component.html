@@ -1,19 +1,13 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <div class="header-container">
-
 	<div class="links">
 		<div class="link-container" *ngFor="let link of links">
 			<a href="{{link.link}}">{{link.title}}</a>
 		</div>
 	</div>
-
 	<div class="brand-container">
 		<img class="brand" src="../../../assets/images/airprint-white.svg">
 	</div>
-
 	<div class="header-icons">
 		<mat-icon [matBadge]="totalProducts">shopping_basket</mat-icon>
 	</div>
-
 </div>

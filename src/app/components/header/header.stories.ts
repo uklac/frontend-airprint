@@ -10,8 +10,10 @@ export default {
     decorators: [
       moduleMetadata({
         declarations: [],
-        imports: [MatIconModule,
-									MatBadgeModule],
+        imports: [
+          MatIconModule,
+				  MatBadgeModule
+        ],
       })
     ]
   } as Meta;
@@ -37,7 +39,7 @@ export default {
 				}
       ]
     },
-  
+
   });
 
 
