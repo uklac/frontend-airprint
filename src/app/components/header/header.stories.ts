@@ -3,6 +3,8 @@ import { HeaderComponent } from './header.component';
 import { moduleMetadata } from '@storybook/angular';
 import { MatIconModule} from '@angular/material/icon';
 import { MatBadgeModule} from '@angular/material/badge';
+import { MatMenuModule } from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
     title: 'Header',
@@ -12,7 +14,9 @@ export default {
         declarations: [],
         imports: [
           MatIconModule,
-				  MatBadgeModule
+				  MatBadgeModule,
+					MatMenuModule,
+					BrowserAnimationsModule
         ],
       })
     ]

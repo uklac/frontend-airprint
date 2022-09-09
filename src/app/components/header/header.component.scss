@@ -26,9 +26,15 @@
 	height: 30px;
 }
 
-.header-icons {
+.header-accions {
 	display: flex;
 	justify-content: end;
 	flex: 1 1 0%;
 	color: white;
+}
+
+.help-opcion {
+	display: flex;
+	font-size: 16px;
+	padding-right: 30px;
 }
