@@ -1,14 +1,14 @@
 .stellar-map-container {
-	background: white;
-	height: 500px;
-	width: 500px;
-	display: flex;
+  background: white;
+  height: 500px;
+  width: 400px;
+  display: flex;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-	.stellar-map-content {
-		background: #a0d1cf;
-		width: 100%;
-		font-family: Courier New;
+  .stellar-map-content {
+    background: #a0d1cf;
+    width: 100%;
+    font-family: Courier New;
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -27,24 +27,26 @@
       }
     }
 
-		.stellar-information {
-			background: white;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			font-size: 16px;
+    .stellar-information {
+      background: #a0d1cf;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 16px;
       justify-content: end;
       flex: 1 1 0%;
+      color: white;
+      padding-bottom: 20px;
 
-			.city {
-				font-weight: bold;
-			}
-			.country {
-				padding-bottom: 8px;
-			}
-			.coordinates {
-				font-size: 14px;
-			}
-		}
-	}
+      .city {
+        font-weight: bold;
+      }
+      .country {
+        padding-bottom: 8px;
+      }
+      .coordinates {
+        font-size: 14px;
+      }
+    }
+  }
 }
