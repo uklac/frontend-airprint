@@ -6,22 +6,31 @@
 }
 .links {
 	display: flex;
-	padding-left: 50px;
+	padding-left: 40px;
 	align-items: center;
 
 	a {
 		text-decoration: none;
 		font-size: 16px;
 		color: white;
-		padding-right: 30px;
+		padding-right: 40px;
 	}
 }
-.brand-container{
+.brand-container {
 		display: flex;
 		align-items: center;
+		padding-left: 40px;
+		padding-right: 40px;
 
 	img {
 		max-height: 60px;
 		width: 60px;
 	}
+}
+.header-icons {
+	display: flex;
+	padding-left: 40px;
+	padding-right: 40px;
+	align-items: center;
+	color: white;
 }

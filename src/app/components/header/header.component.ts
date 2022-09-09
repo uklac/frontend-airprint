@@ -13,8 +13,11 @@ interface Link {
 export class HeaderComponent implements OnInit {
 
   @Input() links: Array<Link> = [];
+  @Input() totalProducts!: number;
   
-  constructor() { }
+  constructor() { 
+   
+  }
 
   ngOnInit(): void {
   }

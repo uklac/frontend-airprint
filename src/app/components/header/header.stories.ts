@@ -1,6 +1,8 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { HeaderComponent } from './header.component';
 import { moduleMetadata } from '@storybook/angular';
+import { MatIconModule} from '@angular/material/icon';
+import { MatBadgeModule} from '@angular/material/badge';
 
 export default {
     title: 'Header',
@@ -8,7 +10,8 @@ export default {
     decorators: [
       moduleMetadata({
         declarations: [],
-        imports: [],
+        imports: [MatIconModule,
+									MatBadgeModule],
       })
     ]
   } as Meta;
@@ -27,9 +30,15 @@ export default {
 				{
 					link:"https://www.yoseomarketing.com/blog/crear-hipervinculos-html-links-enlaces/",
 					title:"Magazine"
+				},
+				{
+					link:"https://www.yoseomarketing.com/blog/crear-hipervinculos-html-links-enlaces/",
+					title:"About"
 				}
       ]
     },
   
   });
+
+
 
