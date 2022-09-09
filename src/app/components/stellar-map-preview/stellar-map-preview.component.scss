@@ -1,0 +1,32 @@
+.stellar-map-container {
+	background: white;
+	height: 500px;
+	width: 500px;
+	display: flex;
+
+	.stellar-map-content {
+		background: #a0d1cf;
+		width: 100%;
+		font-family: Courier New;
+		
+		.stellar-information {
+			background: white;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-size: 16px;
+
+			.city {
+				font-weight: bold;
+			}
+			.country {
+				padding-bottom: 8px;
+			}
+			.coordinates {
+				font-size: 14px;
+			}
+		}
+
+	}
+
+}
