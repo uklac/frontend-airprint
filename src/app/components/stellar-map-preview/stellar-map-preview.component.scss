@@ -18,12 +18,12 @@
       justify-content: center;
       padding: 20px 0;
 
-      .map {
+      .render {
         width: 300px;
         height: 300px;
         display: flex;
-        border-radius: 50%;
-        background: #f6fae5;
+        transform: scale(0.15);
+        transform-origin: left top;
       }
     }
 
