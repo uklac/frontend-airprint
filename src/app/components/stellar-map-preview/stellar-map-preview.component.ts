@@ -3,6 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import celestial from "d3-celestial";
 const Celestial = celestial.Celestial();
 
+interface StellarMapColor {
+  globe: string;
+  background: string;
+  text: string;
+}
 @Component({
   selector: 'app-stellar-map-preview',
   templateUrl: './stellar-map-preview.component.html',
@@ -13,11 +18,21 @@ export class StellarMapPreviewComponent implements OnInit {
   @Input() country = '';
   @Input() date = '';
   @Input() coordinates = '';
+  @Input() style: StellarMapColor | undefined;
 
+  styleColors = {};
   constructor() { }
 
   ngOnInit(): void {
-    var baseConfig = {
+    this.mapInit();
+    this.styleColors = {
+      background: this.style?.background,
+      color: this.style?.text,
+    }
+  }
+
+  mapInit () {
+    const baseConfig = {
       width: 0, // Default width, 0 = full parent element width;
       // height is determined by projection
       projection: "airy", // Map projection used: see below
@@ -318,8 +333,8 @@ export class StellarMapPreviewComponent implements OnInit {
       },
 
       background: {
-        fill: "#0b1a26",
-        stroke: "#ffffff",
+        fill: this.style?.globe || "#D2001A", // globe color
+        stroke: "#EFEFEF",
         opacity: 1,
         width: 2
       },
@@ -345,29 +360,5 @@ export class StellarMapPreviewComponent implements OnInit {
 
     Celestial.display(config);
     Celestial.skyview({ date: DATE });
-    // window.Celestial = Celestial;
-    // console.log(Celestial.rotate());
-
-    // const saveData = (fileName, data) => {
-    //   var a = document.createElement("a");
-    //   document.body.appendChild(a);
-    //   a.style = "display: none";
-
-    //   const blob = new Blob([data], { type: "octet/stream" });
-    //   const url = window.URL.createObjectURL(blob);
-    //   a.href = url;
-    //   a.download = fileName;
-    //   a.click();
-    //   window.URL.revokeObjectURL(url);
-    //   a.remove();
-    // };
-
-    // const btn = document.getElementById("btn_download");
-    // btn.addEventListener("click", () => {
-    //   Celestial.exportSVG((val) => {
-    //     saveData("map.svg", val);
-    //   });
-    // });
   }
-
 }
