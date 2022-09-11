@@ -269,7 +269,7 @@ export class StellarMapPreviewComponent implements OnInit {
 
     const config = {
       container: "map",
-      width: 1024,
+      width: 0,
       datapath: "../../../assets/data/", // Path/URL to data files, empty = subfolder 'data'
 
       form: false,
@@ -295,7 +295,7 @@ export class StellarMapPreviewComponent implements OnInit {
       },
 
       planets: {
-        show: true,
+        show: false,
         which: ["mer", "ven", "ter", "lun", "mar", "jup", "sat"],
 
         symbolType: "disk",
@@ -315,7 +315,7 @@ export class StellarMapPreviewComponent implements OnInit {
       },
 
       constellations: {
-        names: true,
+        names: false,
         namesType: "iau",
         nameStyle: {
           fill: "#ffffff",
@@ -346,7 +346,7 @@ export class StellarMapPreviewComponent implements OnInit {
         exponent: -0.28,
         designation: false,
 
-        propername: true,
+        propername: false,
         propernameType: "name",
         propernameStyle: {
           fill: "#ddddbb",

@@ -1,7 +1,7 @@
 .stellar-map-container {
   background: white;
   height: 500px;
-  width: 400px;
+  width: 100%;
   display: flex;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
@@ -18,11 +18,12 @@
       padding: 20px 0;
 
       .render {
-        width: 300px;
-        height: 300px;
-        display: flex;
-        transform: scale(0.15);
-        transform-origin: left top;
+        width: 100%;
+
+        #map {
+          display: flex;
+          justify-content: center;
+        }
       }
     }
 
