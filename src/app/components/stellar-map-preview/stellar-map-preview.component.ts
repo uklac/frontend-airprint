@@ -324,11 +324,11 @@ export class StellarMapPreviewComponent implements OnInit {
           font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]
         },
         lines: true,
-        lineStyle: { stroke: "#cccccc", width: 1, opacity: 0.4 }
+        lineStyle: { stroke: "#cccccc", width: 1.5, opacity: 1 }
       },
 
       mw: {
-        show: true,
+        show: false,
         style: { fill: "#ffffff", opacity: 0.02 }
       },
 
@@ -341,9 +341,9 @@ export class StellarMapPreviewComponent implements OnInit {
 
       stars: {
         colors: true,
-        size: 4,
+        size: 12,
         limit: 6,
-        exponent: -0.28,
+        exponent: -0.26,
         designation: false,
 
         propername: false,

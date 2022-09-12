@@ -1,29 +1,24 @@
 .stellar-map-container {
   background: white;
-  height: 500px;
-  width: 100%;
+  height: 820px;
+  width: 590px;
   display: flex;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   .stellar-map-content {
     width: 100%;
-    font-family: Courier New;
     margin: 20px;
     display: flex;
     flex-direction: column;
+    font-family: Courier New;
 
     .stellar-map {
       display: flex;
       justify-content: center;
       padding: 20px 0;
 
-      .render {
-        width: 100%;
-
-        #map {
-          display: flex;
-          justify-content: center;
-        }
+      #map {
+        text-align: center;
       }
     }
 
