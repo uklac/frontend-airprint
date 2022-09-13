@@ -21,19 +21,17 @@ export const Buttons: Story = () => ({
     color: 'warn',
     text: 'Decline',
   },
-
   styles: [
     `
     .box {
       padding: 100px;
     }
-    
+
     .box app-button {
       padding-right: 10px;
     }
     `
   ],
-
   template:`
     <div class="box">
       <app-button >
