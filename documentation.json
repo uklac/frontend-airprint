@@ -32,6 +32,47 @@
             "indexSignatures": [],
             "kind": 165,
             "methods": []
+        },
+        {
+            "name": "StellarMapColor",
+            "id": "interface-StellarMapColor-30cb6e81c0fafa98e3bb1e5d832680c21be6d73d2c84865b41cc52e17e2bdf691cedb326cb1e8eee4448eb7525175690a5f709db9bca8fb3b4fff34a56078f03",
+            "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n// const celestial = require(\"d3-celestial\");\nimport celestial from \"d3-celestial\";\nconst Celestial = celestial.Celestial();\n\ninterface StellarMapColor {\n  globe: string;\n  background: string;\n  text: string;\n}\n@Component({\n  selector: 'app-stellar-map-preview',\n  templateUrl: './stellar-map-preview.component.html',\n  styleUrls: ['./stellar-map-preview.component.scss']\n})\nexport class StellarMapPreviewComponent implements OnInit {\n  @Input() city = '';\n  @Input() country = '';\n  @Input() date = '';\n  @Input() coordinates = '';\n  @Input() style: StellarMapColor | undefined;\n\n  styleColors = {};\n  constructor() { }\n\n  ngOnInit(): void {\n    this.mapInit();\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n  }\n\n  mapInit () {\n    const baseConfig = {\n      width: 0, // Default width, 0 = full parent element width;\n      // height is determined by projection\n      projection: \"airy\", // Map projection used: see below\n      // projectionRatio: null, // Optional override for default projection ratio\n      // transform: \"equatorial\", // Coordinate transformation: equatorial (default),\n      // ecliptic, galactic, supergalactic\n      // center: [36.525321,-121.815916,0], // Initial center coordinates in set transform\n      // [longitude, latitude, orientation] all in degrees\n      // null = default center [0,0,0]\n      orientationfixed: true, // Keep orientation angle the same as center[2]\n      geopos: null, // optional initial geographic position [lat,lon] in degrees,\n      // overrides center\n      // follow: \"zenith\", // on which coordinates to center the map, default: zenith, if location enabled,\n      // otherwise center\n      zoomlevel: null, // initial zoom level 0...zoomextend; 0|null = default, 1 = 100%, 0 < x <= zoomextend\n      zoomextend: 1, // maximum zoom level\n      // adaptable: true, // Sizes are increased with higher zoom-levels\n      interactive: false, // Enable zooming and rotation with mousewheel and dragging\n      // form: true, // Display form for interactive settings. Needs a div with\n      // id=\"celestial-form\", created automatically if not present\n      // location: false, // Display location settings. Deprecated, use formFields below\n      // formFields: {\n      //   location: false, // Set visiblity for each group of fields with the respective id\n      //   general: false,\n      //   stars: false,\n      //   dsos: false,\n      //   constellations: false,\n      //   lines: false,\n      //   other: false,\n      //   download: true\n      // },\n      advanced: true, // Display fewer form fields if false\n      daterange: [], // Calender date range; null: displaydate-+10; [n<100]: displaydate-+n; [yr]: yr-+10;\n      // [yr, n<100]: [yr-n, yr+n]; [yr0, yr1]\n      controls: true, // Display zoom controls\n      lang: \"\", // Global language override for names, any name setting that has the chosen language available\n      // Default: desig or empty string for designations, other languages as used anywhere else\n      culture: \"\", // Source of constellations and star names, default \"iau\", other: \"cn\" Traditional Chinese\n      container: \"map\", // ID of parent element, e.g. div, null = html-body\n      datapath: \"data/\", // Path/URL to data files, empty = subfolder 'data'\n      stars: {\n        show: true, // Show stars\n        limit: 6, // Show only stars brighter than limit magnitude\n        colors: true, // Show stars in spectral colors, if not use default color\n        style: { fill: \"#ffffff\", opacity: 1 }, // Default style for stars\n        designation: true, // Show star names (Bayer, Flamsteed, Variable star, Gliese or designation,\n        // i.e. whichever of the previous applies first); may vary with culture setting\n        designationType: \"desig\", // Which kind of name is displayed as designation (fieldname in starnames.json)\n        designationStyle: {\n          fill: \"#ddddbb\",\n          font: \"11px 'Palatino Linotype', Georgia, Times, 'Times Roman', serif\",\n          align: \"left\",\n          baseline: \"top\"\n        },\n        designationLimit: 2.5, // Show only names for stars brighter than nameLimit\n        propername: false, // Show proper name (if present)\n        propernameType: \"name\", // Languge for proper name, default IAU name; may vary with culture setting\n        // (see list below of languages codes available for stars)\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: \"13px 'Palatino Linotype', Georgia, Times, 'Times Roman', serif\",\n          align: \"right\",\n          baseline: \"bottom\"\n        },\n        propernameLimit: 1.5, // Show proper names for stars brighter than propernameLimit\n        size: 7, // Maximum size (radius) of star circle in pixels\n        exponent: -0.28, // Scale exponent for star size, larger = more linear\n        data: \"stars.6.json\" // Data source for stellar data,\n        // number indicates limit magnitude\n      },\n      dsos: {\n        show: true, // Show Deep Space Objects\n        limit: 6, // Show only DSOs brighter than limit magnitude\n        colors: true, // // Show DSOs in symbol colors if true, use style setting below if false\n        style: { fill: \"#cccccc\", stroke: \"#cccccc\", width: 2, opacity: 1 }, // Default style for dsos\n        names: true, // Show DSO names\n        namesType: \"name\", // Type of DSO ('desig' or language) name shown\n        // (see list below for languages codes available for dsos)\n        nameStyle: {\n          fill: \"#cccccc\",\n          font: \"11px Helvetica, Arial, serif\",\n          align: \"left\",\n          baseline: \"top\"\n        }, // Style for DSO names\n        nameLimit: 6, // Show only names for DSOs brighter than namelimit\n        size: null, // Optional seperate scale size for DSOs, null = stars.size\n        exponent: 1.4, // Scale exponent for DSO size, larger = more non-linear\n        data: \"dsos.bright.json\", // Data source for DSOs,\n        // opt. number indicates limit magnitude\n        symbols: {\n          //DSO symbol styles, 'stroke'-parameter present = outline\n          gg: { shape: \"circle\", fill: \"#ff0000\" }, // Galaxy cluster\n          g: { shape: \"ellipse\", fill: \"#ff0000\" }, // Generic galaxy\n          s: { shape: \"ellipse\", fill: \"#ff0000\" }, // Spiral galaxy\n          s0: { shape: \"ellipse\", fill: \"#ff0000\" }, // Lenticular galaxy\n          sd: { shape: \"ellipse\", fill: \"#ff0000\" }, // Dwarf galaxy\n          e: { shape: \"ellipse\", fill: \"#ff0000\" }, // Elliptical galaxy\n          i: { shape: \"ellipse\", fill: \"#ff0000\" }, // Irregular galaxy\n          oc: { shape: \"circle\", fill: \"#ffcc00\", stroke: \"#ffcc00\", width: 1.5 }, // Open cluster\n          gc: { shape: \"circle\", fill: \"#ff9900\" }, // Globular cluster\n          en: { shape: \"square\", fill: \"#ff00cc\" }, // Emission nebula\n          bn: { shape: \"square\", fill: \"#ff00cc\", stroke: \"#ff00cc\", width: 2 }, // Generic bright nebula\n          sfr: { shape: \"square\", fill: \"#cc00ff\", stroke: \"#cc00ff\", width: 2 }, // Star forming region\n          rn: { shape: \"square\", fill: \"#00ooff\" }, // Reflection nebula\n          pn: { shape: \"diamond\", fill: \"#00cccc\" }, // Planetary nebula\n          snr: { shape: \"diamond\", fill: \"#ff00cc\" }, // Supernova remnant\n          dn: { shape: \"square\", fill: \"#999999\", stroke: \"#999999\", width: 2 }, // Dark nebula grey\n          pos: { shape: \"marker\", fill: \"#cccccc\", stroke: \"#cccccc\", width: 1.5 } // Generic marker\n        }\n      },\n      planets: {\n        //Show planet locations, if date-time is set\n        show: false,\n        // List of all objects to show\n        which: [\n          \"sol\",\n          \"mer\",\n          \"ven\",\n          \"ter\",\n          \"lun\",\n          \"mar\",\n          \"jup\",\n          \"sat\",\n          \"ura\",\n          \"nep\"\n        ],\n        // Font styles for planetary symbols\n        symbols: {\n          // Character and color for each symbol in 'which' above (simple circle: \\u25cf), optional size override for Sun & Moon\n          sol: { symbol: \"\\u2609\", letter: \"Su\", fill: \"#ffff00\", size: \"\" },\n          mer: { symbol: \"\\u263f\", letter: \"Me\", fill: \"#cccccc\" },\n          ven: { symbol: \"\\u2640\", letter: \"V\", fill: \"#eeeecc\" },\n          ter: { symbol: \"\\u2295\", letter: \"T\", fill: \"#00ccff\" },\n          lun: { symbol: \"\\u25cf\", letter: \"L\", fill: \"#ffffff\", size: \"\" }, // overridden by generated crecent, except letter & size\n          mar: { symbol: \"\\u2642\", letter: \"Ma\", fill: \"#ff6600\" },\n          cer: { symbol: \"\\u26b3\", letter: \"C\", fill: \"#cccccc\" },\n          ves: { symbol: \"\\u26b6\", letter: \"Ma\", fill: \"#cccccc\" },\n          jup: { symbol: \"\\u2643\", letter: \"J\", fill: \"#ffaa33\" },\n          sat: { symbol: \"\\u2644\", letter: \"Sa\", fill: \"#ffdd66\" },\n          ura: { symbol: \"\\u2645\", letter: \"U\", fill: \"#66ccff\" },\n          nep: { symbol: \"\\u2646\", letter: \"N\", fill: \"#6666ff\" },\n          plu: { symbol: \"\\u2647\", letter: \"P\", fill: \"#aaaaaa\" },\n          eri: { symbol: \"\\u26aa\", letter: \"E\", fill: \"#eeeeee\" }\n        },\n        symbolStyle: {\n          fill: \"#00ccff\",\n          font: \"bold 17px 'Lucida Sans Unicode', Consolas, sans-serif\",\n          align: \"center\",\n          baseline: \"middle\"\n        },\n        symbolType: \"symbol\", // Type of planet symbol: 'symbol' graphic planet sign, 'disk' filled circle scaled by magnitude\n        // 'letter': 1 or 2 letters S Me V L Ma J S U N\n        names: false, // Show name in nameType language next to symbol\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: \"14px 'Lucida Sans Unicode', Consolas, sans-serif\",\n          align: \"right\",\n          baseline: \"top\"\n        },\n        namesType: \"desig\" // Language of planet name (see list below of language codes available for planets),\n        // or desig = 3-letter designation\n      },\n      constellations: {\n        names: true, // Show constellation names\n        namesType: \"iau\", // Type of name Latin (iau, default), 3 letter designation (desig) or other language (see list below)\n        nameStyle: {\n          fill: \"#cccc99\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [\n            \"14px Helvetica, Arial, sans-serif\", // Style for constellations\n            \"12px Helvetica, Arial, sans-serif\", // Different fonts for diff.\n            \"11px Helvetica, Arial, sans-serif\"\n          ]\n        }, // ranked constellations\n        lines: true, // Show constellation lines, style below\n        lineStyle: { stroke: \"#cccccc\", width: 1, opacity: 0.6 },\n        bounds: false, // Show constellation boundaries, style below\n        boundStyle: { stroke: \"#cccc00\", width: 0.5, opacity: 0.8, dash: [2, 4] }\n      },\n      mw: {\n        show: true, // Show Milky Way as filled multi-polygon outlines\n        style: { fill: \"#ffffff\", opacity: 0.15 } // Style for MW layers\n      },\n      lines: {\n        // Display & styles for graticule & some planes\n        graticule: {\n          show: true,\n          stroke: \"#cccccc\",\n          width: 0.6,\n          opacity: 0.8,\n          // grid values: \"outline\", \"center\", or [lat,...] specific position\n          lon: {\n            pos: [\"\"],\n            fill: \"#eee\",\n            font: \"10px Helvetica, Arial, sans-serif\"\n          },\n          // grid values: \"outline\", \"center\", or [lon,...] specific position\n          lat: {\n            pos: [\"\"],\n            fill: \"#eee\",\n            font: \"10px Helvetica, Arial, sans-serif\"\n          }\n        },\n        equatorial: { show: true, stroke: \"#aaaaaa\", width: 1.3, opacity: 0.7 },\n        ecliptic: { show: true, stroke: \"#66cc66\", width: 1.3, opacity: 0.7 },\n        galactic: { show: false, stroke: \"#cc6666\", width: 1.3, opacity: 0.7 },\n        supergalactic: { show: false, stroke: \"#cc66cc\", width: 1.3, opacity: 0.7 }\n      },\n      background: {\n        // Background style\n        fill: \"#000000\", // Area fill\n        opacity: 1,\n        stroke: \"#000000\", // Outline\n        width: 1.5\n      },\n      horizon: {\n        //Show horizon marker, if location is set and map projection is all-sky\n        show: false,\n        stroke: \"#cccccc\", // Line\n        width: 1.0,\n        fill: \"#000000\", // Area below horizon\n        opacity: 0.5\n      },\n      daylight: {\n        //Show day sky as a gradient, if location is set and map projection is hemispheric\n        show: false\n      }\n    };\n\n    const DATE = new Date(\"2021-09-25T04:00:00+0000\");\n    const [LAT, LON] = [36.525321, -121.815916];\n    const FONT = \"Raleway\";\n\n    const config = {\n      container: \"map\",\n      width: 0,\n      datapath: \"../../../assets/data/\", // Path/URL to data files, empty = subfolder 'data'\n\n      form: false,\n      advanced: false,\n      interactive: false,\n      disableAnimations: true,\n\n      zoomlevel: null,\n      zoomextend: 1,\n\n      projection: \"airy\",\n      transform: \"equatorial\",\n\n      follow: \"zenith\",\n      geopos: [LAT, LON],\n\n      lines: {\n        graticule: { show: false },\n        equatorial: { show: false },\n        ecliptic: { show: false },\n        galactic: { show: false },\n        supergalactic: { show: false }\n      },\n\n      planets: {\n        show: false,\n        which: [\"mer\", \"ven\", \"ter\", \"lun\", \"mar\", \"jup\", \"sat\"],\n\n        symbolType: \"disk\",\n        names: true,\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: `14px ${FONT}`,\n          align: \"center\",\n          baseline: \"top\"\n        },\n        namesType: \"en\"\n      },\n\n      dsos: {\n        show: false,\n        names: false\n      },\n\n      constellations: {\n        names: false,\n        namesType: \"iau\",\n        nameStyle: {\n          fill: \"#ffffff\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]\n        },\n        lines: true,\n        lineStyle: { stroke: \"#cccccc\", width: 1.5, opacity: 1 }\n      },\n\n      mw: {\n        show: false,\n        style: { fill: \"#ffffff\", opacity: 0.02 }\n      },\n\n      background: {\n        fill: this.style?.globe || \"#D2001A\", // globe color\n        stroke: \"#EFEFEF\",\n        opacity: 1,\n        width: 2\n      },\n\n      stars: {\n        colors: true,\n        size: 12,\n        limit: 6,\n        exponent: -0.26,\n        designation: false,\n\n        propername: false,\n        propernameType: \"name\",\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: `8px ${FONT}`,\n          align: \"right\",\n          baseline: \"center\"\n        },\n        propernameLimit: 2.0\n      }\n    };\n\n    Celestial.display(config);\n    Celestial.skyview({ date: DATE });\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "background",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "globe",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
         }
     ],
     "injectables": [],
@@ -89,7 +130,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"main\">\n  <app-header></app-header>\n  <router-outlet></router-outlet>\n</div>\n"
+            "templateData": "<div class=\"main\">\n  <app-header></app-header>\n  <app-stellar-map-preview></app-stellar-map-preview>\n  <router-outlet></router-outlet>\n</div>\n"
         },
         {
             "name": "ButtonComponent",
@@ -245,7 +286,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".header-container {\n\tbackground: black;\n\theight: 110px;\n\tdisplay: flex;\n\tjustify-content: space-between;\n}\n.links {\n\tdisplay: flex;\n\tpadding-left: 40px;\n\talign-items: center;\n\n\ta {\n\t\ttext-decoration: none;\n\t\tfont-size: 16px;\n\t\tcolor: white;\n\t\tpadding-right: 40px;\n\t}\n}\n.brand-container {\n\t\tdisplay: flex;\n\t\talign-items: center;\n\t\tpadding-left: 40px;\n\t\tpadding-right: 40px;\n\n\timg {\n\t\tmax-height: 60px;\n\t\twidth: 60px;\n\t}\n}\n.header-icons {\n\tdisplay: flex;\n\tpadding-left: 40px;\n\tpadding-right: 40px;\n\talign-items: center;\n\tcolor: white;\n}",
+                    "data": ".header-container {\n\tbackground: black;\n\theight: 90px;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n\tpadding-left: 40px;\n\tpadding-right: 40px;\n}\n\n.links {\n\tdisplay: flex;\n\tjustify-content: start;\n\tflex: 1 1 0%;\n\n\ta {\n\t\ttext-decoration: none;\n\t\tfont-size: 16px;\n\t\tcolor: white;\n\t\tpadding-right: 30px;\n\t}\n}\n\n.brand-container {\n\tdisplay: flex;\n\theight: 30px;\n}\n\n.header-accions {\n\tdisplay: flex;\n\tjustify-content: end;\n\tflex: 1 1 0%;\n\tcolor: white;\n}\n\n.help-opcion {\n\tdisplay: flex;\n\tfont-size: 16px;\n\tpadding-right: 30px;\n}",
                     "styleUrl": "./header.component.scss"
                 }
             ],
@@ -261,7 +302,135 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"header-container\">\n\t<div class=\"links\">\n\t\t<div class=\"link-container\" *ngFor=\"let link of links\">\n\t\t\t<a href=\"{{link.link}}\">{{link.title}}</a>\n\t\t</div>\n\t</div>\n\t<div class=\"brand-container\">\n\t\t<img class=\"brand\" src=\"../../../assets/images/airprint-white.svg\">\n\t</div>\n\t<div class=\"header-icons\">\n\t\t<mat-icon [matBadge]=\"totalProducts\">shopping_basket</mat-icon>\n\t</div>\n</div>\n"
+            "templateData": "<div class=\"header-container\">\n\t<div class=\"links\">\n\t\t<div class=\"link-container\" *ngFor=\"let link of links\">\n\t\t\t<a href=\"{{link.link}}\">{{link.title}}</a>\n\t\t</div>\n\t</div>\n\t<div class=\"brand-container\">\n\t\t<img class=\"brand\" src=\"../../../assets/images/airprint-white.svg\">\n\t</div>\n\t<div class=\"header-accions\">\n\t\t<div class=\"help-opcion\" [matMenuTriggerFor]=\"menu\">\n\t\t\t<div>Help</div>\n\t\t\t<mat-icon>keyboard_arrow_down</mat-icon>\n\t\t\t<mat-menu #menu=\"matMenu\">\n\t\t\t\t<button mat-menu-item>FAQ</button>\n\t\t\t\t<button mat-menu-item>Shipping information</button>\n\t\t\t\t<button mat-menu-item>Contact us</button>\n\t\t\t</mat-menu>\n\t\t</div>\n\t\t<mat-icon [matBadge]=\"totalProducts\">shopping_basket</mat-icon>\n\t</div>\n</div>"
+        },
+        {
+            "name": "StellarMapPreviewComponent",
+            "id": "component-StellarMapPreviewComponent-30cb6e81c0fafa98e3bb1e5d832680c21be6d73d2c84865b41cc52e17e2bdf691cedb326cb1e8eee4448eb7525175690a5f709db9bca8fb3b4fff34a56078f03",
+            "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-stellar-map-preview",
+            "styleUrls": [
+                "./stellar-map-preview.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./stellar-map-preview.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "city",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "coordinates",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "country",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "date",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "style",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "StellarMapColor | undefined",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "styleColors",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "mapInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n// const celestial = require(\"d3-celestial\");\nimport celestial from \"d3-celestial\";\nconst Celestial = celestial.Celestial();\n\ninterface StellarMapColor {\n  globe: string;\n  background: string;\n  text: string;\n}\n@Component({\n  selector: 'app-stellar-map-preview',\n  templateUrl: './stellar-map-preview.component.html',\n  styleUrls: ['./stellar-map-preview.component.scss']\n})\nexport class StellarMapPreviewComponent implements OnInit {\n  @Input() city = '';\n  @Input() country = '';\n  @Input() date = '';\n  @Input() coordinates = '';\n  @Input() style: StellarMapColor | undefined;\n\n  styleColors = {};\n  constructor() { }\n\n  ngOnInit(): void {\n    this.mapInit();\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n  }\n\n  mapInit () {\n    const baseConfig = {\n      width: 0, // Default width, 0 = full parent element width;\n      // height is determined by projection\n      projection: \"airy\", // Map projection used: see below\n      // projectionRatio: null, // Optional override for default projection ratio\n      // transform: \"equatorial\", // Coordinate transformation: equatorial (default),\n      // ecliptic, galactic, supergalactic\n      // center: [36.525321,-121.815916,0], // Initial center coordinates in set transform\n      // [longitude, latitude, orientation] all in degrees\n      // null = default center [0,0,0]\n      orientationfixed: true, // Keep orientation angle the same as center[2]\n      geopos: null, // optional initial geographic position [lat,lon] in degrees,\n      // overrides center\n      // follow: \"zenith\", // on which coordinates to center the map, default: zenith, if location enabled,\n      // otherwise center\n      zoomlevel: null, // initial zoom level 0...zoomextend; 0|null = default, 1 = 100%, 0 < x <= zoomextend\n      zoomextend: 1, // maximum zoom level\n      // adaptable: true, // Sizes are increased with higher zoom-levels\n      interactive: false, // Enable zooming and rotation with mousewheel and dragging\n      // form: true, // Display form for interactive settings. Needs a div with\n      // id=\"celestial-form\", created automatically if not present\n      // location: false, // Display location settings. Deprecated, use formFields below\n      // formFields: {\n      //   location: false, // Set visiblity for each group of fields with the respective id\n      //   general: false,\n      //   stars: false,\n      //   dsos: false,\n      //   constellations: false,\n      //   lines: false,\n      //   other: false,\n      //   download: true\n      // },\n      advanced: true, // Display fewer form fields if false\n      daterange: [], // Calender date range; null: displaydate-+10; [n<100]: displaydate-+n; [yr]: yr-+10;\n      // [yr, n<100]: [yr-n, yr+n]; [yr0, yr1]\n      controls: true, // Display zoom controls\n      lang: \"\", // Global language override for names, any name setting that has the chosen language available\n      // Default: desig or empty string for designations, other languages as used anywhere else\n      culture: \"\", // Source of constellations and star names, default \"iau\", other: \"cn\" Traditional Chinese\n      container: \"map\", // ID of parent element, e.g. div, null = html-body\n      datapath: \"data/\", // Path/URL to data files, empty = subfolder 'data'\n      stars: {\n        show: true, // Show stars\n        limit: 6, // Show only stars brighter than limit magnitude\n        colors: true, // Show stars in spectral colors, if not use default color\n        style: { fill: \"#ffffff\", opacity: 1 }, // Default style for stars\n        designation: true, // Show star names (Bayer, Flamsteed, Variable star, Gliese or designation,\n        // i.e. whichever of the previous applies first); may vary with culture setting\n        designationType: \"desig\", // Which kind of name is displayed as designation (fieldname in starnames.json)\n        designationStyle: {\n          fill: \"#ddddbb\",\n          font: \"11px 'Palatino Linotype', Georgia, Times, 'Times Roman', serif\",\n          align: \"left\",\n          baseline: \"top\"\n        },\n        designationLimit: 2.5, // Show only names for stars brighter than nameLimit\n        propername: false, // Show proper name (if present)\n        propernameType: \"name\", // Languge for proper name, default IAU name; may vary with culture setting\n        // (see list below of languages codes available for stars)\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: \"13px 'Palatino Linotype', Georgia, Times, 'Times Roman', serif\",\n          align: \"right\",\n          baseline: \"bottom\"\n        },\n        propernameLimit: 1.5, // Show proper names for stars brighter than propernameLimit\n        size: 7, // Maximum size (radius) of star circle in pixels\n        exponent: -0.28, // Scale exponent for star size, larger = more linear\n        data: \"stars.6.json\" // Data source for stellar data,\n        // number indicates limit magnitude\n      },\n      dsos: {\n        show: true, // Show Deep Space Objects\n        limit: 6, // Show only DSOs brighter than limit magnitude\n        colors: true, // // Show DSOs in symbol colors if true, use style setting below if false\n        style: { fill: \"#cccccc\", stroke: \"#cccccc\", width: 2, opacity: 1 }, // Default style for dsos\n        names: true, // Show DSO names\n        namesType: \"name\", // Type of DSO ('desig' or language) name shown\n        // (see list below for languages codes available for dsos)\n        nameStyle: {\n          fill: \"#cccccc\",\n          font: \"11px Helvetica, Arial, serif\",\n          align: \"left\",\n          baseline: \"top\"\n        }, // Style for DSO names\n        nameLimit: 6, // Show only names for DSOs brighter than namelimit\n        size: null, // Optional seperate scale size for DSOs, null = stars.size\n        exponent: 1.4, // Scale exponent for DSO size, larger = more non-linear\n        data: \"dsos.bright.json\", // Data source for DSOs,\n        // opt. number indicates limit magnitude\n        symbols: {\n          //DSO symbol styles, 'stroke'-parameter present = outline\n          gg: { shape: \"circle\", fill: \"#ff0000\" }, // Galaxy cluster\n          g: { shape: \"ellipse\", fill: \"#ff0000\" }, // Generic galaxy\n          s: { shape: \"ellipse\", fill: \"#ff0000\" }, // Spiral galaxy\n          s0: { shape: \"ellipse\", fill: \"#ff0000\" }, // Lenticular galaxy\n          sd: { shape: \"ellipse\", fill: \"#ff0000\" }, // Dwarf galaxy\n          e: { shape: \"ellipse\", fill: \"#ff0000\" }, // Elliptical galaxy\n          i: { shape: \"ellipse\", fill: \"#ff0000\" }, // Irregular galaxy\n          oc: { shape: \"circle\", fill: \"#ffcc00\", stroke: \"#ffcc00\", width: 1.5 }, // Open cluster\n          gc: { shape: \"circle\", fill: \"#ff9900\" }, // Globular cluster\n          en: { shape: \"square\", fill: \"#ff00cc\" }, // Emission nebula\n          bn: { shape: \"square\", fill: \"#ff00cc\", stroke: \"#ff00cc\", width: 2 }, // Generic bright nebula\n          sfr: { shape: \"square\", fill: \"#cc00ff\", stroke: \"#cc00ff\", width: 2 }, // Star forming region\n          rn: { shape: \"square\", fill: \"#00ooff\" }, // Reflection nebula\n          pn: { shape: \"diamond\", fill: \"#00cccc\" }, // Planetary nebula\n          snr: { shape: \"diamond\", fill: \"#ff00cc\" }, // Supernova remnant\n          dn: { shape: \"square\", fill: \"#999999\", stroke: \"#999999\", width: 2 }, // Dark nebula grey\n          pos: { shape: \"marker\", fill: \"#cccccc\", stroke: \"#cccccc\", width: 1.5 } // Generic marker\n        }\n      },\n      planets: {\n        //Show planet locations, if date-time is set\n        show: false,\n        // List of all objects to show\n        which: [\n          \"sol\",\n          \"mer\",\n          \"ven\",\n          \"ter\",\n          \"lun\",\n          \"mar\",\n          \"jup\",\n          \"sat\",\n          \"ura\",\n          \"nep\"\n        ],\n        // Font styles for planetary symbols\n        symbols: {\n          // Character and color for each symbol in 'which' above (simple circle: \\u25cf), optional size override for Sun & Moon\n          sol: { symbol: \"\\u2609\", letter: \"Su\", fill: \"#ffff00\", size: \"\" },\n          mer: { symbol: \"\\u263f\", letter: \"Me\", fill: \"#cccccc\" },\n          ven: { symbol: \"\\u2640\", letter: \"V\", fill: \"#eeeecc\" },\n          ter: { symbol: \"\\u2295\", letter: \"T\", fill: \"#00ccff\" },\n          lun: { symbol: \"\\u25cf\", letter: \"L\", fill: \"#ffffff\", size: \"\" }, // overridden by generated crecent, except letter & size\n          mar: { symbol: \"\\u2642\", letter: \"Ma\", fill: \"#ff6600\" },\n          cer: { symbol: \"\\u26b3\", letter: \"C\", fill: \"#cccccc\" },\n          ves: { symbol: \"\\u26b6\", letter: \"Ma\", fill: \"#cccccc\" },\n          jup: { symbol: \"\\u2643\", letter: \"J\", fill: \"#ffaa33\" },\n          sat: { symbol: \"\\u2644\", letter: \"Sa\", fill: \"#ffdd66\" },\n          ura: { symbol: \"\\u2645\", letter: \"U\", fill: \"#66ccff\" },\n          nep: { symbol: \"\\u2646\", letter: \"N\", fill: \"#6666ff\" },\n          plu: { symbol: \"\\u2647\", letter: \"P\", fill: \"#aaaaaa\" },\n          eri: { symbol: \"\\u26aa\", letter: \"E\", fill: \"#eeeeee\" }\n        },\n        symbolStyle: {\n          fill: \"#00ccff\",\n          font: \"bold 17px 'Lucida Sans Unicode', Consolas, sans-serif\",\n          align: \"center\",\n          baseline: \"middle\"\n        },\n        symbolType: \"symbol\", // Type of planet symbol: 'symbol' graphic planet sign, 'disk' filled circle scaled by magnitude\n        // 'letter': 1 or 2 letters S Me V L Ma J S U N\n        names: false, // Show name in nameType language next to symbol\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: \"14px 'Lucida Sans Unicode', Consolas, sans-serif\",\n          align: \"right\",\n          baseline: \"top\"\n        },\n        namesType: \"desig\" // Language of planet name (see list below of language codes available for planets),\n        // or desig = 3-letter designation\n      },\n      constellations: {\n        names: true, // Show constellation names\n        namesType: \"iau\", // Type of name Latin (iau, default), 3 letter designation (desig) or other language (see list below)\n        nameStyle: {\n          fill: \"#cccc99\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [\n            \"14px Helvetica, Arial, sans-serif\", // Style for constellations\n            \"12px Helvetica, Arial, sans-serif\", // Different fonts for diff.\n            \"11px Helvetica, Arial, sans-serif\"\n          ]\n        }, // ranked constellations\n        lines: true, // Show constellation lines, style below\n        lineStyle: { stroke: \"#cccccc\", width: 1, opacity: 0.6 },\n        bounds: false, // Show constellation boundaries, style below\n        boundStyle: { stroke: \"#cccc00\", width: 0.5, opacity: 0.8, dash: [2, 4] }\n      },\n      mw: {\n        show: true, // Show Milky Way as filled multi-polygon outlines\n        style: { fill: \"#ffffff\", opacity: 0.15 } // Style for MW layers\n      },\n      lines: {\n        // Display & styles for graticule & some planes\n        graticule: {\n          show: true,\n          stroke: \"#cccccc\",\n          width: 0.6,\n          opacity: 0.8,\n          // grid values: \"outline\", \"center\", or [lat,...] specific position\n          lon: {\n            pos: [\"\"],\n            fill: \"#eee\",\n            font: \"10px Helvetica, Arial, sans-serif\"\n          },\n          // grid values: \"outline\", \"center\", or [lon,...] specific position\n          lat: {\n            pos: [\"\"],\n            fill: \"#eee\",\n            font: \"10px Helvetica, Arial, sans-serif\"\n          }\n        },\n        equatorial: { show: true, stroke: \"#aaaaaa\", width: 1.3, opacity: 0.7 },\n        ecliptic: { show: true, stroke: \"#66cc66\", width: 1.3, opacity: 0.7 },\n        galactic: { show: false, stroke: \"#cc6666\", width: 1.3, opacity: 0.7 },\n        supergalactic: { show: false, stroke: \"#cc66cc\", width: 1.3, opacity: 0.7 }\n      },\n      background: {\n        // Background style\n        fill: \"#000000\", // Area fill\n        opacity: 1,\n        stroke: \"#000000\", // Outline\n        width: 1.5\n      },\n      horizon: {\n        //Show horizon marker, if location is set and map projection is all-sky\n        show: false,\n        stroke: \"#cccccc\", // Line\n        width: 1.0,\n        fill: \"#000000\", // Area below horizon\n        opacity: 0.5\n      },\n      daylight: {\n        //Show day sky as a gradient, if location is set and map projection is hemispheric\n        show: false\n      }\n    };\n\n    const DATE = new Date(\"2021-09-25T04:00:00+0000\");\n    const [LAT, LON] = [36.525321, -121.815916];\n    const FONT = \"Raleway\";\n\n    const config = {\n      container: \"map\",\n      width: 0,\n      datapath: \"../../../assets/data/\", // Path/URL to data files, empty = subfolder 'data'\n\n      form: false,\n      advanced: false,\n      interactive: false,\n      disableAnimations: true,\n\n      zoomlevel: null,\n      zoomextend: 1,\n\n      projection: \"airy\",\n      transform: \"equatorial\",\n\n      follow: \"zenith\",\n      geopos: [LAT, LON],\n\n      lines: {\n        graticule: { show: false },\n        equatorial: { show: false },\n        ecliptic: { show: false },\n        galactic: { show: false },\n        supergalactic: { show: false }\n      },\n\n      planets: {\n        show: false,\n        which: [\"mer\", \"ven\", \"ter\", \"lun\", \"mar\", \"jup\", \"sat\"],\n\n        symbolType: \"disk\",\n        names: true,\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: `14px ${FONT}`,\n          align: \"center\",\n          baseline: \"top\"\n        },\n        namesType: \"en\"\n      },\n\n      dsos: {\n        show: false,\n        names: false\n      },\n\n      constellations: {\n        names: false,\n        namesType: \"iau\",\n        nameStyle: {\n          fill: \"#ffffff\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]\n        },\n        lines: true,\n        lineStyle: { stroke: \"#cccccc\", width: 1.5, opacity: 1 }\n      },\n\n      mw: {\n        show: false,\n        style: { fill: \"#ffffff\", opacity: 0.02 }\n      },\n\n      background: {\n        fill: this.style?.globe || \"#D2001A\", // globe color\n        stroke: \"#EFEFEF\",\n        opacity: 1,\n        width: 2\n      },\n\n      stars: {\n        colors: true,\n        size: 12,\n        limit: 6,\n        exponent: -0.26,\n        designation: false,\n\n        propername: false,\n        propernameType: \"name\",\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: `8px ${FONT}`,\n          align: \"right\",\n          baseline: \"center\"\n        },\n        propernameLimit: 2.0\n      }\n    };\n\n    Celestial.display(config);\n    Celestial.skyview({ date: DATE });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".stellar-map-container {\n  background: white;\n  height: 500px;\n  width: 100%;\n  display: flex;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n  .stellar-map-content {\n    width: 100%;\n    font-family: Courier New;\n    margin: 20px;\n    display: flex;\n    flex-direction: column;\n\n    .stellar-map {\n      display: flex;\n      justify-content: center;\n      padding: 20px 0;\n\n      .render {\n        width: 100%;\n\n        #map {\n          display: flex;\n          justify-content: center;\n        }\n      }\n    }\n\n    .stellar-information {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      font-size: 16px;\n      justify-content: end;\n      flex: 1 1 0%;\n      padding-bottom: 20px;\n\n      .city {\n        font-weight: bold;\n      }\n      .country {\n        padding-bottom: 8px;\n      }\n      .coordinates {\n        font-size: 14px;\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./stellar-map-preview.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 23
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"stellar-map-container\">\n\t<div class=\"stellar-map-content\" [ngStyle]=\"styleColors\">\n\t\t<div class=\"stellar-map\">\n      <div class=\"render\">\n\t\t\t  <div id=\"map\"></div>\n      </div>\n\t\t</div>\n\t\t<div class=\"stellar-information\" [ngStyle]=\"styleColors\">\n      <div>Frase Opcional</div>\n\t\t\t<span class=\"city\">{{city}}</span>\n\t\t\t<span class=\"country\">{{country}}</span>\n\t\t\t<span class=\"date\">{{date}}</span>\n\t\t\t<span class=\"coordinates\">{{coordinates}}</span>\n\t\t</div>\n\t</div>\n</div>\n"
         }
     ],
     "modules": [
@@ -354,13 +523,13 @@
         },
         {
             "name": "ComponentsModule",
-            "id": "module-ComponentsModule-1a35169bead11d1ff83a39cf1c24a11d7d79ef623c42c6ae3952ca3e80399f07cd1026f9a8d7ddab4b57c3b6f399069b28ba620eb588e2b97b15c4a2bb5ad7f5",
+            "id": "module-ComponentsModule-9403316031204801bc923c6dc96145fc887f958ccb780b1dd268f8c0dfa5ac1d55d16e07a68a514600459fbf8c48469d87e2b8c3bbb805ec8bc7e40428e56840",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/components/components.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ButtonComponent } from './button/button.component';\nimport { MaterialModule} from '../material.module';\nimport { HeaderComponent } from './header/header.component'\n\nconst components = [   \n\tButtonComponent,\n\tHeaderComponent\n];\n\n@NgModule({\n  declarations: components,\n  imports: [\n    CommonModule,\n    MaterialModule\n  ],\n  exports: components,\n})\nexport class ComponentsModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ButtonComponent } from './button/button.component';\nimport { MaterialModule} from '../material.module';\nimport { HeaderComponent } from './header/header.component';\nimport { StellarMapPreviewComponent } from './stellar-map-preview/stellar-map-preview.component';\n\n\nconst components = [   \n\tButtonComponent,\n\tHeaderComponent,\n  StellarMapPreviewComponent\n];\n\n@NgModule({\n  declarations: components,\n  imports: [\n    CommonModule,\n    MaterialModule\n  ],\n  exports: components,\n})\nexport class ComponentsModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -374,6 +543,9 @@
                         },
                         {
                             "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "StellarMapPreviewComponent"
                         }
                     ]
                 },
@@ -393,6 +565,9 @@
                         },
                         {
                             "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "StellarMapPreviewComponent"
                         }
                     ]
                 },
@@ -408,13 +583,13 @@
         },
         {
             "name": "MaterialModule",
-            "id": "module-MaterialModule-402088e81194e7a07a130a7e3464e96d51f455029351868f152162526322dfbbf7702affee7a323412402d3ca66842e6fe53f2347f5ee860f10a8c862c2eccb3",
+            "id": "module-MaterialModule-fb3ac5fee9933a283836eb32d48c33b6dfc761bd3dd61afb14eaf73088b0e06aa2b2a16e6409c00b6f64f04aa5517b110f0aff4f0ac08563cbf3c78b9ca5a2cc",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/material.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatBadgeModule} from '@angular/material/badge';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    MatButtonModule,\n    MatIconModule,\n    MatBadgeModule\n\t],\n})\nexport class MaterialModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatBadgeModule} from '@angular/material/badge';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    MatButtonModule,\n    MatIconModule,\n    MatBadgeModule,\n    MatMenuModule,\n    BrowserAnimationsModule\n\t],\n})\nexport class MaterialModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -463,7 +638,37 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n\n  styles: [\n    `\n    .box {\n      padding: 100px;\n    }\n    \n    .box app-button {\n      padding-right: 10px;\n    }\n    `\n  ],\n\n  template:`\n    <div class=\"box\">\n      <app-button >\n        Default\n       </app-button >\n\n      <app-button color='accent'>\n        Primary\n      </app-button>\n\n      <app-button>\n        Secondary\n      </app-button >\n\n      <app-button color='warn'>\n        Error\n      </app-button >\n\n      <app-button color='disabled'>\n        Disabled\n      </app-button >\n    </div>\n  `\n})"
+                "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n  styles: [\n    `\n    .box {\n      padding: 100px;\n    }\n\n    .box app-button {\n      padding-right: 10px;\n    }\n    `\n  ],\n  template:`\n    <div class=\"box\">\n      <app-button >\n        Default\n       </app-button >\n\n      <app-button color='accent'>\n        Primary\n      </app-button>\n\n      <app-button>\n        Secondary\n      </app-button >\n\n      <app-button color='warn'>\n        Error\n      </app-button >\n\n      <app-button color='disabled'>\n        Disabled\n      </app-button >\n    </div>\n  `\n})"
+            },
+            {
+                "name": "Celestial",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "celestial.Celestial()"
+            },
+            {
+                "name": "classicColors",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  globe: '#b9dccd',\n  background: '#EFEFEF',\n  text: '#182731',\n}"
+            },
+            {
+                "name": "ClassicStyle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "(args) => ({\n  props: args,\n  styles: [\n    `\n    .main-container {\n      background:#c7c7c7;\n      height: 600px;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      padding: 30px;\n    }\n\n    .wrapper-map {\n      width: 400px;\n      height: 500px\n    }\n    `\n  ],\n  template:`\n    <div class=\"main-container\">\n      <div class=\"wrapper-map\">\n        <app-stellar-map-preview\n          city=\"PARIS\"\n          country=\"FRANCE\"\n          date=\"SEPTEMBER 10TH 2019\"\n          coordinates=\"48.856 N / 2.3522 E\"\n          style={{classicColors}}\n        >\n        </app-stellar-map-preview>\n      </div>\n    </div>\n  `\n})"
             },
             {
                 "name": "components",
@@ -473,7 +678,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[   \n\tButtonComponent,\n\tHeaderComponent\n]"
+                "defaultValue": "[   \n\tButtonComponent,\n\tHeaderComponent,\n  StellarMapPreviewComponent\n]"
             },
             {
                 "name": "context",
@@ -484,6 +689,16 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "DarkStyle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\n  props: {\n    city: 'PARIS',\n    country: 'FRANCE',\n    date: 'SEPTEMBER 10TH 2019',\n    coordinates: '48.856 N / 2.3522`E',\n    style: {\n      globe: '#2B2B2B',\n      background: '#171010',\n      text: '#EDEDED',\n    }\n  },\n})"
             },
             {
                 "name": "environment",
@@ -504,6 +719,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "JapanStyle",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\n  props: {\n    city: 'TOKIO',\n    country: 'JAPAN',\n    date: 'SEPTEMBER 10TH 2019',\n    coordinates: '48.856 N / 2.3522`E',\n    style: {\n      globe: '#D2001A',\n      background: '#EFEFEF',\n      text: '#182731',\n    }\n  },\n})"
             },
             {
                 "name": "require",
@@ -540,7 +765,61 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n\n  styles: [\n    `\n    .box {\n      padding: 100px;\n    }\n    \n    .box app-button {\n      padding-right: 10px;\n    }\n    `\n  ],\n\n  template:`\n    <div class=\"box\">\n      <app-button >\n        Default\n       </app-button >\n\n      <app-button color='accent'>\n        Primary\n      </app-button>\n\n      <app-button>\n        Secondary\n      </app-button >\n\n      <app-button color='warn'>\n        Error\n      </app-button >\n\n      <app-button color='disabled'>\n        Disabled\n      </app-button >\n    </div>\n  `\n})"
+                    "defaultValue": "() => ({\n  props: {\n    color: 'warn',\n    text: 'Decline',\n  },\n  styles: [\n    `\n    .box {\n      padding: 100px;\n    }\n\n    .box app-button {\n      padding-right: 10px;\n    }\n    `\n  ],\n  template:`\n    <div class=\"box\">\n      <app-button >\n        Default\n       </app-button >\n\n      <app-button color='accent'>\n        Primary\n      </app-button>\n\n      <app-button>\n        Secondary\n      </app-button >\n\n      <app-button color='warn'>\n        Error\n      </app-button >\n\n      <app-button color='disabled'>\n        Disabled\n      </app-button >\n    </div>\n  `\n})"
+                }
+            ],
+            "src/app/components/stellar-map-preview/stellar-map-preview.component.ts": [
+                {
+                    "name": "Celestial",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "celestial.Celestial()"
+                }
+            ],
+            "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts": [
+                {
+                    "name": "classicColors",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  globe: '#b9dccd',\n  background: '#EFEFEF',\n  text: '#182731',\n}"
+                },
+                {
+                    "name": "ClassicStyle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "(args) => ({\n  props: args,\n  styles: [\n    `\n    .main-container {\n      background:#c7c7c7;\n      height: 600px;\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      padding: 30px;\n    }\n\n    .wrapper-map {\n      width: 400px;\n      height: 500px\n    }\n    `\n  ],\n  template:`\n    <div class=\"main-container\">\n      <div class=\"wrapper-map\">\n        <app-stellar-map-preview\n          city=\"PARIS\"\n          country=\"FRANCE\"\n          date=\"SEPTEMBER 10TH 2019\"\n          coordinates=\"48.856 N / 2.3522 E\"\n          style={{classicColors}}\n        >\n        </app-stellar-map-preview>\n      </div>\n    </div>\n  `\n})"
+                },
+                {
+                    "name": "DarkStyle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    city: 'PARIS',\n    country: 'FRANCE',\n    date: 'SEPTEMBER 10TH 2019',\n    coordinates: '48.856 N / 2.3522`E',\n    style: {\n      globe: '#2B2B2B',\n      background: '#171010',\n      text: '#EDEDED',\n    }\n  },\n})"
+                },
+                {
+                    "name": "JapanStyle",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    city: 'TOKIO',\n    country: 'JAPAN',\n    date: 'SEPTEMBER 10TH 2019',\n    coordinates: '48.856 N / 2.3522`E',\n    style: {\n      globe: '#D2001A',\n      background: '#EFEFEF',\n      text: '#182731',\n    }\n  },\n})"
                 }
             ],
             "src/app/components/components.module.ts": [
@@ -552,7 +831,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[   \n\tButtonComponent,\n\tHeaderComponent\n]"
+                    "defaultValue": "[   \n\tButtonComponent,\n\tHeaderComponent,\n  StellarMapPreviewComponent\n]"
                 }
             ],
             "src/test.ts": [
@@ -685,6 +964,74 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Basic",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StellarMapPreviewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "StellarMapColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Celestial",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "classicColors",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ClassicStyle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DarkStyle",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "JapanStyle",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

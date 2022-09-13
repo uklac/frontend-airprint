@@ -3,7 +3,7 @@ import { StellarMapPreviewComponent } from './stellar-map-preview.component';
 import { moduleMetadata } from '@storybook/angular';
 
 export default {
-  title: 'Maps',
+  title: 'Stellar Maps',
   component: StellarMapPreviewComponent,
   decorators: [
     moduleMetadata({
@@ -13,11 +13,50 @@ export default {
   ]
 } as Meta;
 
-export const Stellar: Story = () => ({
+export const JapanStyle: Story = () => ({
+  props: {
+    city: 'TOKIO',
+    country: 'JAPAN',
+    date: 'SEPTEMBER 10TH 2019',
+    coordinates: '48.856 N / 2.3522`E',
+    style: {
+      globe: '#D2001A',
+      background: '#EFEFEF',
+      text: '#182731',
+    }
+  },
+});
+
+const classicColors = {
+
+};
+
+export const ClassicStyle: Story = (args) => ({
   props: {
     city: 'PARIS',
     country: 'FRANCE',
     date: 'SEPTEMBER 10TH 2019',
     coordinates: '48.856 N / 2.3522`E',
+    style: {
+      globe: '#b9dccd',
+      background: '#EFEFEF',
+      text: '#182731'
+    }
+  }
+});
+
+
+
+export const DarkStyle: Story = () => ({
+  props: {
+    city: 'PARIS',
+    country: 'FRANCE',
+    date: 'SEPTEMBER 10TH 2019',
+    coordinates: '48.856 N / 2.3522`E',
+    style: {
+      globe: '#2B2B2B',
+      background: '#171010',
+      text: '#EDEDED',
+    }
   },
 });
