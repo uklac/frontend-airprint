@@ -13,10 +13,19 @@
     display: flex;
     flex-direction: column;
 
-    .poster {
+    .poster-pieces {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       padding: 60px 0 0 0;
+
+      .piece {
+        img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
     }
 
     .poster-information {

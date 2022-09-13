@@ -1,6 +1,9 @@
 <div class="poster-container">
 	<div class="poster-content" [ngStyle]="styleColors">
-		<div class="poster">
+		<div class="poster-pieces">
+      <div class="piece" *ngFor="let piece of pieces">
+        <img [src]="piece" alt="piece">
+      </div>
 		</div>
 		<div class="poster-information" [ngStyle]="styleColors">
 			<span class="headline">{{headline}}</span>
@@ -8,3 +11,5 @@
 		</div>
 	</div>
 </div>
+<button (click)="generate()">Generate</button>
+<button (click)="generate2()">Generate 2</button>

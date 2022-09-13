@@ -14,6 +14,8 @@ export class GeometricPosterPreviewComponent implements OnInit {
   @Input() phrase = '';
   @Input() style: PosterColor | undefined;
   styleColors = {};
+  pieces: Array<string> | undefined;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +23,22 @@ export class GeometricPosterPreviewComponent implements OnInit {
       background: this.style?.background,
       color: this.style?.text,
     }
+  }
+
+  generate() {
+    const route = "../../../assets/images/poster/kander/piece-";
+    const result = Array.from({length: 25}, () => route + this.randomNumber() + ".svg");
+    this.pieces = result;
+  }
+
+  generate2() {
+    const route = "../../../assets/images/poster/thur/piece-";
+    const result = Array.from({length: 25}, () => route + this.randomNumber() + ".svg");
+    this.pieces = result;
+  }
+
+  randomNumber() {
+    return Math.floor(Math.random() * 10) + 1;
   }
 
 }
