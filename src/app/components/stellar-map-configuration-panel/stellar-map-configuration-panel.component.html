@@ -1,0 +1,91 @@
+<div class="configuration-panel-container">
+
+	<div class="header-configuration-container">
+		<label class="header-title">Create your Star Map poster!</label>
+		<label>Change location, labels and appearance</label>
+	</div>
+
+	<div class="stellar-location-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Location and date
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="location-container">
+				<div class="location-input">
+					<input type="search" id="search" name="search">
+					<label>Search and select the location</label>
+				</div>
+				<div class="date-input">
+					<input type="datetime-local" name="datetime" id="datetime">
+					<label>Enter your specific date</label>
+				</div>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+	<div class="stellar-theme-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Customize the style
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="theme-preview-container">
+				<div class="theme-preview" *ngFor="let map of maps">
+					<img src="{{map.url}}">{{map.title}}
+				</div>
+			</div>
+		
+		</mat-expansion-panel>
+	</div>
+
+	<div class="stellar-description-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Customize the text
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+
+			<div class="description-content">
+				<div class="inline-input">
+					<label>Headline</label>
+					<input type="text" id="text" name="text">
+				</div>
+				<div class="inline-input">
+					<label>Divider</label>
+					<input type="text" id="text" name="text">
+				</div>
+				<div class="inline-input">
+					<label>Tagline</label>
+					<input type="text" id="text" name="text">
+				</div>
+				<div class="inline-input">
+					<label>Sublime</label>
+					<input type="text" id="text" name="text">
+				</div>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+
+	<div class="stellar-customize-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Customize the size
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="size">
+				<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+					<mat-button-toggle value="bold">30x40cm</mat-button-toggle>					
+					<mat-button-toggle value="italic">50x70cm</mat-button-toggle>
+					<mat-button-toggle value="underline">70x100cm</mat-button-toggle>
+				</mat-button-toggle-group>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+</div>
