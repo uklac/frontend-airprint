@@ -17,5 +17,9 @@ export const Geometric: Story = () => ({
   props: {
     headline: 'MARCEL BREURER',
     phrase: 'Designer from 1995',
+    style: {
+      background: '#EFEFEF',
+      text: '#182731'
+    }
   },
 });

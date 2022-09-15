@@ -23,6 +23,7 @@ export class GeometricPosterPreviewComponent implements OnInit {
       background: this.style?.background,
       color: this.style?.text,
     }
+    this.generate2();
   }
 
   generate() {
