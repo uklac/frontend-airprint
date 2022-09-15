@@ -45,8 +45,6 @@ export const ClassicStyle: Story = (args) => ({
   }
 });
 
-
-
 export const DarkStyle: Story = () => ({
   props: {
     city: 'PARIS',

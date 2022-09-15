@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(100.000000, 100.000000) rotate(90.000000) translate(-100.000000, -100.000000) translate(0.000000, -0.000000)" fill-rule="nonzero">
+            <rect id="Shape" fill="#00C9F2" x="1.42108547e-14" y="0" width="200" height="200"></rect>
+            <rect id="Shape" fill="#FFFFFF" x="30" y="30" width="140" height="140"></rect>
+            <polygon id="Shape" fill="#26468B" transform="translate(50.000000, 50.000000) rotate(180.000000) translate(-50.000000, -50.000000) " points="1.42108547e-14 0 100 100 1.42108547e-14 100"></polygon>
+        </g>
+    </g>
+</svg>
