@@ -11,10 +11,10 @@ interface StellarMapColor {
   styleUrls: ['./stellar-map-preview.component.scss']
 })
 export class StellarMapPreviewComponent implements OnInit {
-  @Input() city = '';
-  @Input() country = '';
-  @Input() date = '';
-  @Input() coordinates = '';
+  @Input() headline = '';
+  @Input() divider = '';
+  @Input() tagline = '';
+  @Input() sublime = '';
   @Input() style: StellarMapColor | undefined;
 
   styleColors = {};

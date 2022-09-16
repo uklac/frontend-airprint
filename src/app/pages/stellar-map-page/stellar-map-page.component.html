@@ -1,4 +1,14 @@
-<div class="page">
-  <app-stellar-map-preview></app-stellar-map-preview>
-  <app-stellar-map-configuration-panel></app-stellar-map-configuration-panel>
+<div class="stella-map-page">
+  <app-stellar-map-configuration-panel
+		[themes]="themes"
+		(formChange)="updatePoster($event)"
+	>
+		<app-stellar-map-preview
+			[headline]="poster.headline"
+			[divider]="poster.divider"
+			[tagline]="poster.tagline"
+			[sublime]="poster.sublime"
+		>
+		</app-stellar-map-preview>
+	</app-stellar-map-configuration-panel>
 </div>

@@ -1,9 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-interface ThemeStellarMap {
-  url: string,
-  title: string
-}
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PropsStellarPoster } from 'src/app/models/props-stellar-poster';
+import { ThemeStellarMap } from 'src/app/models/theme-stellar';
 
 @Component({
   selector: 'app-stellar-map-configuration-panel',
@@ -12,11 +9,30 @@ interface ThemeStellarMap {
 })
 export class StellarMapConfigurationPanelComponent implements OnInit {
   @Input() themes: Array<ThemeStellarMap> = [];
-  panelOpenState = false;
+  @Output() formChange = new EventEmitter<PropsStellarPoster>();
+
+  panelOpenState = true;
+	stellarForm : PropsStellarPoster = {
+		lat: '',
+		long: '',
+		date: '',
+		headline: '',
+		divider: '',
+		tagline: '',
+		sublime: '',
+	}
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+	addToCart() {
+		console.log('added!');
+	}
+
+	updateMap() {
+		this.formChange.emit(this.stellarForm);
+	}
 
 }
