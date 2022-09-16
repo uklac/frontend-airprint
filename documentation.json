@@ -2,13 +2,13 @@
     "pipes": [],
     "interfaces": [
         {
-            "name": "FrameMap",
-            "id": "interface-FrameMap-88eea8830b701aa96e12dbffb9014b735fdbfaa5106962be8fc6f0038c1d8fa3219e92fcced38338a8ad2bdcfaa55ea2127dba72c1fe991d3ddf5f25bedca815",
+            "name": "FrameStreetMap",
+            "id": "interface-FrameStreetMap-899879291c15190bc4284bef0b2c9091e96f33b18d5e1dffa5069089a47a9ad8c2d7988d515ea6dfc45f8d4e8221579634b8f0116e8623db300f3af7c921832c",
             "file": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface StreetMap {\n  link: string,\n  title: string\n}\n\ninterface FrameMap {\n  url: string,\n  titleFrame: string\n}\n\n@Component({\n  selector: 'app-street-map-configuration-panel',\n  templateUrl: './street-map-configuration-panel.component.html',\n  styleUrls: ['./street-map-configuration-panel.component.scss']\n})\nexport class StreetMapConfigurationPanelComponent implements OnInit {\n  @Input() links: Array<StreetMap> = [];\n  @Input() styles: Array<String> = [];\n  @Input() urls: Array<FrameMap> = [];\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface ThemeStreetMap {\n  url: string,\n  title: string\n}\n\ninterface FrameStreetMap {\n  url: string,\n  titleFrame: string\n}\n\n@Component({\n  selector: 'app-street-map-configuration-panel',\n  templateUrl: './street-map-configuration-panel.component.html',\n  styleUrls: ['./street-map-configuration-panel.component.scss']\n})\nexport class StreetMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<ThemeStreetMap> = [];\n  @Input() textStyle: Array<String> = [];\n  @Input() frames: Array<FrameStreetMap> = [];\n\n  panelOpenState = false;\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "titleFrame",
@@ -66,13 +66,13 @@
             "methods": []
         },
         {
-            "name": "StellarMapColor",
-            "id": "interface-StellarMapColor-886a87a78d350f2847ccf51d64f9b2f56db76e14b2014d0208b01aa62eb8dffe73e296182ed98a02504f9cc2215790662cbb8359bbd17f2e8438e11c049050a3",
-            "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
+            "name": "PosterColor",
+            "id": "interface-PosterColor-f560bfb7e7a0b1b7573ccde916f5d899f7d04b30fd328e4d0c3ad5441910259b4fd12b84741c3f7a6dd83eacbe1a43535457ecee2dc57d74c1348734f0f7fd1d",
+            "file": "src/app/components/geometric-poster-preview/geometric-poster-preview.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n// const celestial = require(\"d3-celestial\");\nimport celestial from \"d3-celestial\";\nconst Celestial = celestial.Celestial();\n\ninterface StellarMapColor {\n  globe: string;\n  background: string;\n  text: string;\n}\n@Component({\n  selector: 'app-stellar-map-preview',\n  templateUrl: './stellar-map-preview.component.html',\n  styleUrls: ['./stellar-map-preview.component.scss']\n})\nexport class StellarMapPreviewComponent implements OnInit {\n  @Input() city = '';\n  @Input() country = '';\n  @Input() date = '';\n  @Input() coordinates = '';\n  @Input() style: StellarMapColor | undefined;\n\n  styleColors = {};\n  constructor() { }\n\n  ngOnInit(): void {\n    this.mapInit();\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n  }\n\n  mapInit () {\n    const DATE = new Date(\"2021-09-25T04:00:00+0000\");\n    const [LAT, LON] = [36.525321, -121.815916];\n    const FONT = \"Raleway\";\n\n    const config = {\n      container: \"map\",\n      width: 0,\n      datapath: \"../../../assets/data/\", // Path/URL to data files, empty = subfolder 'data'\n\n      form: false,\n      advanced: false,\n      interactive: false,\n      disableAnimations: true,\n\n      zoomlevel: null,\n      zoomextend: 1,\n\n      projection: \"airy\",\n      transform: \"equatorial\",\n\n      follow: \"zenith\",\n      geopos: [LAT, LON],\n\n      lines: {\n        graticule: { show: false },\n        equatorial: { show: false },\n        ecliptic: { show: false },\n        galactic: { show: false },\n        supergalactic: { show: false }\n      },\n\n      planets: {\n        show: false,\n        which: [\"mer\", \"ven\", \"ter\", \"lun\", \"mar\", \"jup\", \"sat\"],\n\n        symbolType: \"disk\",\n        names: true,\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: `14px ${FONT}`,\n          align: \"center\",\n          baseline: \"top\"\n        },\n        namesType: \"en\"\n      },\n\n      dsos: {\n        show: false,\n        names: false\n      },\n\n      constellations: {\n        names: false,\n        namesType: \"iau\",\n        nameStyle: {\n          fill: \"#ffffff\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]\n        },\n        lines: true,\n        lineStyle: { stroke: \"#cccccc\", width: 1.5, opacity: 1 }\n      },\n\n      mw: {\n        show: false,\n        style: { fill: \"#ffffff\", opacity: 0.02 }\n      },\n\n      background: {\n        fill: this.style?.globe || \"#D2001A\", // globe color\n        stroke: \"#EFEFEF\",\n        opacity: 1,\n        width: 2\n      },\n\n      stars: {\n        colors: true,\n        size: 12,\n        limit: 6,\n        exponent: -0.26,\n        designation: false,\n\n        propername: false,\n        propernameType: \"name\",\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: `8px ${FONT}`,\n          align: \"right\",\n          baseline: \"center\"\n        },\n        propernameLimit: 2.0\n      }\n    };\n\n    Celestial.display(config);\n    Celestial.skyview({ date: DATE });\n  }\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\ninterface PosterColor {\n  background: string;\n  text: string;\n}\n\n@Component({\n  selector: 'app-geometric-poster-preview',\n  templateUrl: './geometric-poster-preview.component.html',\n  styleUrls: ['./geometric-poster-preview.component.scss']\n})\nexport class GeometricPosterPreviewComponent implements OnInit {\n  @Input() headline = '';\n  @Input() phrase = '';\n  @Input() style: PosterColor | undefined;\n  styleColors = {};\n  pieces: Array<string> | undefined;\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n    this.generate2();\n  }\n\n  generate() {\n    const route = \"../../../assets/images/poster/kander/piece-\";\n    const result = Array.from({length: 25}, () => route + this.randomNumber() + \".svg\");\n    this.pieces = result;\n  }\n\n  generate2() {\n    const route = \"../../../assets/images/poster/thur/piece-\";\n    const result = Array.from({length: 25}, () => route + this.randomNumber() + \".svg\");\n    this.pieces = result;\n  }\n\n  randomNumber() {\n    return Math.floor(Math.random() * 10) + 1;\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "background",
@@ -81,16 +81,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "globe",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 7
+                    "line": 3
                 },
                 {
                     "name": "text",
@@ -99,7 +90,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 9
+                    "line": 4
                 }
             ],
             "indexSignatures": [],
@@ -107,16 +98,25 @@
             "methods": []
         },
         {
-            "name": "StreetMap",
-            "id": "interface-StreetMap-88eea8830b701aa96e12dbffb9014b735fdbfaa5106962be8fc6f0038c1d8fa3219e92fcced38338a8ad2bdcfaa55ea2127dba72c1fe991d3ddf5f25bedca815",
-            "file": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
+            "name": "StellarMapColor",
+            "id": "interface-StellarMapColor-369bd7f2a8432676c2b867816166cb1435db506cc8ccd741be4eafdc4bf2cf49b33a3db6f3a87fcd929f389c93790ce36fbf608899994687216dc99605381146",
+            "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface StreetMap {\n  link: string,\n  title: string\n}\n\ninterface FrameMap {\n  url: string,\n  titleFrame: string\n}\n\n@Component({\n  selector: 'app-street-map-configuration-panel',\n  templateUrl: './street-map-configuration-panel.component.html',\n  styleUrls: ['./street-map-configuration-panel.component.scss']\n})\nexport class StreetMapConfigurationPanelComponent implements OnInit {\n  @Input() links: Array<StreetMap> = [];\n  @Input() styles: Array<String> = [];\n  @Input() urls: Array<FrameMap> = [];\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\ndeclare var Celestial: any;\ninterface StellarMapColor {\n  globe: string;\n  background: string;\n  text: string;\n}\n@Component({\n  selector: 'app-stellar-map-preview',\n  templateUrl: './stellar-map-preview.component.html',\n  styleUrls: ['./stellar-map-preview.component.scss']\n})\nexport class StellarMapPreviewComponent implements OnInit {\n  @Input() city = '';\n  @Input() country = '';\n  @Input() date = '';\n  @Input() coordinates = '';\n  @Input() style: StellarMapColor | undefined;\n\n  styleColors = {};\n  constructor() { }\n\n  ngOnInit(): void {\n    this.mapInit();\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n  }\n\n  mapInit () {\n    const DATE = new Date(\"2021-09-25T04:00:00+0000\");\n    const [LAT, LON] = [36.525321, -121.815916];\n    const FONT = \"Raleway\";\n\n    const config = {\n      container: \"map\",\n      width: 0,\n      datapath: \"../../../assets/data/\", // Path/URL to data files, empty = subfolder 'data'\n\n      form: false,\n      advanced: false,\n      interactive: false,\n      disableAnimations: true,\n\n      zoomlevel: null,\n      zoomextend: 1,\n\n      projection: \"airy\",\n      transform: \"equatorial\",\n\n      follow: \"zenith\",\n      geopos: [LAT, LON],\n\n      lines: {\n        graticule: { show: false },\n        equatorial: { show: false },\n        ecliptic: { show: false },\n        galactic: { show: false },\n        supergalactic: { show: false }\n      },\n\n      planets: {\n        show: false,\n        which: [\"mer\", \"ven\", \"ter\", \"lun\", \"mar\", \"jup\", \"sat\"],\n\n        symbolType: \"disk\",\n        names: true,\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: `14px ${FONT}`,\n          align: \"center\",\n          baseline: \"top\"\n        },\n        namesType: \"en\"\n      },\n\n      dsos: {\n        show: false,\n        names: false\n      },\n\n      constellations: {\n        names: false,\n        namesType: \"iau\",\n        nameStyle: {\n          fill: \"#ffffff\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]\n        },\n        lines: true,\n        lineStyle: { stroke: \"#cccccc\", width: 1.5, opacity: 1 }\n      },\n\n      mw: {\n        show: false,\n        style: { fill: \"#ffffff\", opacity: 0.02 }\n      },\n\n      background: {\n        fill: this.style?.globe || \"#D2001A\", // globe color\n        stroke: \"#EFEFEF\",\n        opacity: 1,\n        width: 2\n      },\n\n      stars: {\n        colors: true,\n        size: 12,\n        limit: 6,\n        exponent: -0.26,\n        designation: false,\n\n        propername: false,\n        propernameType: \"name\",\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: `8px ${FONT}`,\n          align: \"right\",\n          baseline: \"center\"\n        },\n        propernameLimit: 2.0\n      }\n    };\n    Celestial.display(config);\n    Celestial.skyview({ date: DATE });\n  }\n}\n",
             "properties": [
                 {
-                    "name": "link",
+                    "name": "background",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "globe",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -125,13 +125,13 @@
                     "line": 4
                 },
                 {
-                    "name": "title",
+                    "name": "text",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 5
+                    "line": 6
                 }
             ],
             "indexSignatures": [],
@@ -139,13 +139,45 @@
             "methods": []
         },
         {
-            "name": "Theme",
-            "id": "interface-Theme-0f785478f79f000007985f8abf8b9d9c1526dfb1b0708f26aaec9af251fb21f1fc054f91954ae894fe19303025b4c1a3101211b2a09eb605115d8cb305dd1f81",
+            "name": "ThemeStellarMap",
+            "id": "interface-ThemeStellarMap-e5a7b7ad953bba8536d10a79d550d109ed621b1be194ab9d8e7a568f3c6f66f122138e9d6207aa0ff1026eab01cdf55488cf7431448373830d015cd9a54de2eb",
             "file": "src/app/components/stellar-map-configuration-panel/stellar-map-configuration-panel.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface Theme {\n  url: string,\n  title: string\n}\n\n@Component({\n  selector: 'app-stellar-map-configuration-panel',\n  templateUrl: './stellar-map-configuration-panel.component.html',\n  styleUrls: ['./stellar-map-configuration-panel.component.scss']\n})\nexport class StellarMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<Theme> = [];\n  panelOpenState = false;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface ThemeStellarMap {\n  url: string,\n  title: string\n}\n\n@Component({\n  selector: 'app-stellar-map-configuration-panel',\n  templateUrl: './stellar-map-configuration-panel.component.html',\n  styleUrls: ['./stellar-map-configuration-panel.component.scss']\n})\nexport class StellarMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<ThemeStellarMap> = [];\n  panelOpenState = false;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "properties": [
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "url",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "ThemeStreetMap",
+            "id": "interface-ThemeStreetMap-899879291c15190bc4284bef0b2c9091e96f33b18d5e1dffa5069089a47a9ad8c2d7988d515ea6dfc45f8d4e8221579634b8f0116e8623db300f3af7c921832c",
+            "file": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface ThemeStreetMap {\n  url: string,\n  title: string\n}\n\ninterface FrameStreetMap {\n  url: string,\n  titleFrame: string\n}\n\n@Component({\n  selector: 'app-street-map-configuration-panel',\n  templateUrl: './street-map-configuration-panel.component.html',\n  styleUrls: ['./street-map-configuration-panel.component.scss']\n})\nexport class StreetMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<ThemeStreetMap> = [];\n  @Input() textStyle: Array<String> = [];\n  @Input() frames: Array<FrameStreetMap> = [];\n\n  panelOpenState = false;\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "properties": [
                 {
                     "name": "title",
@@ -226,7 +258,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"main\">\n  <app-header></app-header>\n  <app-stellar-map-preview></app-stellar-map-preview>\n  <router-outlet></router-outlet>\n</div>\n"
+            "templateData": "<div class=\"main\">\n  <router-outlet></router-outlet>\n</div>\n"
         },
         {
             "name": "ButtonComponent",
@@ -321,6 +353,145 @@
             "templateData": "\n<button mat-flat-button [color]=\"color\" [disabled]=\"isDisabled\">\n  <ng-content></ng-content>\n  {{text}}\n</button>\n     \n \n"
         },
         {
+            "name": "GeometricPosterPreviewComponent",
+            "id": "component-GeometricPosterPreviewComponent-f560bfb7e7a0b1b7573ccde916f5d899f7d04b30fd328e4d0c3ad5441910259b4fd12b84741c3f7a6dd83eacbe1a43535457ecee2dc57d74c1348734f0f7fd1d",
+            "file": "src/app/components/geometric-poster-preview/geometric-poster-preview.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-geometric-poster-preview",
+            "styleUrls": [
+                "./geometric-poster-preview.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./geometric-poster-preview.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "headline",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "phrase",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "style",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "PosterColor | undefined",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "pieces",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Array<string> | undefined",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "styleColors",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "generate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "generate2",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "randomNumber",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\ninterface PosterColor {\n  background: string;\n  text: string;\n}\n\n@Component({\n  selector: 'app-geometric-poster-preview',\n  templateUrl: './geometric-poster-preview.component.html',\n  styleUrls: ['./geometric-poster-preview.component.scss']\n})\nexport class GeometricPosterPreviewComponent implements OnInit {\n  @Input() headline = '';\n  @Input() phrase = '';\n  @Input() style: PosterColor | undefined;\n  styleColors = {};\n  pieces: Array<string> | undefined;\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n    this.generate2();\n  }\n\n  generate() {\n    const route = \"../../../assets/images/poster/kander/piece-\";\n    const result = Array.from({length: 25}, () => route + this.randomNumber() + \".svg\");\n    this.pieces = result;\n  }\n\n  generate2() {\n    const route = \"../../../assets/images/poster/thur/piece-\";\n    const result = Array.from({length: 25}, () => route + this.randomNumber() + \".svg\");\n    this.pieces = result;\n  }\n\n  randomNumber() {\n    return Math.floor(Math.random() * 10) + 1;\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "\n\n.poster-container {\n  background: white;\n  height: 820px;\n  width: 590px;\n  display: flex;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n  .poster-content {\n    width: 100%;\n    margin: 20px;\n    display: flex;\n    flex-direction: column;\n\n    .poster-pieces {\n      display: flex;\n      justify-content: center;\n      flex-wrap: wrap;\n      padding: 60px 0 0 0;\n\n      .piece {\n        img {\n          width: 100px;\n          height: 100px;\n          object-fit: cover;\n        }\n      }\n    }\n\n    .poster-information {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      font-size: 16px;\n      justify-content: end;\n      flex: 1 1 0%;\n      padding-bottom: 60px;\n\n      .headline {\n        font-weight: bold;\n        font-size: 40px;\n      }\n\n      .phrase {\n        padding-bottom: 10px;\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./geometric-poster-preview.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 17
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"poster-container\">\n\t<div class=\"poster-content\" [ngStyle]=\"styleColors\">\n\t\t<div class=\"poster-pieces\">\n      <div class=\"piece\" *ngFor=\"let piece of pieces\">\n        <img [src]=\"piece\" alt=\"piece\">\n      </div>\n\t\t</div>\n\t\t<div class=\"poster-information\" [ngStyle]=\"styleColors\">\n\t\t\t<span class=\"headline\">{{headline}}</span>\n\t\t\t<span class=\"phrase\">{{phrase}}</span>\n\t\t</div>\n\t</div>\n</div>\n<button (click)=\"generate()\">Generate</button>\n<button (click)=\"generate2()\">Generate 2</button>\n"
+        },
+        {
             "name": "HeaderComponent",
             "id": "component-HeaderComponent-22b311b8649055e6a5fc0cce8057c160d76782b4d481fe2d5c0bb4d668624b8baa430d0d2114f3d79de3c32ae2a05dacaa664112332445d99dee717e43e8817c",
             "file": "src/app/components/header/header.component.ts",
@@ -402,7 +573,7 @@
         },
         {
             "name": "StellarMapConfigurationPanelComponent",
-            "id": "component-StellarMapConfigurationPanelComponent-0f785478f79f000007985f8abf8b9d9c1526dfb1b0708f26aaec9af251fb21f1fc054f91954ae894fe19303025b4c1a3101211b2a09eb605115d8cb305dd1f81",
+            "id": "component-StellarMapConfigurationPanelComponent-e5a7b7ad953bba8536d10a79d550d109ed621b1be194ab9d8e7a568f3c6f66f122138e9d6207aa0ff1026eab01cdf55488cf7431448373830d015cd9a54de2eb",
             "file": "src/app/components/stellar-map-configuration-panel/stellar-map-configuration-panel.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -425,7 +596,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 14,
-                    "type": "Array<Theme>",
+                    "type": "Array<ThemeStellarMap>",
                     "decorators": []
                 }
             ],
@@ -461,11 +632,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface Theme {\n  url: string,\n  title: string\n}\n\n@Component({\n  selector: 'app-stellar-map-configuration-panel',\n  templateUrl: './stellar-map-configuration-panel.component.html',\n  styleUrls: ['./stellar-map-configuration-panel.component.scss']\n})\nexport class StellarMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<Theme> = [];\n  panelOpenState = false;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface ThemeStellarMap {\n  url: string,\n  title: string\n}\n\n@Component({\n  selector: 'app-stellar-map-configuration-panel',\n  templateUrl: './stellar-map-configuration-panel.component.html',\n  styleUrls: ['./stellar-map-configuration-panel.component.scss']\n})\nexport class StellarMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<ThemeStellarMap> = [];\n  panelOpenState = false;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".stellar-configuration-panel-container {\n\twidth: 400px;\n\n\t.header-configuration-container{\n\t\tbackground-color: #62636b;\n\t\tpadding: 20px 30px;\n\t\tcolor: hsla(0,0%,100%,.75);\n\t\tfont-size: 14px;\n\t\tline-height: 1.4;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t\t.header-title {\n\t\t\tdisplay: block;\n\t\t\tcolor: #fff;\n\t\t\tfont-weight: 700;\n\t\t}\n\t\t\n\t}\n\t.stellar-location-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.location-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\n\t\t\t.location-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-direction: column;\n\t\t\t\tpadding-bottom: 15px;\n\n\t\t\t\tlabel{\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t\topacity: .8;\n\t\t\t\t}\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tmargin-bottom: 8px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t.date-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-direction: column;\n\t\t\t\tpadding-bottom: 15px;\n\n\t\t\t\tlabel{\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t\topacity: .8;\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tmargin-bottom: 8px;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\t.stellar-theme-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.theme-preview-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\ttext-align: center;\n\t\t\tjustify-content: space-between;\n\n\t\t\t.theme-preview {\n\t\t\t\tmargin-top: 10px;\n\t\t\t\tmargin-right: 10px;\n\t\t\t\tmargin-left: 10px;\n\t\t\t\tmargin-bottom: 10px;\n\n\t\t\t\timg {\n\t\t\t\t\twidth: 60px;\n\t\t\t\t\theight: 60px;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\tborder: 4px solid rgba(47, 57, 75, .2);\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tmargin-bottom: 5px;\n\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\t}\n\n\t.stellar-description-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.description-content {\n\t\t\t.inline-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tjustify-content: space-between;\n\t\t\t\tpadding-bottom: 8px;\n\t\t\t\tcolor: #606266;\n\n\t\t\t\tlabel{\n\t\t\t\t\tmargin-top: 10px;\n\t\t\t\t}\n\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tbackground-color: #fff;\n\t\t\t\t\twidth: 210px;\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\t}\n\n\n\t.stellar-customize-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.size {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t}\n\n\t}\n}",
+                    "data": ".stellar-configuration-panel-container {\n\twidth: 400px;\n\n\t.header-configuration-container {\n\t\tbackground-color: #62636b;\n\t\tpadding: 20px 30px;\n\t\tcolor: hsla(0, 0%, 100%, .75);\n\t\tfont-size: 14px;\n\t\tline-height: 1.4;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\n\t\t.header-title {\n\t\t\tdisplay: block;\n\t\t\tcolor: #fff;\n\t\t\tfont-weight: 700;\n\t\t}\n\n\t}\n\n\t.stellar-location-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.location-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\n\t\t\t.location-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-direction: column;\n\t\t\t\tpadding-bottom: 15px;\n\n\t\t\t\tlabel {\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t\topacity: .8;\n\t\t\t\t}\n\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tmargin-bottom: 8px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t.date-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-direction: column;\n\t\t\t\tpadding-bottom: 15px;\n\n\t\t\t\tlabel {\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t\topacity: .8;\n\t\t\t\t}\n\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tmargin-bottom: 8px;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\t.stellar-theme-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.theme-preview-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\ttext-align: center;\n\t\t\tjustify-content: space-between;\n\n\t\t\t.theme-preview {\n\t\t\t\tmargin-top: 10px;\n\t\t\t\tmargin-right: 10px;\n\t\t\t\tmargin-left: 10px;\n\t\t\t\tmargin-bottom: 10px;\n\n\t\t\t\timg {\n\t\t\t\t\twidth: 60px;\n\t\t\t\t\theight: 60px;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\tborder: 4px solid rgba(47, 57, 75, .2);\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\n\t\t.properties-container {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: space-between;\n\t\t\tpadding: 10px;\n\t\t}\n\n\t\t.checkbox {\n\t\t\tpadding-top: 6px;\n\t\t\tpadding-left: 10px;\n\t\t}\n\t}\n\n\t.stellar-description-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.description-content {\n\t\t\t.inline-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tjustify-content: space-between;\n\t\t\t\tpadding-bottom: 8px;\n\t\t\t\tcolor: #606266;\n\n\t\t\t\tlabel {\n\t\t\t\t\tmargin-top: 10px;\n\t\t\t\t}\n\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tbackground-color: #fff;\n\t\t\t\t\twidth: 210px;\n\t\t\t\t}\n\n\t\t\t}\n\t\t}\n\t}\n\n\n\t.stellar-customize-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.size {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t}\n\n\t}\n}",
                     "styleUrl": "./stellar-map-configuration-panel.component.scss"
                 }
             ],
@@ -481,11 +652,73 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"stellar-configuration-panel-container\">\n\n\t<div class=\"header-configuration-container\">\n\t\t<label class=\"header-title\">Create your Star Map poster!</label>\n\t\t<label>Change location, labels and appearance</label>\n\t</div>\n\n\t<div class=\"stellar-location-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tLocation and date\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"location-container\">\n\t\t\t\t<div class=\"location-input\">\n\t\t\t\t\t<input type=\"search\" id=\"search\" name=\"search\">\n\t\t\t\t\t<label>Search and select the location</label>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"date-input\">\n\t\t\t\t\t<input type=\"datetime-local\" name=\"datetime\" id=\"datetime\">\n\t\t\t\t\t<label>Enter your specific date</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"stellar-theme-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the style\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"theme-preview-container\">\n\t\t\t\t<div class=\"theme-preview\" *ngFor=\"let theme of themes\">\n\t\t\t\t\t<img src=\"{{theme.url}}\">{{theme.title}}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<mat-slide-toggle>Slide me!</mat-slide-toggle>\n\t\t\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"stellar-description-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the text\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\n\t\t\t<div class=\"description-content\">\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Headline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Divider</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Tagline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Sublime</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\n\t<div class=\"stellar-customize-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the size\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"size\">\n\t\t\t\t<mat-button-toggle-group name=\"fontStyle\" aria-label=\"Font Style\">\n\t\t\t\t\t<mat-button-toggle value=\"bold\">30x40cm</mat-button-toggle>\t\t\t\t\t\n\t\t\t\t\t<mat-button-toggle value=\"italic\">50x70cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"underline\">70x100cm</mat-button-toggle>\n\t\t\t\t</mat-button-toggle-group>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n</div>"
+            "templateData": "<div class=\"stellar-configuration-panel-container\">\n\n\t<div class=\"header-configuration-container\">\n\t\t<label class=\"header-title\">Create your Star Map poster!</label>\n\t\t<label>Change location, labels and appearance</label>\n\t</div>\n\n\t<div class=\"stellar-location-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tLocation and date\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"location-container\">\n\t\t\t\t<div class=\"location-input\">\n\t\t\t\t\t<input type=\"search\" id=\"search\" name=\"search\">\n\t\t\t\t\t<label>Search and select the location</label>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"date-input\">\n\t\t\t\t\t<input type=\"datetime-local\" name=\"datetime\" id=\"datetime\">\n\t\t\t\t\t<label>Enter your specific date</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"stellar-theme-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the style\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"theme-preview-container\">\n\t\t\t\t<div class=\"theme-preview\" *ngFor=\"let theme of themes\">\n\t\t\t\t\t<img src=\"{{theme.url}}\">{{theme.title}}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"properties-container\">\n\t\t\t\t<mat-slide-toggle>Constellations</mat-slide-toggle>\n\t\t\t\t<mat-slide-toggle>Enable grid</mat-slide-toggle>\n\t\t\t</div>\n\t\t\t<div class=\"checkbox\">\n\t\t\t\t<section class=\"example-section\">\n\t\t\t\t\t<mat-checkbox class=\"example-margin\">show names</mat-checkbox>\n\t\t\t\t</section>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"stellar-description-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the text\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\n\t\t\t<div class=\"description-content\">\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Headline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Divider</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Tagline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Sublime</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\n\t<div class=\"stellar-customize-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the size\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"size\">\n\t\t\t\t<mat-button-toggle-group name=\"fontStyle\" aria-label=\"Font Style\">\n\t\t\t\t\t<mat-button-toggle value=\"bold\">30x40cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"italic\">50x70cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"underline\">70x100cm</mat-button-toggle>\n\t\t\t\t</mat-button-toggle-group>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n</div>"
+        },
+        {
+            "name": "StellarMapPageComponent",
+            "id": "component-StellarMapPageComponent-2ef88f08607a0610dca213dd9437d1f04272a2120bee676b233014054d46716274f8f727f330c0f816cb6550c62deb0b7809d424ffa34f97dd47f9e9eb770d63",
+            "file": "src/app/pages/stellar-map-page/stellar-map-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-stellar-map-page",
+            "styleUrls": [
+                "./stellar-map-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./stellar-map-page.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-stellar-map-page',\n  templateUrl: './stellar-map-page.component.html',\n  styleUrls: ['./stellar-map-page.component.scss']\n})\nexport class StellarMapPageComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./stellar-map-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"page\">\n  <app-stellar-map-preview></app-stellar-map-preview>\n  <app-stellar-map-configuration-panel></app-stellar-map-configuration-panel>\n</div>\n"
         },
         {
             "name": "StellarMapPreviewComponent",
-            "id": "component-StellarMapPreviewComponent-886a87a78d350f2847ccf51d64f9b2f56db76e14b2014d0208b01aa62eb8dffe73e296182ed98a02504f9cc2215790662cbb8359bbd17f2e8438e11c049050a3",
+            "id": "component-StellarMapPreviewComponent-369bd7f2a8432676c2b867816166cb1435db506cc8ccd741be4eafdc4bf2cf49b33a3db6f3a87fcd929f389c93790ce36fbf608899994687216dc99605381146",
             "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -507,7 +740,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 14,
                     "type": "string",
                     "decorators": []
                 },
@@ -516,7 +749,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 17,
                     "type": "string",
                     "decorators": []
                 },
@@ -525,7 +758,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 15,
                     "type": "string",
                     "decorators": []
                 },
@@ -534,7 +767,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 16,
                     "type": "string",
                     "decorators": []
                 },
@@ -542,7 +775,7 @@
                     "name": "style",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 18,
                     "type": "StellarMapColor | undefined",
                     "decorators": []
                 }
@@ -557,7 +790,7 @@
                     "type": "object",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 20
                 }
             ],
             "methodsClass": [
@@ -567,10 +800,111 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 31,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\ndeclare var Celestial: any;\ninterface StellarMapColor {\n  globe: string;\n  background: string;\n  text: string;\n}\n@Component({\n  selector: 'app-stellar-map-preview',\n  templateUrl: './stellar-map-preview.component.html',\n  styleUrls: ['./stellar-map-preview.component.scss']\n})\nexport class StellarMapPreviewComponent implements OnInit {\n  @Input() city = '';\n  @Input() country = '';\n  @Input() date = '';\n  @Input() coordinates = '';\n  @Input() style: StellarMapColor | undefined;\n\n  styleColors = {};\n  constructor() { }\n\n  ngOnInit(): void {\n    this.mapInit();\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n  }\n\n  mapInit () {\n    const DATE = new Date(\"2021-09-25T04:00:00+0000\");\n    const [LAT, LON] = [36.525321, -121.815916];\n    const FONT = \"Raleway\";\n\n    const config = {\n      container: \"map\",\n      width: 0,\n      datapath: \"../../../assets/data/\", // Path/URL to data files, empty = subfolder 'data'\n\n      form: false,\n      advanced: false,\n      interactive: false,\n      disableAnimations: true,\n\n      zoomlevel: null,\n      zoomextend: 1,\n\n      projection: \"airy\",\n      transform: \"equatorial\",\n\n      follow: \"zenith\",\n      geopos: [LAT, LON],\n\n      lines: {\n        graticule: { show: false },\n        equatorial: { show: false },\n        ecliptic: { show: false },\n        galactic: { show: false },\n        supergalactic: { show: false }\n      },\n\n      planets: {\n        show: false,\n        which: [\"mer\", \"ven\", \"ter\", \"lun\", \"mar\", \"jup\", \"sat\"],\n\n        symbolType: \"disk\",\n        names: true,\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: `14px ${FONT}`,\n          align: \"center\",\n          baseline: \"top\"\n        },\n        namesType: \"en\"\n      },\n\n      dsos: {\n        show: false,\n        names: false\n      },\n\n      constellations: {\n        names: false,\n        namesType: \"iau\",\n        nameStyle: {\n          fill: \"#ffffff\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]\n        },\n        lines: true,\n        lineStyle: { stroke: \"#cccccc\", width: 1.5, opacity: 1 }\n      },\n\n      mw: {\n        show: false,\n        style: { fill: \"#ffffff\", opacity: 0.02 }\n      },\n\n      background: {\n        fill: this.style?.globe || \"#D2001A\", // globe color\n        stroke: \"#EFEFEF\",\n        opacity: 1,\n        width: 2\n      },\n\n      stars: {\n        colors: true,\n        size: 12,\n        limit: 6,\n        exponent: -0.26,\n        designation: false,\n\n        propername: false,\n        propernameType: \"name\",\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: `8px ${FONT}`,\n          align: \"right\",\n          baseline: \"center\"\n        },\n        propernameLimit: 2.0\n      }\n    };\n    Celestial.display(config);\n    Celestial.skyview({ date: DATE });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".stellar-map-container {\n  background: white;\n  height: 855.56px;\n  width: 570.37px;\n  display: flex;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n  .stellar-map-content {\n    width: 100%;\n    margin: 20px;\n    display: flex;\n    flex-direction: column;\n\n    .stellar-map {\n      display: flex;\n      justify-content: center;\n      padding: 60px 0 0 0;\n\n      #map {\n        text-align: center;\n      }\n    }\n\n    .stellar-information {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      font-size: 16px;\n      justify-content: end;\n      flex: 1 1 0%;\n      padding-bottom: 60px;\n\n      .city {\n        font-weight: bold;\n        font-family: 'Gotham',\n      }\n\n      .country {\n        padding-bottom: 10px;\n      }\n\n      .coordinates {\n        padding-top: 5px;\n        font-size: 14px;\n        font-weight: 200;\n      }\n    }\n  }\n}",
+                    "styleUrl": "./stellar-map-preview.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 20
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"stellar-map-container\">\n\t<div class=\"stellar-map-content\" [ngStyle]=\"styleColors\">\n\t\t<div class=\"stellar-map\">\n\t\t\t<div id=\"map\"></div>\n\t\t</div>\n\t\t<div class=\"stellar-information\" [ngStyle]=\"styleColors\">\n\t\t\t<span class=\"city\">{{city}}</span>\n\t\t\t<span class=\"country\">{{country}}</span>\n\t\t\t<span class=\"date\">{{date}}</span>\n\t\t\t<span class=\"coordinates\">{{coordinates}}</span>\n\t\t</div>\n\t</div>\n</div>\n"
+        },
+        {
+            "name": "StreetMapConfigurationPanelComponent",
+            "id": "component-StreetMapConfigurationPanelComponent-899879291c15190bc4284bef0b2c9091e96f33b18d5e1dffa5069089a47a9ad8c2d7988d515ea6dfc45f8d4e8221579634b8f0116e8623db300f3af7c921832c",
+            "file": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-street-map-configuration-panel",
+            "styleUrls": [
+                "./street-map-configuration-panel.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./street-map-configuration-panel.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "frames",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "Array<FrameStreetMap>",
+                    "decorators": []
+                },
+                {
+                    "name": "textStyle",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "Array<String>",
+                    "decorators": []
+                },
+                {
+                    "name": "themes",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "Array<ThemeStreetMap>",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "panelOpenState",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                }
+            ],
+            "methodsClass": [
                 {
                     "name": "ngOnInit",
                     "args": [],
@@ -589,12 +923,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n// const celestial = require(\"d3-celestial\");\nimport celestial from \"d3-celestial\";\nconst Celestial = celestial.Celestial();\n\ninterface StellarMapColor {\n  globe: string;\n  background: string;\n  text: string;\n}\n@Component({\n  selector: 'app-stellar-map-preview',\n  templateUrl: './stellar-map-preview.component.html',\n  styleUrls: ['./stellar-map-preview.component.scss']\n})\nexport class StellarMapPreviewComponent implements OnInit {\n  @Input() city = '';\n  @Input() country = '';\n  @Input() date = '';\n  @Input() coordinates = '';\n  @Input() style: StellarMapColor | undefined;\n\n  styleColors = {};\n  constructor() { }\n\n  ngOnInit(): void {\n    this.mapInit();\n    this.styleColors = {\n      background: this.style?.background,\n      color: this.style?.text,\n    }\n  }\n\n  mapInit () {\n    const DATE = new Date(\"2021-09-25T04:00:00+0000\");\n    const [LAT, LON] = [36.525321, -121.815916];\n    const FONT = \"Raleway\";\n\n    const config = {\n      container: \"map\",\n      width: 0,\n      datapath: \"../../../assets/data/\", // Path/URL to data files, empty = subfolder 'data'\n\n      form: false,\n      advanced: false,\n      interactive: false,\n      disableAnimations: true,\n\n      zoomlevel: null,\n      zoomextend: 1,\n\n      projection: \"airy\",\n      transform: \"equatorial\",\n\n      follow: \"zenith\",\n      geopos: [LAT, LON],\n\n      lines: {\n        graticule: { show: false },\n        equatorial: { show: false },\n        ecliptic: { show: false },\n        galactic: { show: false },\n        supergalactic: { show: false }\n      },\n\n      planets: {\n        show: false,\n        which: [\"mer\", \"ven\", \"ter\", \"lun\", \"mar\", \"jup\", \"sat\"],\n\n        symbolType: \"disk\",\n        names: true,\n        nameStyle: {\n          fill: \"#00ccff\",\n          font: `14px ${FONT}`,\n          align: \"center\",\n          baseline: \"top\"\n        },\n        namesType: \"en\"\n      },\n\n      dsos: {\n        show: false,\n        names: false\n      },\n\n      constellations: {\n        names: false,\n        namesType: \"iau\",\n        nameStyle: {\n          fill: \"#ffffff\",\n          align: \"center\",\n          baseline: \"middle\",\n          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]\n        },\n        lines: true,\n        lineStyle: { stroke: \"#cccccc\", width: 1.5, opacity: 1 }\n      },\n\n      mw: {\n        show: false,\n        style: { fill: \"#ffffff\", opacity: 0.02 }\n      },\n\n      background: {\n        fill: this.style?.globe || \"#D2001A\", // globe color\n        stroke: \"#EFEFEF\",\n        opacity: 1,\n        width: 2\n      },\n\n      stars: {\n        colors: true,\n        size: 12,\n        limit: 6,\n        exponent: -0.26,\n        designation: false,\n\n        propername: false,\n        propernameType: \"name\",\n        propernameStyle: {\n          fill: \"#ddddbb\",\n          font: `8px ${FONT}`,\n          align: \"right\",\n          baseline: \"center\"\n        },\n        propernameLimit: 2.0\n      }\n    };\n\n    Celestial.display(config);\n    Celestial.skyview({ date: DATE });\n  }\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface ThemeStreetMap {\n  url: string,\n  title: string\n}\n\ninterface FrameStreetMap {\n  url: string,\n  titleFrame: string\n}\n\n@Component({\n  selector: 'app-street-map-configuration-panel',\n  templateUrl: './street-map-configuration-panel.component.html',\n  styleUrls: ['./street-map-configuration-panel.component.scss']\n})\nexport class StreetMapConfigurationPanelComponent implements OnInit {\n  @Input() themes: Array<ThemeStreetMap> = [];\n  @Input() textStyle: Array<String> = [];\n  @Input() frames: Array<FrameStreetMap> = [];\n\n  panelOpenState = false;\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".stellar-map-container {\n  background: white;\n  height: 820px;\n  width: 590px;\n  display: flex;\n  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n  .stellar-map-content {\n    width: 100%;\n    margin: 20px;\n    display: flex;\n    flex-direction: column;\n\n    .stellar-map {\n      display: flex;\n      justify-content: center;\n      padding: 60px 0 0 0;\n\n      #map {\n        text-align: center;\n      }\n    }\n\n    .stellar-information {\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      font-size: 16px;\n      justify-content: end;\n      flex: 1 1 0%;\n      padding-bottom: 60px;\n\n      .city {\n        font-weight: bold;\n        font-family: 'Gotham',\n      }\n      .country {\n        padding-bottom: 10px;\n      }\n      .coordinates {\n        padding-top: 5px;\n        font-size: 14px;\n        font-weight: 200;\n      }\n    }\n  }\n}\n",
-                    "styleUrl": "./stellar-map-preview.component.scss"
+                    "data": ".street-configuration-panel-container {\n\twidth: 400px;\n\n\t.header-configuration-container {\n\t\tbackground-color: #62636b;\n\t\tpadding: 20px 30px;\n\t\tcolor: hsla(0, 0%, 100%, .75);\n\t\tfont-size: 14px;\n\t\tline-height: 1.4;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\n\t\t.header-title {\n\t\t\tdisplay: block;\n\t\t\tcolor: #fff;\n\t\t\tfont-weight: 700;\n\t\t}\n\n\t}\n\n\t.street-theme-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.theme-preview-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\ttext-align: center;\n\t\t\tpadding-bottom: 15px;\n\n\t\t\t.theme-preview {\n\t\t\t\tmargin-top: 10px;\n\t\t\t\tmargin-right: 15px;\n\n\t\t\t\timg {\n\t\t\t\t\twidth: 60px;\n\t\t\t\t\theight: 60px;\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\tborder: 4px solid rgba(47, 57, 75, .2);\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\n\t\t.description-theme {\n\t\t\tfont-size: 13px;\n\t\t\tcolor: rgba(76, 89, 106, .5);\n\t\t}\n\n\t\t.customize-content {\n\t\t\tpadding-top: 10px;\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\tflex-direction: column;\n\n\t\t\t.theme label {\n\t\t\t\tfont-size: 13px;\n\t\t\t\tfont-weight: bold;\n\t\t\t\tcolor: #2c3e50;\n\t\t\t}\n\n\t\t\t.button-container {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-wrap: wrap;\n\t\t\t\tpadding-bottom: 8px;\n\n\t\t\t\t.button-preview {\n\t\t\t\t\tpadding-right: 10px;\n\t\t\t\t\tpadding-top: 8px;\n\t\t\t\t\tpadding-bottom: 5px;\n\n\t\t\t\t\tbutton {\n\t\t\t\t\t\tcursor: pointer;\n\t\t\t\t\t\tbackground: #fff;\n\t\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\t\tborder-color: #dcdfe6;\n\t\t\t\t\t\tcolor: #606266;\n\t\t\t\t\t\ttext-align: center;\n\t\t\t\t\t\tfont-size: 12px;\n\t\t\t\t\t\tpadding: 9px 15px;\n\t\t\t\t\t}\n\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\n\t\t.customize-theme {\n\n\t\t\t.style-text {\n\t\t\t\tfont-size: 13px;\n\t\t\t\tfont-weight: bold;\n\t\t\t\tcolor: #2c3e50;\n\t\t\t\tpadding-bottom: 8px;\n\t\t\t}\n\n\t\t\t.style-icon {\n\t\t\t\tdisplay: flex;\n\t\t\t\twidth: 32px;\n\t\t\t\theight: 32px;\n\t\t\t\ttransform: rotate(-45deg);\n\t\t\t\tmargin: 0 7px 14px 7px;\n\t\t\t\tjustify-content: space-between;\n\t\t\t\tborder-radius: 50%;\n\t\t\t\toverflow: hidden;\n\t\t\t\tcursor: pointer;\n\n\t\t\t\t.first-color {\n\t\t\t\t\tbackground: black;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tflex: 1;\n\t\t\t\t}\n\n\t\t\t\t.second-color {\n\t\t\t\t\tbackground: white;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tflex: 1;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\t.street-location-container {\n\t\t.location-container {\n\n\t\t\t.location-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tpadding-bottom: 10px;\n\n\t\t\t\tinput {\n\t\t\t\t\twidth: 290px;\n\t\t\t\t\tbackground-color: #fff;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tpadding: 0 15px;\n\t\t\t\t\tborder-top-right-radius: 0;\n\t\t\t\t\tborder-bottom-right-radius: 0;\n\t\t\t\t}\n\n\t\t\t\tbutton {\n\t\t\t\t\tbackground: #fff;\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tborder-top-left-radius: 0;\n\t\t\t\t\tborder-bottom-left-radius: 0;\n\n\t\t\t\t\t.icon {\n\t\t\t\t\t\tcolor: #606266;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\t.gps-content {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: space-between;\n\t\t\tcolor: #2c3e50;\n\t\t\tfont-size: 12px;\n\t\t\theight: 30px;\n\n\t\t\tlabel {\n\t\t\t\tpadding-top: 8px;\n\t\t\t}\n\n\t\t\tbutton {\n\t\t\t\tcursor: pointer;\n\t\t\t\tbackground: #fff;\n\t\t\t\tdisplay: flex;\n\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\tborder-color: #dcdfe6;\n\t\t\t\tcolor: #606266;\n\t\t\t\tfont-size: 12px;\n\t\t\t\tborder-radius: 4px;\n\t\t\t\tmargin-top: 8px;\n\t\t\t\theight: 20px;\n\n\t\t\t\t.icon {\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\n\t\t.tip {\n\t\t\tfont-size: 13px;\n\t\t\tcolor: rgba(76, 89, 106, .5);\n\t\t}\n\t}\n\n\t.street-description-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.description-content {\n\t\t\t.inline-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tjustify-content: space-between;\n\t\t\t\tpadding-bottom: 8px;\n\t\t\t\tcolor: #606266;\n\n\t\t\t\tlabel {\n\t\t\t\t\tmargin-top: 10px;\n\t\t\t\t}\n\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tbackground-color: #fff;\n\t\t\t\t\twidth: 210px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t.text-coordinates {\n\t\t\t\tfont-size: 13px;\n\t\t\t\tcolor: rgba(76, 89, 106, .5);\n\t\t\t\tmargin: 0;\n\t\t\t\tline-height: 1.4;\n\t\t\t}\n\n\t\t}\n\t}\n\n\t.street-customize-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.title {\n\t\t\tfont-weight: 600;\n\t\t\tfont-size: 14px;\n\t\t\tcolor: #4c596a;\n\t\t\tpadding-bottom: 10px;\n\t\t}\n\n\t\t.size {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t}\n\n\t}\n\n\t.street-frame-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.type-frame-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\ttext-align: center;\n\t\t\tpadding-bottom: 15px;\n\t\t\tjustify-content: space-between;\n\n\t\t\t.frame-preview {\n\t\t\t\tpadding-right: 10px;\n\t\t\t\tpadding-left: 10px;\n\t\t\t\tpadding-bottom: 15px;\n\n\t\t\t\timg {\n\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\twidth: 5rem;\n\t\t\t\t\tborder: 2px solid #2f394b;\n\t\t\t\t\tz-index: 2\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tbutton {\n\t\t\t\tdisplay: flex;\n\t\t\t\tcolor: #292b2c;\n\t\t\t\twidth: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tjustify-content: center;\n\t\t\t\tfont-size: 13px;\n\t\t\t\tfont-weight: bold;\n\t\t\t\tbackground: #fff;\n\t\t\t\tborder: 2px solid #dcdfe6;\n\t\t\t}\n\t\t}\n\n\t}\n}",
+                    "styleUrl": "./street-map-configuration-panel.component.scss"
                 }
             ],
             "stylesData": "",
@@ -609,97 +943,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"stellar-map-container\">\n\t<div class=\"stellar-map-content\">\n\t\t<div class=\"stellar-map\">\n\t\t\t<div class=\"map\">\n      </div>\n\t\t</div>\n\t\t<div class=\"stellar-information\">\n\t\t\t<span class=\"city\">{{city}}</span>\n\t\t\t<span class=\"country\">{{country}}</span>\n\t\t\t<span class=\"date\">{{date}}</span>\n\t\t\t<span class=\"coordinates\">{{coordinates}}</span>\n\t\t</div>\n\t</div>\n</div>\n\n"
-        },
-        {
-            "name": "StreetMapConfigurationPanelComponent",
-            "id": "component-StreetMapConfigurationPanelComponent-88eea8830b701aa96e12dbffb9014b735fdbfaa5106962be8fc6f0038c1d8fa3219e92fcced38338a8ad2bdcfaa55ea2127dba72c1fe991d3ddf5f25bedca815",
-            "file": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-street-map-configuration-panel",
-            "styleUrls": [
-                "./street-map-configuration-panel.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./street-map-configuration-panel.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "links",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 19,
-                    "type": "Array<StreetMap>",
-                    "decorators": []
-                },
-                {
-                    "name": "styles",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 20,
-                    "type": "Array<String>",
-                    "decorators": []
-                },
-                {
-                    "name": "urls",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 21,
-                    "type": "Array<FrameMap>",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 25,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\ninterface StreetMap {\n  link: string,\n  title: string\n}\n\ninterface FrameMap {\n  url: string,\n  titleFrame: string\n}\n\n@Component({\n  selector: 'app-street-map-configuration-panel',\n  templateUrl: './street-map-configuration-panel.component.html',\n  styleUrls: ['./street-map-configuration-panel.component.scss']\n})\nexport class StreetMapConfigurationPanelComponent implements OnInit {\n  @Input() links: Array<StreetMap> = [];\n  @Input() styles: Array<String> = [];\n  @Input() urls: Array<FrameMap> = [];\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".street-configuration-panel-container {\n\twidth: 400px;\n\n\t.header-configuration-container {\n\t\tbackground-color: #62636b;\n\t\tpadding: 20px 30px;\n\t\tcolor: hsla(0, 0%, 100%, .75);\n\t\tfont-size: 14px;\n\t\tline-height: 1.4;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\n\t\t.header-title {\n\t\t\tdisplay: block;\n\t\t\tcolor: #fff;\n\t\t\tfont-weight: 700;\n\t\t}\n\n\t}\n\n\t.street-theme-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.theme-preview-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\ttext-align: center;\n\t\t\tpadding-bottom: 15px;\n\n\t\t\t.theme-preview {\n\t\t\t\tmargin-top: 10px;\n\t\t\t\tmargin-right: 15px;\n\n\t\t\t\timg {\n\t\t\t\t\twidth: 60px;\n\t\t\t\t\theight: 60px;\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\tborder: 4px solid rgba(47, 57, 75, .2);\n\n\t\t\t\t}\n\n\t\t\t}\n\n\t\t}\n\n\t\t.description-theme {\n\t\t\tfont-size: 13px;\n\t\t\tcolor: rgba(76, 89, 106, .5);\n\t\t}\n\n\t\t.customize-content {\n\t\t\tpadding-top: 10px;\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\tflex-direction: column;\n\n\t\t\t.theme label {\n\t\t\t\tfont-size: 13px;\n\t\t\t\tfont-weight: bold;\n\t\t\t\tcolor: #2c3e50;\n\t\t\t}\n\n\t\t\t.button-container {\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-wrap: wrap;\n\t\t\t\tpadding-bottom: 8px;\n\n\t\t\t\t.button-preview {\n\t\t\t\t\tpadding-right: 10px;\n\t\t\t\t\tpadding-top: 8px;\n\t\t\t\t\tpadding-bottom: 5px;\n\n\t\t\t\t\tbutton {\n\t\t\t\t\t\tcursor: pointer;\n\t\t\t\t\t\tbackground: #fff;\n\t\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\t\tborder-color: #dcdfe6;\n\t\t\t\t\t\tcolor: #606266;\n\t\t\t\t\t\ttext-align: center;\n\t\t\t\t\t\tfont-size: 12px;\n\t\t\t\t\t\tpadding: 9px 15px;\n\t\t\t\t\t}\n\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\n\t\t.customize-theme {\n\n\t\t\t.style-text {\n\t\t\t\tfont-size: 13px;\n\t\t\t\tfont-weight: bold;\n\t\t\t\tcolor: #2c3e50;\n\t\t\t\tpadding-bottom: 8px;\n\t\t\t}\n\n\t\t\t.style-icon {\n\t\t\t\tdisplay: flex;\n\t\t\t\twidth: 32px;\n\t\t\t\theight: 32px;\n\t\t\t\ttransform: rotate(-45deg);\n\t\t\t\tmargin: 0 7px 14px 7px;\n\t\t\t\tjustify-content: space-between;\n\t\t\t\tborder-radius: 50%;\n\t\t\t\toverflow: hidden;\n\t\t\t\tcursor: pointer;\n\n\t\t\t\t.first-color {\n\t\t\t\t\tbackground: black;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tflex: 1;\n\t\t\t\t}\n\n\t\t\t\t.second-color {\n\t\t\t\t\tbackground: white;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\tflex: 1;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\t.street-location-container {\n\t\t.location-container {\n\n\t\t\t.location-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tpadding-bottom: 10px;\n\n\t\t\t\tinput {\n\t\t\t\t\twidth: 290px;\n\t\t\t\t\tbackground-color: #fff;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tpadding: 0 15px;\n\t\t\t\t\tborder-top-right-radius: 0;\n\t\t\t\t\tborder-bottom-right-radius: 0;\n\t\t\t\t}\n\n\t\t\t\tbutton {\n\t\t\t\t\tbackground: #fff;\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tborder-top-left-radius: 0;\n\t\t\t\t\tborder-bottom-left-radius: 0;\n\n\t\t\t\t\t.icon {\n\t\t\t\t\t\tcolor: #606266;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\t.gps-content {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: space-between;\n\t\t\tcolor: #2c3e50;\n\t\t\tfont-size: 12px;\n\t\t\theight: 30px;\n\n\t\t\tlabel {\n\t\t\t\tpadding-top: 8px;\n\t\t\t}\n\n\t\t\tbutton {\n\t\t\t\tcursor: pointer;\n\t\t\t\tbackground: #fff;\n\t\t\t\tdisplay: flex;\n\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\tborder-color: #dcdfe6;\n\t\t\t\tcolor: #606266;\n\t\t\t\tfont-size: 12px;\n\t\t\t\tborder-radius: 4px;\n\t\t\t\tmargin-top: 8px;\n\t\t\t\theight: 20px;\n\n\t\t\t\t.icon {\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\n\t\t.tip {\n\t\t\tfont-size: 13px;\n\t\t\tcolor: rgba(76, 89, 106, .5);\n\t\t}\n\t}\n\n\t.street-description-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.description-content {\n\t\t\t.inline-input {\n\t\t\t\tdisplay: flex;\n\t\t\t\tjustify-content: space-between;\n\t\t\t\tpadding-bottom: 8px;\n\t\t\t\tcolor: #606266;\n\n\t\t\t\tlabel {\n\t\t\t\t\tmargin-top: 10px;\n\t\t\t\t}\n\n\t\t\t\tinput {\n\t\t\t\t\tborder: 1px solid #dcdfe6;\n\t\t\t\t\tborder-radius: 4px;\n\t\t\t\t\tline-height: 40px;\n\t\t\t\t\tfont-size: inherit;\n\t\t\t\t\theight: 40px;\n\t\t\t\t\tcolor: #606266;\n\t\t\t\t\tbackground-color: #fff;\n\t\t\t\t\twidth: 210px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t.text-coordinates {\n\t\t\t\tfont-size: 13px;\n\t\t\t\tcolor: rgba(76, 89, 106, .5);\n\t\t\t\tmargin: 0;\n\t\t\t\tline-height: 1.4;\n\t\t\t}\n\n\t\t}\n\t}\n\n\t.street-customize-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.title {\n\t\t\tfont-weight: 600;\n\t\t\tfont-size: 14px;\n\t\t\tcolor: #4c596a;\n\t\t\tpadding-bottom: 10px;\n\t\t}\n\n\t\t.size {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t}\n\n\t}\n\n\t.street-frame-container {\n\t\tborder-bottom: 1px solid #eee;\n\t\tbackground-color: #f9fafb;\n\n\t\t.type-frame-container {\n\t\t\tdisplay: flex;\n\t\t\tflex-wrap: wrap;\n\t\t\ttext-align: center;\n\t\t\tpadding-bottom: 15px;\n\t\t\tjustify-content: space-between;\n\n\t\t\t.frame-preview {\n\t\t\t\tpadding-right: 10px;\n\t\t\t\tpadding-left: 10px;\n\t\t\t\tpadding-bottom: 15px;\n\n\t\t\t\timg {\n\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\tcursor: pointer;\n\t\t\t\t\tdisplay: flex;\n\t\t\t\t\twidth: 5rem;\n\t\t\t\t\tborder: 2px solid #2f394b;\n\t\t\t\t\tz-index: 2\n\t\t\t\t}\n\t\t\t}\n\t\t\tbutton{\n\t\t\t\tdisplay: flex;\n\t\t\t\tcolor: #292b2c;\n\t\t\t\twidth: 100%;\n\t\t\t\tcursor: pointer;\n\t\t\t\tjustify-content: center;\n\t\t\t\tfont-size: 13px;\n\t\t\t\tfont-weight: bold;\n\t\t\t\tbackground: #fff;\n\t\t\t\tborder: 2px solid #dcdfe6;\n\t\t\t}\n\t\t}\n\n\t}\n}",
-                    "styleUrl": "./street-map-configuration-panel.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 21
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"street-configuration-panel-container\">\n\n\t<div class=\"header-configuration-container\">\n\t\t<label class=\"header-title\">Create your Map Art poster!</label>\n\t\t<label>Change artwork, labels and appearance</label>\n\t</div>\n\n\t<div class=\"street-location-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tLocation and date\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"location-container\">\n\t\t\t\t<div class=\"location-input\">\n\t\t\t\t\t<input type=\"text\" autocomplete=\"off\" placeholder=\"Enter your city or place here\">\n\t\t\t\t\t<button type=\"button\" class=\"button--default\">\n\t\t\t\t\t\t<mat-icon class=\"icon\">search</mat-icon>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"gps-content\">\n\t\t\t\t\t<label>or use your current GPS position</label>\n\t\t\t\t\t<button type=\"button\">\n\t\t\t\t\t\t<mat-icon class=\"icon\">location_on</mat-icon>\n\t\t\t\t\t\tLocate me\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<label class=\"tip\">\n\t\t\t\t\tPro tip! You can also drag/drop and zoom on the map to get the exact position you want on your\n\t\t\t\t\tposter.\n\t\t\t\t</label>\n\t\t\t</div>\n\n\t\t</mat-expansion-panel>\n\t</div>\n\n\n\t<div class=\"street-description-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the headers\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\n\t\t\t<div class=\"description-content\">\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Headline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Divider</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Tagline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<label class=\"text-coordinates\">Updating coordinates when map position changes. You can set your own\n\t\t\t\t\ttext as\n\t\t\t\t\ttagline if you disable this.</label>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"street-theme-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the theme\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"tabs\">\n\t\t\t\t<mat-tab-group>\n\t\t\t\t\t<mat-tab label=\"Popular styles\">\n\t\t\t\t\t\t<div class=\"theme-preview-container\">\n\t\t\t\t\t\t\t<div class=\"theme-preview\" *ngFor=\"let map of maps\">\n\t\t\t\t\t\t\t\t<img src=\"{{map.url}}\">{{map.title}}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"description-theme\">\n\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\tWe are all for freedom of choice, if you want to try different combinations\n\t\t\t\t\t\t\t\tthan our favorites - go ahead and click customize and roll your own!\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</mat-tab>\n\t\t\t\t\t<mat-tab label=\"Customize\">\n\t\t\t\t\t\t<div class=\"customize-content\">\n\t\t\t\t\t\t\t<div class=\"theme\">\n\t\t\t\t\t\t\t\t<label>Select theme</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"button-container\">\n\t\t\t\t\t\t\t\t<div class=\"button-preview\" *ngFor=\"let style of styles\">\n\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"button--default\">\n\t\t\t\t\t\t\t\t\t\t{{style.name}}\n\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class=\"customize-theme\">\n\t\t\t\t\t\t\t<div class=\"style-text\">\n\t\t\t\t\t\t\t\t<label>Change map style</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"style-icon\">\n\t\t\t\t\t\t\t\t<div class=\"first-color\">\n\t\t\t\t\t\t\t\t\t<span></span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"second-color\">\n\t\t\t\t\t\t\t\t\t<span></span>\n\t\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t</mat-tab>\n\n\t\t\t\t</mat-tab-group>\n\t\t\t</div>\n\n\n\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"street-customize-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tChange the poster size\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"title\">\n\t\t\t\t<label>Select poster size</label>\n\t\t\t</div>\n\t\t\t<div class=\"size\">\n\t\t\t\t<mat-button-toggle-group name=\"fontStyle\" aria-label=\"Font Style\">\n\t\t\t\t\t<mat-button-toggle value=\"bold\">30x40cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"italic\">50x70cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"underline\">70x100cm</mat-button-toggle>\n\t\t\t\t</mat-button-toggle-group>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"street-frame-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tChoose frame type\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\n\t\t<div class=\"type-frame-container\">\n\t\t\t<div class=\"frame-preview\" *ngFor=\"let frame of frames\">\n\t\t\t\t<img src=\"{{frame.url}}\">\n\t\t\t\t<span>{{frame.titleFrame}}</span>\n\t\t\t</div>\n\t\t\t<button>Remove Frame</button>\n\t\t</div>\n\n\t\n\n\t</mat-expansion-panel>\n\n\t\t</div>\n</div>"
+            "templateData": "<div class=\"street-configuration-panel-container\">\n\t<div class=\"header-configuration-container\">\n\t\t<label class=\"header-title\">Create your Map Art poster!</label>\n\t\t<label>Change artwork, labels and appearance</label>\n\t</div>\n\n\t<div class=\"street-location-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tLocation and date\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"location-container\">\n\t\t\t\t<div class=\"location-input\">\n\t\t\t\t\t<input type=\"text\" autocomplete=\"off\" placeholder=\"Enter your city or place here\">\n\t\t\t\t\t<button type=\"button\" class=\"button--default\">\n\t\t\t\t\t\t<mat-icon class=\"icon\">search</mat-icon>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"gps-content\">\n\t\t\t\t\t<label>or use your current GPS position</label>\n\t\t\t\t\t<button type=\"button\">\n\t\t\t\t\t\t<mat-icon class=\"icon\">location_on</mat-icon>\n\t\t\t\t\t\tLocate me\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<label class=\"tip\">\n\t\t\t\t\tPro tip! You can also drag/drop and zoom on the map to get the exact position you want on your\n\t\t\t\t\tposter.\n\t\t\t\t</label>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"street-description-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the headers\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"description-content\">\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Headline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Divider</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<div class=\"inline-input\">\n\t\t\t\t\t<label>Tagline</label>\n\t\t\t\t\t<input type=\"text\" id=\"text\" name=\"text\">\n\t\t\t\t</div>\n\t\t\t\t<label class=\"text-coordinates\">Updating coordinates when map position changes. You can set your own\n\t\t\t\t\ttext as\n\t\t\t\t\ttagline if you disable this.</label>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"street-theme-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tCustomize the theme\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"tabs\">\n\t\t\t\t<mat-tab-group>\n\t\t\t\t\t<mat-tab label=\"Popular styles\">\n\t\t\t\t\t\t<div class=\"theme-preview-container\">\n\t\t\t\t\t\t\t<div class=\"theme-preview\" *ngFor=\"let theme of themes\">\n\t\t\t\t\t\t\t\t<img src=\"{{theme.url}}\">{{theme.title}}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"description-theme\">\n\t\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t\tWe are all for freedom of choice, if you want to try different combinations\n\t\t\t\t\t\t\t\tthan our favorites - go ahead and click customize and roll your own!\n\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</mat-tab>\n\t\t\t\t\t<mat-tab label=\"Customize\">\n\t\t\t\t\t\t<div class=\"customize-content\">\n\t\t\t\t\t\t\t<div class=\"theme\">\n\t\t\t\t\t\t\t\t<label>Select theme</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"button-container\">\n\t\t\t\t\t\t\t\t<div class=\"button-preview\" *ngFor=\"let text of textStyle\">\n\t\t\t\t\t\t\t\t\t<button type=\"button\" class=\"button--default\">\n\t\t\t\t\t\t\t\t\t\t{{text}}\n\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class=\"customize-theme\">\n\t\t\t\t\t\t\t<div class=\"style-text\">\n\t\t\t\t\t\t\t\t<label>Change map style</label>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"style-icon\">\n\t\t\t\t\t\t\t\t<div class=\"first-color\">\n\t\t\t\t\t\t\t\t\t<span></span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"second-color\">\n\t\t\t\t\t\t\t\t\t<span></span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</mat-tab>\n\t\t\t\t</mat-tab-group>\n\t\t\t</div>\n\n\t\t</mat-expansion-panel>\n\t</div>\n\t<div class=\"street-customize-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tChange the poster size\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"title\">\n\t\t\t\t<label>Select poster size</label>\n\t\t\t</div>\n\t\t\t<div class=\"size\">\n\t\t\t\t<mat-button-toggle-group name=\"fontStyle\" aria-label=\"Font Style\">\n\t\t\t\t\t<mat-button-toggle value=\"bold\">30x40cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"italic\">50x70cm</mat-button-toggle>\n\t\t\t\t\t<mat-button-toggle value=\"underline\">70x100cm</mat-button-toggle>\n\t\t\t\t</mat-button-toggle-group>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n\n\t<div class=\"street-frame-container\">\n\t\t<mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\n\t\t\t<mat-expansion-panel-header>\n\t\t\t\t<mat-panel-title>\n\t\t\t\t\tChoose frame type\n\t\t\t\t</mat-panel-title>\n\t\t\t</mat-expansion-panel-header>\n\t\t\t<div class=\"type-frame-container\">\n\t\t\t\t<div class=\"frame-preview\" *ngFor=\"let frame of frames\">\n\t\t\t\t\t<img src=\"{{frame.url}}\">\n\t\t\t\t\t<span>{{frame.titleFrame}}</span>\n\t\t\t\t</div>\n\t\t\t\t<button>Remove Frame</button>\n\t\t\t</div>\n\t\t</mat-expansion-panel>\n\t</div>\n</div>"
         },
         {
             "name": "StreetMapPreviewComponent",
@@ -791,7 +1035,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".street-map-basic-container {\n    background: white;\n    height: 600px;\n    width: 400px;\n    display: flex;\n    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n    .street-map-basic-content {\n        background: #cbb187;\n        width: 100%;\n        font-family: Courier New;\n        margin: 20px;\n        display: flex;\n        flex-direction: column;\n\n        .street-map-basic {\n            display: flex;\n            justify-content: center;\n            padding: 20px 0;\n\n            .mapStreet-basic {\n                width: 300px;\n                height: 400px;\n                display: flex;\n                background: #cbb187;\n            }\n        }\n\n        .street-map-basic-information {\n            background: #cbb187;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            font-size: 16px;\n            justify-content: end;\n            flex: 1 1 0%;\n            color: black;\n            padding-bottom: 20px;\n\n            .city {\n                font-size: 30px;\n                font-weight: bold;\n            }\n\n            .country {\n                font-size: 14px;\n            }\n\n        }\n    }\n}\n\n.street-map-shadow-container {\n    background: white;\n    height: 600px;\n    width: 400px;\n    display: flex;\n    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n    .street-map-shadow-content {\n        background: #A3DBDC;\n        width: 100%;\n        font-family: Courier New;\n        margin: 20px;\n        display: flex;\n        flex-direction: column;\n\n        .street-map-shadow {\n            display: flex;\n            justify-content: center;\n            padding: 20px 0;\n\n            .mapStreet-shadow {\n                width: 300px;\n                height: 400px;\n                display: flex;\n                background: #f6fae5;\n            }\n        }\n\n        .street-map-shadow-information {\n            background: #A3DBDC;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            font-size: 16px;\n            justify-content: end;\n            flex: 1 1 0%;\n            color: black;\n            padding-bottom: 20px;\n\n            .city {\n                font-size: 30px;\n                font-weight: bold;\n            }\n\n            .country {\n                font-size: 14px;\n            }\n\n            .coordinates {\n                font-size: 12px;\n            }\n        }\n    }\n}\n\n\n\n.street-map-lineal-container {\n    background: white;\n    height: 600px;\n    width: 400px;\n    display: flex;\n    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n    .street-map-lineal-content {\n        background: #E5C1E6;\n        width: 100%;\n        font-family: Courier New;\n        margin: 20px;\n        display: flex;\n        flex-direction: column;\n\n        .street-map-lineal {\n            display: flex;\n            justify-content: center;\n            padding: 20px 0;\n\n            .mapStreet-lineal {\n                width: 300px;\n                height: 400px;\n                display: flex;\n                background: #E5C1E6;\n            }\n        }\n\n        .street-map-lineal-information {\n            background: #E5C1E6;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            \n            .street-information {\n                background: white;\n                display: flex;\n                flex-direction: column;\n                align-items: center;\n                width: 200px;\n                height: 75px;\n                font-size: 16px;\n                justify-content: end;\n                color: black;\n                padding-bottom: 20px;\n                .city {\n                    font-size: 30px;\n                    font-weight: bold;\n                }\n    \n                .country {\n                    font-size: 14px;\n                }\n    \n                .coordinates {\n                    font-size: 12px;\n                }\n            }\n      \n        }\n    }\n}",
+                    "data": ".street-map-basic-container {\n\tbackground: white;\n\theight: 600px;\n\twidth: 400px;\n\tdisplay: flex;\n\tbox-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n\t.street-map-basic-content {\n\t\tbackground: #cbb187;\n\t\twidth: 100%;\n\t\tfont-family: Courier New;\n\t\tmargin: 20px;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\n\t\t.street-map-basic {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t\tpadding: 20px 0;\n\n\t\t\t.mapStreet-basic {\n\t\t\t\twidth: 300px;\n\t\t\t\theight: 400px;\n\t\t\t\tdisplay: flex;\n\t\t\t\tbackground: #cbb187;\n\t\t\t}\n\t\t}\n\n\t\t.street-map-basic-information {\n\t\t\tbackground: #cbb187;\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\t\t\talign-items: center;\n\t\t\tfont-size: 16px;\n\t\t\tjustify-content: end;\n\t\t\tflex: 1 1 0%;\n\t\t\tcolor: black;\n\t\t\tpadding-bottom: 20px;\n\n\t\t\t.city {\n\t\t\t\tfont-size: 30px;\n\t\t\t\tfont-weight: bold;\n\t\t\t}\n\n\t\t\t.country {\n\t\t\t\tfont-size: 14px;\n\t\t\t}\n\n\t\t}\n\t}\n}\n\n.street-map-shadow-container {\n\tbackground: white;\n\theight: 600px;\n\twidth: 400px;\n\tdisplay: flex;\n\tbox-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n\t.street-map-shadow-content {\n\t\tbackground: #A3DBDC;\n\t\twidth: 100%;\n\t\tfont-family: Courier New;\n\t\tmargin: 20px;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\n\t\t.street-map-shadow {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t\tpadding: 20px 0;\n\n\t\t\t.mapStreet-shadow {\n\t\t\t\twidth: 300px;\n\t\t\t\theight: 400px;\n\t\t\t\tdisplay: flex;\n\t\t\t\tbackground: #f6fae5;\n\t\t\t}\n\t\t}\n\n\t\t.street-map-shadow-information {\n\t\t\tbackground: #A3DBDC;\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\t\t\talign-items: center;\n\t\t\tfont-size: 16px;\n\t\t\tjustify-content: end;\n\t\t\tflex: 1 1 0%;\n\t\t\tcolor: black;\n\t\t\tpadding-bottom: 20px;\n\n\t\t\t.city {\n\t\t\t\tfont-size: 30px;\n\t\t\t\tfont-weight: bold;\n\t\t\t}\n\n\t\t\t.country {\n\t\t\t\tfont-size: 14px;\n\t\t\t}\n\n\t\t\t.coordinates {\n\t\t\t\tfont-size: 12px;\n\t\t\t}\n\t\t}\n\t}\n}\n\n\n\n.street-map-lineal-container {\n\tbackground: white;\n\theight: 600px;\n\twidth: 400px;\n\tdisplay: flex;\n\tbox-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;\n\n\t.street-map-lineal-content {\n\t\tbackground: #E5C1E6;\n\t\twidth: 100%;\n\t\tfont-family: Courier New;\n\t\tmargin: 20px;\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\n\t\t.street-map-lineal {\n\t\t\tdisplay: flex;\n\t\t\tjustify-content: center;\n\t\t\tpadding: 20px 0;\n\n\t\t\t.mapStreet-lineal {\n\t\t\t\twidth: 300px;\n\t\t\t\theight: 400px;\n\t\t\t\tdisplay: flex;\n\t\t\t\tbackground: #E5C1E6;\n\t\t\t}\n\t\t}\n\n\t\t.street-map-lineal-information {\n\t\t\tbackground: #E5C1E6;\n\t\t\tdisplay: flex;\n\t\t\tflex-direction: column;\n\t\t\talign-items: center;\n\n\t\t\t.street-information {\n\t\t\t\tbackground: white;\n\t\t\t\tdisplay: flex;\n\t\t\t\tflex-direction: column;\n\t\t\t\talign-items: center;\n\t\t\t\twidth: 200px;\n\t\t\t\theight: 75px;\n\t\t\t\tfont-size: 16px;\n\t\t\t\tjustify-content: end;\n\t\t\t\tcolor: black;\n\t\t\t\tpadding-bottom: 20px;\n\n\t\t\t\t.city {\n\t\t\t\t\tfont-size: 30px;\n\t\t\t\t\tfont-weight: bold;\n\t\t\t\t}\n\n\t\t\t\t.country {\n\t\t\t\t\tfont-size: 14px;\n\t\t\t\t}\n\n\t\t\t\t.coordinates {\n\t\t\t\t\tfont-size: 12px;\n\t\t\t\t}\n\t\t\t}\n\n\t\t}\n\t}\n}",
                     "styleUrl": "./street-map-preview.component.scss"
                 }
             ],
@@ -813,13 +1057,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-3730e9bc37246e838bc0a6d4f21f5197d41862adad5027b01eee215d42145b339bf37a682c481fc9f5e11cb1f355059325fe78ae0316115ea02020ce49198238",
+            "id": "module-AppModule-fa50ac9c55b95c134f22d0f2c351e62ec99e21193c00a9ac23e758628c381354e338f98ab034747ad98b1deec17eb2a25a6a21db122f441afa2636f8069b2dce",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MaterialModule } from './material.module'\nimport { ComponentsModule } from './components/components.module'\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    MaterialModule,\n    ComponentsModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MaterialModule } from './material.module'\nimport { ComponentsModule } from './components/components.module'\nimport { PagesModule } from './pages/pages.module';\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    MaterialModule,\n    ComponentsModule,\n    PagesModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -841,6 +1085,9 @@
                         },
                         {
                             "name": "MaterialModule"
+                        },
+                        {
+                            "name": "PagesModule"
                         }
                     ]
                 },
@@ -864,13 +1111,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-78922b3ae99d2c5249b333980bd5afde1b120b2cc6fedfd41b8b2cc90f279797cb4b22e183bf7e1d1dfab8c6100e77e7812c110234d81f866f544f28a3e18b15",
+            "id": "module-AppRoutingModule-f210815005b9e50141e1de5472cd49f174f43d3f3cd1c808e8943f6cd8d3f189e17d53117caa18232ed3196738f310d773d0989ec05e369dafbd350adee9e480",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\n\nconst routes: Routes = [];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport { StellarMapPageComponent } from './pages/stellar-map-page/stellar-map-page.component';\n\nconst routes: Routes = [\n  { path: 'stellar-editor', component: StellarMapPageComponent, pathMatch: 'full'},\n];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -978,13 +1225,13 @@
         },
         {
             "name": "MaterialModule",
-            "id": "module-MaterialModule-3d2353627e80df3ba369613d5b04be520084f32efb6776c4d5a30aa40a1466dac6ccf6b3f0feeb73779c74a4a52e8f19519ff94b58c1ddb3b734920e801aa454",
+            "id": "module-MaterialModule-444b57dad84820cd669f620fb77486a4ba0118e01fa49ebed39afb3314beafcce7b88edd5a8643f4c09195d568f2a0d3ce1626cd0ed75c94b6b2a07686718d05",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/material.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatBadgeModule} from '@angular/material/badge';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { NoopAnimationsModule } from '@angular/platform-browser/animations';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { MatSlideToggleModule } from '@angular/material/slide-toggle';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    MatButtonModule,\n    MatIconModule,\n    MatBadgeModule,\n    MatMenuModule,\n    BrowserAnimationsModule,\n    MatExpansionModule,\n    NoopAnimationsModule,\n    MatButtonToggleModule,\n    MatTabsModule,\n    MatSlideToggleModule\n\t],\n})\nexport class MaterialModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatBadgeModule} from '@angular/material/badge';\nimport { MatMenuModule } from '@angular/material/menu';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { MatExpansionModule } from '@angular/material/expansion';\nimport { NoopAnimationsModule } from '@angular/platform-browser/animations';\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\nimport { MatTabsModule } from '@angular/material/tabs';\nimport { MatSlideToggleModule } from '@angular/material/slide-toggle';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule\n  ],\n  exports: [\n    MatButtonModule,\n    MatIconModule,\n    MatBadgeModule,\n    MatMenuModule,\n    BrowserAnimationsModule,\n    MatExpansionModule,\n    NoopAnimationsModule,\n    MatButtonToggleModule,\n    MatTabsModule,\n    MatSlideToggleModule,\n    MatCheckboxModule\n\t],\n})\nexport class MaterialModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -1001,6 +1248,80 @@
                 {
                     "type": "exports",
                     "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "PagesModule",
+            "id": "module-PagesModule-f98282d70c51c697b2462195827ba0093879bda71201bd3c5aa8f2e8915c5d04a931af46cbceda3fbf4d2f5fa5d3b9e9c373d52e48333b91fec66099637ab94c",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/pages.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { StellarMapPageComponent } from './stellar-map-page/stellar-map-page.component';\nimport { ComponentsModule } from '../components/components.module';\n\nconst components = [\n\tStellarMapPageComponent\n];\n\n@NgModule({\n  declarations: components,\n  imports: [\n    CommonModule,\n    ComponentsModule\n  ],\n  exports: components,\n})\nexport class PagesModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "StellarMapConfigurationPanelComponent"
+                        },
+                        {
+                            "name": "StellarMapPreviewComponent"
+                        },
+                        {
+                            "name": "StreetMapConfigurationPanelComponent"
+                        },
+                        {
+                            "name": "StreetMapPreviewComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "HeaderComponent"
+                        },
+                        {
+                            "name": "StellarMapConfigurationPanelComponent"
+                        },
+                        {
+                            "name": "StellarMapPreviewComponent"
+                        },
+                        {
+                            "name": "StreetMapConfigurationPanelComponent"
+                        },
+                        {
+                            "name": "StreetMapPreviewComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -1042,8 +1363,7 @@
                 "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "celestial.Celestial()"
+                "type": "any"
             },
             {
                 "name": "classicColors",
@@ -1076,6 +1396,16 @@
                 "defaultValue": "[   \n\tButtonComponent,\n\tHeaderComponent,\n  StellarMapPreviewComponent,\n  StreetMapPreviewComponent,\n  StellarMapConfigurationPanelComponent,\n  StreetMapConfigurationPanelComponent\n]"
             },
             {
+                "name": "components",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/pages.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n\tStellarMapPageComponent\n]"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1099,6 +1429,16 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1106,14 +1446,14 @@
                 "defaultValue": "{\n  production: true\n}"
             },
             {
-                "name": "environment",
+                "name": "Geometric",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "type": "Story",
+                "defaultValue": "() => ({\n  props: {\n    headline: 'MARCEL BREURER',\n    phrase: 'Designer from 1995',\n    style: {\n      background: '#EFEFEF',\n      text: '#182731'\n    }\n  },\n})"
             },
             {
                 "name": "JapanStyle",
@@ -1162,7 +1502,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "() => ({\n\tprops: {\n\t\tmaps: [\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t}\n\t\t],\n        styles: [\n\t\t\t{\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n        ],\n\t\tframes: [\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Black\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Natural-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Natural\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t],\n\t},\n})"
+                "defaultValue": "() => ({\n\tprops: {\n\t\tthemes: [\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t}\n\t\t],\n        textStyle: [\n\t\t\t\"Modern\",\n\t\t\t\"Classic\"\n        ],\n\t\tframes: [\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Black\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Natural-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Natural\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t],\n\t},\n})"
             },
             {
                 "name": "StreetLineal",
@@ -1221,8 +1561,7 @@
                     "file": "src/app/components/stellar-map-preview/stellar-map-preview.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "celestial.Celestial()"
+                    "type": "any"
                 }
             ],
             "src/app/components/stellar-map-preview/stellar-map-preview.stories.ts": [
@@ -1279,6 +1618,18 @@
                     "defaultValue": "[   \n\tButtonComponent,\n\tHeaderComponent,\n  StellarMapPreviewComponent,\n  StreetMapPreviewComponent,\n  StellarMapConfigurationPanelComponent,\n  StreetMapConfigurationPanelComponent\n]"
                 }
             ],
+            "src/app/pages/pages.module.ts": [
+                {
+                    "name": "components",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/pages.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n\tStellarMapPageComponent\n]"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -1300,6 +1651,18 @@
                     "type": "literal type"
                 }
             ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -1312,16 +1675,16 @@
                     "defaultValue": "{\n  production: true\n}"
                 }
             ],
-            "src/environments/environment.ts": [
+            "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts": [
                 {
-                    "name": "environment",
+                    "name": "Geometric",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/environments/environment.ts",
+                    "file": "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    headline: 'MARCEL BREURER',\n    phrase: 'Designer from 1995',\n    style: {\n      background: '#EFEFEF',\n      text: '#182731'\n    }\n  },\n})"
                 }
             ],
             "src/app/components/stellar-map-configuration-panel/stellar-map-configuration-panel.stories.ts": [
@@ -1377,7 +1740,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "() => ({\n\tprops: {\n\t\tmaps: [\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t}\n\t\t],\n        styles: [\n\t\t\t{\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n            {\n\t\t\t\tname:\"Modern\",\n\t\t\t},\n        ],\n\t\tframes: [\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Black\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Natural-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Natural\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t],\n\t},\n})"
+                    "defaultValue": "() => ({\n\tprops: {\n\t\tthemes: [\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg\",\n\t\t\t\ttitle:\"Modern\"\n\t\t\t}\n\t\t],\n        textStyle: [\n\t\t\t\"Modern\",\n\t\t\t\"Classic\"\n        ],\n\t\tframes: [\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Black\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2019/10/Natural-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"Natural\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t\t{\n\t\t\t\turl:\"https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches-100x100.jpg\",\n\t\t\t\ttitleFrame:\"White\"\n\t\t\t},\n\t\t],\n\t},\n})"
                 }
             ]
         },
@@ -1394,7 +1757,13 @@
                 "name": "routes",
                 "filename": "src/app/app-routing.module.ts",
                 "module": "AppRoutingModule",
-                "children": [],
+                "children": [
+                    {
+                        "path": "stellar-editor",
+                        "component": "StellarMapPageComponent",
+                        "pathMatch": "full"
+                    }
+                ],
                 "kind": "module"
             }
         ]
@@ -1442,6 +1811,34 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/geometric-poster-preview/geometric-poster-preview.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "GeometricPosterPreviewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/geometric-poster-preview/geometric-poster-preview.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "PosterColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Geometric",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/header/header.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1482,7 +1879,7 @@
                 "filePath": "src/app/components/stellar-map-configuration-panel/stellar-map-configuration-panel.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "Theme",
+                "name": "ThemeStellarMap",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
@@ -1571,14 +1968,14 @@
                 "linktype": "component",
                 "name": "StreetMapConfigurationPanelComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
                 "filePath": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "FrameMap",
+                "name": "FrameStreetMap",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
@@ -1587,7 +1984,7 @@
                 "filePath": "src/app/components/street-map-configuration-panel/street-map-configuration-panel.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "StreetMap",
+                "name": "ThemeStreetMap",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
@@ -1639,6 +2036,25 @@
                 "name": "StreetShadow",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/pages.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "components",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/stellar-map-page/stellar-map-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StellarMapPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
