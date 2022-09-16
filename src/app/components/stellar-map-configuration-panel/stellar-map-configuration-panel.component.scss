@@ -1,21 +1,23 @@
-.configuration-panel-container {
+.stellar-configuration-panel-container {
 	width: 400px;
 
-	.header-configuration-container{
+	.header-configuration-container {
 		background-color: #62636b;
 		padding: 20px 30px;
-		color: hsla(0,0%,100%,.75);
+		color: hsla(0, 0%, 100%, .75);
 		font-size: 14px;
 		line-height: 1.4;
 		display: flex;
 		flex-direction: column;
+
 		.header-title {
 			display: block;
 			color: #fff;
 			font-weight: 700;
 		}
-		
+
 	}
+
 	.stellar-location-container {
 		border-bottom: 1px solid #eee;
 		background-color: #f9fafb;
@@ -23,12 +25,16 @@
 		.location-container {
 			display: flex;
 			flex-direction: column;
-			font-size: 16px;
 
 			.location-input {
 				display: flex;
 				flex-direction: column;
-				padding-bottom: 20px;
+				padding-bottom: 15px;
+
+				label {
+					font-size: 12px;
+					opacity: .8;
+				}
 
 				input {
 					border: 1px solid #dcdfe6;
@@ -44,7 +50,12 @@
 			.date-input {
 				display: flex;
 				flex-direction: column;
-				padding-bottom: 20px;
+				padding-bottom: 15px;
+
+				label {
+					font-size: 12px;
+					opacity: .8;
+				}
 
 				input {
 					border: 1px solid #dcdfe6;
@@ -67,23 +78,36 @@
 			display: flex;
 			flex-wrap: wrap;
 			text-align: center;
+			justify-content: space-between;
 
 			.theme-preview {
 				margin-top: 10px;
-				margin-right: 15px;
+				margin-right: 10px;
+				margin-left: 10px;
+				margin-bottom: 10px;
 
 				img {
-					width: 80px;
-					height: 80px;
+					width: 60px;
+					height: 60px;
 					display: flex;
 					border-radius: 50%;
 					border: 4px solid rgba(47, 57, 75, .2);
-
+					cursor: pointer;
 				}
 
 			}
 
+		}
 
+		.properties-container {
+			display: flex;
+			justify-content: space-between;
+			padding: 10px;
+		}
+
+		.checkbox {
+			padding-top: 6px;
+			padding-left: 10px;
 		}
 	}
 
@@ -97,6 +121,10 @@
 				justify-content: space-between;
 				padding-bottom: 8px;
 				color: #606266;
+
+				label {
+					margin-top: 10px;
+				}
 
 				input {
 					border: 1px solid #dcdfe6;

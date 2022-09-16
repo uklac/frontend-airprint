@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-interface Map {
-  link: string,
+interface ThemeStellarMap {
+  url: string,
   title: string
 }
 
@@ -11,7 +11,8 @@ interface Map {
   styleUrls: ['./stellar-map-configuration-panel.component.scss']
 })
 export class StellarMapConfigurationPanelComponent implements OnInit {
-  @Input() links: Array<Map> = [];
+  @Input() themes: Array<ThemeStellarMap> = [];
+  panelOpenState = false;
 
   constructor() { }
 
