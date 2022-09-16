@@ -30,7 +30,11 @@
             "styles": [
               "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/d3-celestial/lib/d3.js",
+              "node_modules/d3-celestial/lib/d3.geo.projection.js",
+              "node_modules/d3-celestial/celestial.js"
+            ]
           },
           "configurations": {
             "production": {

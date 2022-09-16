@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-// const celestial = require("d3-celestial");
-import celestial from "d3-celestial";
-const Celestial = celestial.Celestial();
-
+declare var Celestial: any;
 interface StellarMapColor {
   globe: string;
   background: string;
@@ -126,7 +123,6 @@ export class StellarMapPreviewComponent implements OnInit {
         propernameLimit: 2.0
       }
     };
-
     Celestial.display(config);
     Celestial.skyview({ date: DATE });
   }
