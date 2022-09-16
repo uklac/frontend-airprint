@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { StellarMapPreviewComponent } from './stellar-map-preview/stellar-map-preview.component';
 import { StreetMapPreviewComponent } from './street-map-preview/street-map-preview.component';
 import { StellarMapConfigurationPanelComponent } from './stellar-map-configuration-panel/stellar-map-configuration-panel.component';
+import { StreetMapConfigurationPanelComponent } from './street-map-configuration-panel/street-map-configuration-panel.component'
 
 
 const components = [   
@@ -13,7 +14,8 @@ const components = [
 	HeaderComponent,
   StellarMapPreviewComponent,
   StreetMapPreviewComponent,
-  StellarMapConfigurationPanelComponent
+  StellarMapConfigurationPanelComponent,
+  StreetMapConfigurationPanelComponent
 ];
 
 @NgModule({

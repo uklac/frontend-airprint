@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -22,7 +25,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BrowserAnimationsModule,
     MatExpansionModule,
     NoopAnimationsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTabsModule,
+    MatSlideToggleModule,
+    MatCheckboxModule
 	],
 })
 export class MaterialModule { }

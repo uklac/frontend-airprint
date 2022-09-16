@@ -1,0 +1,155 @@
+<div class="street-configuration-panel-container">
+	<div class="header-configuration-container">
+		<label class="header-title">Create your Map Art poster!</label>
+		<label>Change artwork, labels and appearance</label>
+	</div>
+
+	<div class="street-location-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Location and date
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="location-container">
+				<div class="location-input">
+					<input type="text" autocomplete="off" placeholder="Enter your city or place here">
+					<button type="button" class="button--default">
+						<mat-icon class="icon">search</mat-icon>
+					</button>
+				</div>
+
+				<div class="gps-content">
+					<label>or use your current GPS position</label>
+					<button type="button">
+						<mat-icon class="icon">location_on</mat-icon>
+						Locate me
+					</button>
+				</div>
+				<label class="tip">
+					Pro tip! You can also drag/drop and zoom on the map to get the exact position you want on your
+					poster.
+				</label>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+	<div class="street-description-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Customize the headers
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="description-content">
+				<div class="inline-input">
+					<label>Headline</label>
+					<input type="text" id="text" name="text">
+				</div>
+				<div class="inline-input">
+					<label>Divider</label>
+					<input type="text" id="text" name="text">
+				</div>
+				<div class="inline-input">
+					<label>Tagline</label>
+					<input type="text" id="text" name="text">
+				</div>
+				<label class="text-coordinates">Updating coordinates when map position changes. You can set your own
+					text as
+					tagline if you disable this.</label>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+	<div class="street-theme-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Customize the theme
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="tabs">
+				<mat-tab-group>
+					<mat-tab label="Popular styles">
+						<div class="theme-preview-container">
+							<div class="theme-preview" *ngFor="let theme of themes">
+								<img src="{{theme.url}}">{{theme.title}}
+							</div>
+						</div>
+						<div class="description-theme">
+							<label>
+								We are all for freedom of choice, if you want to try different combinations
+								than our favorites - go ahead and click customize and roll your own!
+							</label>
+						</div>
+					</mat-tab>
+					<mat-tab label="Customize">
+						<div class="customize-content">
+							<div class="theme">
+								<label>Select theme</label>
+							</div>
+							<div class="button-container">
+								<div class="button-preview" *ngFor="let text of textStyle">
+									<button type="button" class="button--default">
+										{{text}}
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="customize-theme">
+							<div class="style-text">
+								<label>Change map style</label>
+							</div>
+							<div class="style-icon">
+								<div class="first-color">
+									<span></span>
+								</div>
+								<div class="second-color">
+									<span></span>
+								</div>
+							</div>
+						</div>
+					</mat-tab>
+				</mat-tab-group>
+			</div>
+
+		</mat-expansion-panel>
+	</div>
+	<div class="street-customize-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Change the poster size
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="title">
+				<label>Select poster size</label>
+			</div>
+			<div class="size">
+				<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+					<mat-button-toggle value="bold">30x40cm</mat-button-toggle>
+					<mat-button-toggle value="italic">50x70cm</mat-button-toggle>
+					<mat-button-toggle value="underline">70x100cm</mat-button-toggle>
+				</mat-button-toggle-group>
+			</div>
+		</mat-expansion-panel>
+	</div>
+
+	<div class="street-frame-container">
+		<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+			<mat-expansion-panel-header>
+				<mat-panel-title>
+					Choose frame type
+				</mat-panel-title>
+			</mat-expansion-panel-header>
+			<div class="type-frame-container">
+				<div class="frame-preview" *ngFor="let frame of frames">
+					<img src="{{frame.url}}">
+					<span>{{frame.titleFrame}}</span>
+				</div>
+				<button>Remove Frame</button>
+			</div>
+		</mat-expansion-panel>
+	</div>
+</div>
