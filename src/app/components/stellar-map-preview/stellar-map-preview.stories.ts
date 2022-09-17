@@ -15,46 +15,55 @@ export default {
 
 export const JapanStyle: Story = () => ({
   props: {
-    city: 'TOKIO',
-    country: 'JAPAN',
-    date: 'SEPTEMBER 10TH 2019',
-    coordinates: '48.856 N / 2.3522`E',
-    style: {
-      globe: '#D2001A',
-      background: '#EFEFEF',
-      text: '#182731',
+    headline: 'TOKIO',
+    divider: 'JAPAN',
+    tagline: 'SEPTEMBER 10TH 2019',
+    sublime: '48.856 N / 2.3522`E',
+    configuration: {
+			background: {
+				fill: '#e63946'
+			},
+			poster: {
+				background: '#EFEFEF',
+				text: '#182731'
+			}
     }
   },
 });
 
-const classicColors = {
-
-};
 
 export const ClassicStyle: Story = (args) => ({
   props: {
-    city: 'PARIS',
-    country: 'FRANCE',
-    date: 'SEPTEMBER 10TH 2019',
-    coordinates: '48.856 N / 2.3522`E',
-    style: {
-      globe: '#b9dccd',
-      background: '#EFEFEF',
-      text: '#182731'
+    headline: 'PARIS',
+    divider: 'FRANCE',
+    tagline: 'SEPTEMBER 10TH 2019',
+    sublime: '48.856 N / 2.3522`E',
+    configuration: {
+			background: {
+				fill: '#b9dccd'
+			},
+			poster: {
+				background: '#EFEFEF',
+				text: '#182731'
+			}
     }
   }
 });
 
 export const DarkStyle: Story = () => ({
   props: {
-    city: 'PARIS',
-    country: 'FRANCE',
-    date: 'SEPTEMBER 10TH 2019',
-    coordinates: '48.856 N / 2.3522`E',
-    style: {
-      globe: '#2B2B2B',
-      background: '#171010',
-      text: '#EDEDED',
+    headline: 'PARIS',
+    divider: 'FRANCE',
+    tagline: 'SEPTEMBER 10TH 2019',
+    sublime: '48.856 N / 2.3522`E',
+    configuration: {
+			background: {
+				fill: '#212529'
+			},
+			poster: {
+				background: '#e9ecef',
+				text: '#182731'
+			}
     }
   },
 });
