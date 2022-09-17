@@ -1,4 +1,9 @@
 export interface ThemeStellarMap {
   url: string,
-  title: string
+  title: string,
+	style?: {
+		globe: string,
+		background: string,
+		text: string
+	}
 }

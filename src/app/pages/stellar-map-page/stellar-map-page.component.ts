@@ -8,6 +8,7 @@ import { ThemeStellarMap } from 'src/app/models/theme-stellar';
   styleUrls: ['./stellar-map-page.component.scss']
 })
 export class StellarMapPageComponent implements OnInit {
+	style: { globe: string; background: string; text: string; } | undefined;
 
   constructor() { }
 
@@ -17,32 +18,58 @@ export class StellarMapPageComponent implements OnInit {
     headline: 'TOKIO',
     divider: 'JAPAN',
     tagline: 'SEPTEMBER 10TH 2019',
-    sublime: '48.856 N / 2.3522`E'
+    sublime: '48.856 N / 2.3522`E',
   }
 
   ngOnInit(): void {
 		this.themes = [
 			{
 				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/modern.jpg",
-				title:"Modern"
+				title:"Modern",
+				style: {
+					globe: '#b9dccd',
+					background: '#EFEFEF',
+					text: '#182731'
+				}
 			},
 			{
 				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/asphalt.jpg",
-				title:"Modern"
+				title:"Japan",
+				style: {
+					globe: '#e63946',
+					background: '#EFEFEF',
+					text: '#182731'
+				}
 			},
 			{
 				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/nisshoki.jpg",
-				title:"Modern"
+				title:"Forest",
+				style: {
+					globe: '#3a5a40',
+					background: '#dad7cd',
+					text: '#182731'
+				}
 			},
 			{
 				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/nisshoki.jpg",
-				title:"Modern"
+				title:"Spacial",
+				style: {
+					globe: '#023047',
+					background: '#8ecae6',
+					text: '#182731'
+				}
 			}
 		]
+
+		this.style = this.themes[2].style;
   }
 
 	updatePoster(props: PropsStellarPoster) {
 		this.poster = props;
 	}
 
+	updateGlobe(style: any) {
+		this.style = style;
+		console.log('this.style: ', style);
+	}
 }

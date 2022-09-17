@@ -12,7 +12,8 @@
 					</mat-panel-title>
 				</mat-expansion-panel-header>
 				<div class="theme-preview-container">
-					<div class="theme-preview" *ngFor="let theme of themes">
+					<div class="theme-preview" *ngFor="let theme of themes"
+						(click)="selectTheme(theme)">
 						<img src="{{theme.url}}">{{theme.title}}
 					</div>
 				</div>

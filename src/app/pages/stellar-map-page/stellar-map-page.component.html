@@ -2,12 +2,14 @@
   <app-stellar-map-configuration-panel
 		[themes]="themes"
 		(formChange)="updatePoster($event)"
+		(themeChange)="updateGlobe($event)"
 	>
 		<app-stellar-map-preview
 			[headline]="poster.headline"
 			[divider]="poster.divider"
 			[tagline]="poster.tagline"
 			[sublime]="poster.sublime"
+			[style]="style"
 		>
 		</app-stellar-map-preview>
 	</app-stellar-map-configuration-panel>

@@ -10,6 +10,7 @@ import { ThemeStellarMap } from 'src/app/models/theme-stellar';
 export class StellarMapConfigurationPanelComponent implements OnInit {
   @Input() themes: Array<ThemeStellarMap> = [];
   @Output() formChange = new EventEmitter<PropsStellarPoster>();
+  @Output() themeChange = new EventEmitter<PropsStellarPoster>();
 
   panelOpenState = true;
 	stellarForm : PropsStellarPoster = {
@@ -33,6 +34,11 @@ export class StellarMapConfigurationPanelComponent implements OnInit {
 
 	updateMap() {
 		this.formChange.emit(this.stellarForm);
+	}
+
+	selectTheme(theme: any) {
+		console.log('theme: ', theme);
+		this.themeChange.emit(theme.style);
 	}
 
 }

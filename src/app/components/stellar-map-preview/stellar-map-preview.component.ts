@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 declare var Celestial: any;
 interface StellarMapColor {
   globe: string;
@@ -10,7 +10,7 @@ interface StellarMapColor {
   templateUrl: './stellar-map-preview.component.html',
   styleUrls: ['./stellar-map-preview.component.scss']
 })
-export class StellarMapPreviewComponent implements OnInit {
+export class StellarMapPreviewComponent implements OnInit, OnChanges{
   @Input() headline = '';
   @Input() divider = '';
   @Input() tagline = '';
@@ -21,14 +21,22 @@ export class StellarMapPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.mapInit();
-    this.styleColors = {
-      background: this.style?.background,
-      color: this.style?.text,
-    }
+    this.mapInit(this.style);
   }
 
-  mapInit () {
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['style'] && !changes['style'].firstChange) {
+			const {style: { currentValue }} = changes;
+			this.mapInit(currentValue);
+		}
+	}
+
+  mapInit (style?: StellarMapColor) {
+		this.styleColors = {
+      background: style?.background,
+      color: style?.text,
+    };
+
     const DATE = new Date("2021-09-25T04:00:00+0000");
     const [LAT, LON] = [36.525321, -121.815916];
     const FONT = "Raleway";
@@ -99,7 +107,7 @@ export class StellarMapPreviewComponent implements OnInit {
       },
 
       background: {
-        fill: this.style?.globe || "#D2001A", // globe color
+        fill: style?.globe || "#D2001A", // globe color
         stroke: "#EFEFEF",
         opacity: 1,
         width: 2
