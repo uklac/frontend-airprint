@@ -17,12 +17,12 @@
 				>
 				</app-select-theme>
 				<div class="properties-container">
-					<mat-slide-toggle>Constellations</mat-slide-toggle>
-					<mat-slide-toggle>Enable grid</mat-slide-toggle>
+					<mat-slide-toggle (change)="showConstellations($event)">Constellations</mat-slide-toggle>
+					<mat-slide-toggle (change)="showGrid($event)">Enable grid</mat-slide-toggle>
 				</div>
 				<div class="checkbox">
 					<section class="example-section">
-						<mat-checkbox class="example-margin">show names</mat-checkbox>
+						<mat-checkbox (change)="showConstellationsNames($event)" class="example-margin">show names</mat-checkbox>
 					</section>
 				</div>
 			</mat-expansion-panel>

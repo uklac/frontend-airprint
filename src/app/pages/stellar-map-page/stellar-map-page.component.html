@@ -1,15 +1,21 @@
 <div class="stella-map-page">
   <app-stellar-map-configuration-panel
 		[themes]="themes"
-		(formChange)="updatePoster($event)"
-		(themeChange)="updateGlobe($event)"
+		(formChange)="updateTextPoster($event)"
+		(themeChange)="updatePoster($event)"
+		(enableConstellations)="showConstellations($event)"
+		(enableGrid)="showGrid($event)"
+		(enableConstellationsNames)="showConstellationsNames($event)"
 	>
 		<app-stellar-map-preview
 			[headline]="poster.headline"
 			[divider]="poster.divider"
 			[tagline]="poster.tagline"
 			[sublime]="poster.sublime"
-			[style]="style"
+			[configuration]="selectedTheme"
+			[constellations]="false"
+			[grid]="false"
+			[constellationsNames]="false"
 		>
 		</app-stellar-map-preview>
 	</app-stellar-map-configuration-panel>

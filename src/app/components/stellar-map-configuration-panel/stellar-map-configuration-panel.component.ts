@@ -10,7 +10,10 @@ import { ThemeStellarMap } from 'src/app/models/theme-stellar';
 export class StellarMapConfigurationPanelComponent implements OnInit {
   @Input() themes: Array<ThemeStellarMap> = [];
   @Output() formChange = new EventEmitter<PropsStellarPoster>();
-  @Output() themeChange = new EventEmitter<PropsStellarPoster>();
+  @Output() themeChange = new EventEmitter<ThemeStellarMap>();
+  @Output() enableConstellations = new EventEmitter<boolean>();
+  @Output() enableConstellationsNames = new EventEmitter<boolean>();
+  @Output() enableGrid = new EventEmitter<boolean>();
 
   panelOpenState = true;
 	stellarForm : PropsStellarPoster = {
@@ -36,9 +39,22 @@ export class StellarMapConfigurationPanelComponent implements OnInit {
 		this.formChange.emit(this.stellarForm);
 	}
 
-	selectTheme(theme: any) {
-		console.log('theme: ', theme);
-		this.themeChange.emit(theme.style);
+	selectTheme(theme: ThemeStellarMap) {
+		this.themeChange.emit(theme);
 	}
 
+	showConstellations(ev: any) {
+		const { checked } = ev;
+		this.enableConstellations.emit(checked);
+	}
+
+	showGrid(ev: any) {
+		const { checked } = ev;
+		this.enableGrid.emit(checked);
+	}
+
+	showConstellationsNames(ev: any) {
+		const { checked } = ev;
+		this.enableConstellationsNames.emit(checked);
+	}
 }

@@ -1,10 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { ConfigStellarMap } from 'src/app/models/theme-stellar';
 declare var Celestial: any;
-interface StellarMapColor {
-  globe: string;
-  background: string;
-  text: string;
-}
+
 @Component({
   selector: 'app-stellar-map-preview',
   templateUrl: './stellar-map-preview.component.html',
@@ -15,33 +12,57 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
   @Input() divider = '';
   @Input() tagline = '';
   @Input() sublime = '';
-  @Input() style: StellarMapColor | undefined;
+	@Input() constellations = false;
+  @Input() grid = false;
+  @Input() constellationsNames = false;
+  @Input() configuration: ConfigStellarMap = {
+		lines: {
+			graticule: false
+		},
+		constellations: {
+			name: false,
+			lines: false
+		},
+		background: {
+			fill: '#D2001A'
+		},
+		poster: {
+			background: '#f6f6f6',
+			text: '#1d1e2c'
+		}
+	};
 
   styleColors = {};
+
   constructor() { }
 
   ngOnInit(): void {
-    this.mapInit(this.style);
+    this.mapInit(this.configuration);
   }
 
 	ngOnChanges(changes: SimpleChanges): void {
-		if (changes['style'] && !changes['style'].firstChange) {
-			const {style: { currentValue }} = changes;
+		if (changes['configuration'] && !changes['configuration'].firstChange) {
+			const {configuration: { currentValue }} = changes;
 			this.mapInit(currentValue);
 		}
 	}
 
-  mapInit (style?: StellarMapColor) {
+  mapInit (params: ConfigStellarMap) {
+		const DATE = new Date("2021-09-25T04:00:00+0000");
+		const config = this.paramsConfiguration(params);
+    Celestial.display(config);
+    Celestial.skyview({ date: DATE });
+  }
+
+	paramsConfiguration(params?: any){
+		const { constellations, lines, background, poster } = params;
 		this.styleColors = {
-      background: style?.background,
-      color: style?.text,
+      background: poster.background,
+      color: poster.text,
     };
-
-    const DATE = new Date("2021-09-25T04:00:00+0000");
-    const [LAT, LON] = [36.525321, -121.815916];
     const FONT = "Raleway";
-
-    const config = {
+    const [LAT, LON] = [36.525321, -121.815916];
+		return {
       container: "map",
       width: 0,
       datapath: "../../../assets/data/", // Path/URL to data files, empty = subfolder 'data'
@@ -61,7 +82,7 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
       geopos: [LAT, LON],
 
       lines: {
-        graticule: { show: false },
+        graticule: { show: lines?.graticule || false },
         equatorial: { show: false },
         ecliptic: { show: false },
         galactic: { show: false },
@@ -89,7 +110,7 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
       },
 
       constellations: {
-        names: false,
+        names: constellations?.names || false, //active false
         namesType: "iau",
         nameStyle: {
           fill: "#ffffff",
@@ -97,7 +118,7 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
           baseline: "middle",
           font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]
         },
-        lines: true,
+        lines: constellations?.lines || false,
         lineStyle: { stroke: "#cccccc", width: 1.5, opacity: 1 }
       },
 
@@ -107,7 +128,7 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
       },
 
       background: {
-        fill: style?.globe || "#D2001A", // globe color
+        fill: background?.fill || "#D2001A", // globe color
         stroke: "#EFEFEF",
         opacity: 1,
         width: 2
@@ -131,7 +152,5 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
         propernameLimit: 2.0
       }
     };
-    Celestial.display(config);
-    Celestial.skyview({ date: DATE });
-  }
+	}
 }
