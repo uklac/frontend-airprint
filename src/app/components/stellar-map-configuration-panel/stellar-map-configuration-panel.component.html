@@ -11,12 +11,11 @@
 						Customize the style
 					</mat-panel-title>
 				</mat-expansion-panel-header>
-				<div class="theme-preview-container">
-					<div class="theme-preview" *ngFor="let theme of themes"
-						(click)="selectTheme(theme)">
-						<img src="{{theme.url}}">{{theme.title}}
-					</div>
-				</div>
+				<app-select-theme
+					[themes]="themes"
+					(onSelectTheme)="selectTheme($event)"
+				>
+				</app-select-theme>
 				<div class="properties-container">
 					<mat-slide-toggle>Constellations</mat-slide-toggle>
 					<mat-slide-toggle>Enable grid</mat-slide-toggle>
