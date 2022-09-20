@@ -1,0 +1,63 @@
+<div class="basket-container">
+	<div class="basket-header">
+		<label>Basket</label>
+		<mat-icon>cancel</mat-icon>
+	</div>
+	<div class="basket-products-content">
+		<div class="basket-preview" *ngFor="let product of basketProducts; let i = index;">
+			<img src="{{product.url}}">
+			<div class="information-product">
+				<div class="icon">
+					<mat-icon>delete_outline</mat-icon>
+				</div>
+				<div class="information">
+					<div class="size-content">
+						<label>{{product.size}}</label>
+					</div>
+				<div class="price-content">
+					<mat-form-field>
+						<mat-select [value]="product.amount" (selectionChange)="amountChanged($event, i)">
+							<mat-option *ngFor="let amount of amountProducts" 
+								[value]="amount"
+							>
+								{{amount}}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<label>x</label>
+					<label>$ {{product.price}}</label>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="commerce-content">
+		<table class="t">
+			<tr>
+				<td>Subtotal</td>
+				<td>$ {{subtotal}}</td>
+			</tr>
+			<tr>
+				<td>Shipping</td>
+				<td>$ {{shipping}}</td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td>$ {{total}}</td>
+			</tr>
+		</table>
+
+		<div class="checkout-content">
+			<app-button color='accent' class="checkout">
+				Proceed to checkout
+			</app-button>
+		</div>
+		<div class="basket-preview">
+			<app-button class="preview-basket" >
+        View basket
+       </app-button >
+		</div>
+
+	</div>
+</div>
