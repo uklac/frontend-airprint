@@ -1,113 +1,100 @@
-<div class="stellar-configuration-panel-container">
-	<div class="panel-1">
-		<div class="header-configuration-container">
-			<label class="header-title">Styling your Star Map poster!</label>
-			<label>Theme, size, add elements</label>
-		</div>
-		<div class="stellar-theme-container">
-			<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-				<mat-expansion-panel-header>
-					<mat-panel-title>
-						Customize the style
-					</mat-panel-title>
-				</mat-expansion-panel-header>
-				<app-select-theme
-					[themes]="themes"
-					(onSelectTheme)="selectTheme($event)"
-				>
-				</app-select-theme>
-				<div class="properties-container">
-					<mat-slide-toggle (change)="showConstellations($event)">Constellations</mat-slide-toggle>
-					<mat-slide-toggle (change)="showGrid($event)">Enable grid</mat-slide-toggle>
-				</div>
-				<div class="checkbox">
-					<section class="example-section">
-						<mat-checkbox (change)="showConstellationsNames($event)" class="example-margin">show names</mat-checkbox>
-					</section>
-				</div>
-			</mat-expansion-panel>
-		</div>
-		<div class="stellar-customize-container">
-			<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-				<mat-expansion-panel-header>
-					<mat-panel-title>
-						Customize the size
-					</mat-panel-title>
-				</mat-expansion-panel-header>
-				<div class="size">
-					<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-						<mat-button-toggle value="bold">30x40cm</mat-button-toggle>
-						<mat-button-toggle value="italic">50x70cm</mat-button-toggle>
-						<mat-button-toggle value="underline">70x100cm</mat-button-toggle>
-					</mat-button-toggle-group>
-				</div>
-			</mat-expansion-panel>
-		</div>
+<div class="stellar-main-container">
+	<div class="location-bar">
+		<!-- <div class="location-container">
+			<label>Search the location and choose a date</label>
+			<div class="location-input">
+				<input type="search" id="search" name="search">
+				<input type="date" name="date" id="date">
+			</div>
+		</div> -->
+		<app-select-theme
+			[themes]="themes"
+			(onSelectTheme)="selectTheme($event)"
+		>
+		</app-select-theme>
 	</div>
-	<div class="stellar-map">
-		<ng-content></ng-content>
-	</div>
-	<div class="panel-2">
-		<div class="header-configuration-container">
-			<label class="header-title">Create your Star Map poster!</label>
-			<label>Change location, labels and appearance</label>
+	<div class="stellar-configuration-panel-container">
+		<div class="stellar-map">
+			<ng-content></ng-content>
 		</div>
-		<div class="stellar-location-container">
-			<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-				<mat-expansion-panel-header>
-					<mat-panel-title>
-						Location and date
-					</mat-panel-title>
-				</mat-expansion-panel-header>
-				<div class="location-container">
-					<div class="location-input">
-						<input type="search" id="search" name="search">
-						<label>Search and select the location</label>
+		<div class="panel-2">
+			<div class="header-configuration-container">
+				<label class="header-title">Customize your Stellar Map poster!</label>
+				<label>Change location, labels and appearance</label>
+			</div>
+			<div class="stellar-description-container">
+				<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Customize the text
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div class="description-content">
+						<div class="inline-input">
+							<label>Headline</label>
+							<input type="text" id="text" name="headline"
+								[(ngModel)]="stellarForm.headline"
+								(change)="updateMap()">
+						</div>
+						<div class="inline-input">
+							<label>Divider</label>
+							<input type="text" id="text" name="divider"
+								[(ngModel)]="stellarForm.divider"
+								(change)="updateMap()">
+						</div>
+						<div class="inline-input">
+							<label>Tagline</label>
+							<input type="text" id="text" name="tagline"
+								[(ngModel)]="stellarForm.tagline"
+								(change)="updateMap()"
+							>
+						</div>
+						<div class="inline-input">
+							<label>Sublime</label>
+							<input type="text" id="text" name="sublime"
+								[(ngModel)]="stellarForm.sublime"
+								(change)="updateMap()"
+							>
+						</div>
 					</div>
-					<div class="date-input">
-						<input type="datetime-local" name="datetime" id="datetime">
-						<label>Enter your specific date</label>
-					</div>
-				</div>
-			</mat-expansion-panel>
-		</div>
-		<div class="stellar-description-container">
-			<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-				<mat-expansion-panel-header>
-					<mat-panel-title>
-						Customize the text
-					</mat-panel-title>
-				</mat-expansion-panel-header>
+				</mat-expansion-panel>
+				<div class="stellar-theme-container">
+					<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						<mat-expansion-panel-header>
+							<mat-panel-title>
+								Customize the style
+							</mat-panel-title>
+						</mat-expansion-panel-header>
 
-				<div class="description-content">
-					<div class="inline-input">
-						<label>Headline</label>
-						<input type="text" id="text" name="headline"
-							[(ngModel)]="stellarForm.headline"
-							(change)="updateMap()">
-					</div>
-					<div class="inline-input">
-						<label>Divider</label>
-						<input type="text" id="text" name="divider"
-							[(ngModel)]="stellarForm.divider"
-							(change)="updateMap()">
-					</div>
-					<div class="inline-input">
-						<label>Tagline</label>
-						<input type="text" id="text" name="tagline"
-							[(ngModel)]="stellarForm.tagline"
-							(change)="updateMap()"
-						>
-					</div>
-					<div class="inline-input">
-						<label>Sublime</label>
-						<input type="text" id="text" name="sublime"
-							[(ngModel)]="stellarForm.sublime"
-							(change)="updateMap()"
-						>
-					</div>
+						<div class="properties-container">
+							<mat-slide-toggle (change)="showConstellations($event)">Constellations</mat-slide-toggle>
+							<mat-slide-toggle (change)="showGrid($event)">Enable grid</mat-slide-toggle>
+						</div>
+						<div class="checkbox">
+							<section class="example-section">
+								<mat-checkbox (change)="showConstellationsNames($event)" class="example-margin">show names</mat-checkbox>
+							</section>
+						</div>
+					</mat-expansion-panel>
 				</div>
-			</mat-expansion-panel>
+				<div class="stellar-customize-container">
+					<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						<mat-expansion-panel-header>
+							<mat-panel-title>
+								Customize the size
+							</mat-panel-title>
+						</mat-expansion-panel-header>
+						<div class="size">
+							<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+								<mat-button-toggle value="bold">30x40cm</mat-button-toggle>
+								<mat-button-toggle value="italic">50x70cm</mat-button-toggle>
+								<mat-button-toggle value="underline">70x100cm</mat-button-toggle>
+							</mat-button-toggle-group>
+						</div>
+					</mat-expansion-panel>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
