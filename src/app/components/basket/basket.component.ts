@@ -1,30 +1,33 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { runInThisContext } from 'vm';
+
 interface Product {
   url: string,
   size: string,
   amount: number,
   price: number
 }
+
 interface AmountProducts {
   value: number;
   amount: number;
 }
+
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
+
 export class BasketComponent implements OnInit {
+
   @Input() products: Array<Product> = [];
   @Input() amounts: Array<AmountProducts> = [];
 
   basketProducts: Array<Product> = [];
-  amountProducts = [1,2,3,4,5,6,7,8,9,10];
+  amountProducts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   subtotal = 0;
   shipping = 8;
   total = 0;
-
 
   constructor() { }
 
@@ -34,7 +37,7 @@ export class BasketComponent implements OnInit {
     this.total = this.getTotal();
   }
 
-  getSubTotal(){
+  getSubTotal() {
     let subtotal = 0;
     this.basketProducts.forEach((product) => {
       const subtotalProduct = product.amount * product.price;
@@ -44,26 +47,24 @@ export class BasketComponent implements OnInit {
     return subtotal;
   }
 
-  amountChanged(event: any, index: number){
+  amountChanged(event: any, index: number) {
     const { value } = event;
     this.basketProducts[index].amount = value;
-    this.setSubtotalAndTotal();    
+    this.setSubtotalAndTotal();
   }
 
-  getTotal(){
-    return this.shipping + this.getSubTotal();   
-    
+  getTotal() {
+    return this.shipping + this.getSubTotal();
   }
 
-  setSubtotalAndTotal(){
+  setSubtotalAndTotal() {
     this.subtotal = this.getSubTotal();
     this.total = this.getTotal();
   }
 
-  remove(product : Product){
-    this.basketProducts.splice(this.basketProducts.indexOf(product),1);
+  remove(product: Product) {
+    this.basketProducts.splice(this.basketProducts.indexOf(product), 1);
     this.setSubtotalAndTotal();
-
   }
 
 }
