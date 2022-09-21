@@ -1664,6 +1664,16 @@
                 "defaultValue": "[\n\tStellarMapPageComponent,\n  ErrorPageComponent\n]"
             },
             {
+                "name": "components",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/pages.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n\tStellarMapPageComponent\n]"
+            },
+            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1687,6 +1697,16 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1694,14 +1714,14 @@
                 "defaultValue": "{\n  production: true\n}"
             },
             {
-                "name": "environment",
+                "name": "Geometric",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "type": "Story",
+                "defaultValue": "() => ({\n  props: {\n    headline: 'MARCEL BREURER',\n    phrase: 'Designer from 1995',\n    style: {\n      background: '#EFEFEF',\n      text: '#182731'\n    }\n  },\n})"
             },
             {
                 "name": "Geometric",
@@ -1900,6 +1920,18 @@
                     "defaultValue": "[\n\tStellarMapPageComponent,\n  ErrorPageComponent\n]"
                 }
             ],
+            "src/app/pages/pages.module.ts": [
+                {
+                    "name": "components",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/pages.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n\tStellarMapPageComponent\n]"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -1921,6 +1953,18 @@
                     "type": "literal type"
                 }
             ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -1933,16 +1977,16 @@
                     "defaultValue": "{\n  production: true\n}"
                 }
             ],
-            "src/environments/environment.ts": [
+            "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts": [
                 {
-                    "name": "environment",
+                    "name": "Geometric",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/environments/environment.ts",
+                    "file": "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  props: {\n    headline: 'MARCEL BREURER',\n    phrase: 'Designer from 1995',\n    style: {\n      background: '#EFEFEF',\n      text: '#182731'\n    }\n  },\n})"
                 }
             ],
             "src/app/components/geometric-poster-preview/geometric-poster-preview.stories.ts": [
