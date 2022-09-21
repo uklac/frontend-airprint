@@ -7,7 +7,7 @@ import { StellarMapPreviewComponent } from './stellar-map-preview/stellar-map-pr
 import { StreetMapPreviewComponent } from './street-map-preview/street-map-preview.component';
 import { StellarMapConfigurationPanelComponent } from './stellar-map-configuration-panel/stellar-map-configuration-panel.component';
 import { StreetMapConfigurationPanelComponent } from './street-map-configuration-panel/street-map-configuration-panel.component'
-
+import { BasketComponent } from './basket/basket.component';
 
 const components = [   
 	ButtonComponent,
@@ -15,7 +15,8 @@ const components = [
   StellarMapPreviewComponent,
   StreetMapPreviewComponent,
   StellarMapConfigurationPanelComponent,
-  StreetMapConfigurationPanelComponent
+  StreetMapConfigurationPanelComponent,
+  BasketComponent
 ];
 
 @NgModule({
