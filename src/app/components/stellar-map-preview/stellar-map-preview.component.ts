@@ -43,18 +43,19 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges{
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes['configuration'] && !changes['configuration'].firstChange) {
 			const {configuration: { currentValue }} = changes;
-			this.mapInit(currentValue);
+			const config = this.getParamsConfiguration(currentValue);
+			Celestial.apply(config);
 		}
 	}
 
   mapInit (params: ConfigStellarMap) {
 		const DATE = new Date("2021-09-25T04:00:00+0000");
-		const config = this.paramsConfiguration(params);
+		const config = this.getParamsConfiguration(params);
     Celestial.display(config);
     Celestial.skyview({ date: DATE });
   }
 
-	paramsConfiguration(params?: any){
+	getParamsConfiguration(params?: any){
 		const { constellations, lines, background, poster } = params;
 		this.styleColors = {
       background: poster.background,
