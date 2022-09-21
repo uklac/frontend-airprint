@@ -24,15 +24,27 @@ export const Basket: Story = () => ({
         products: [
             {
                 url: "https://generator.mapiful.com/streetmaps/?width=5906&height=8268&sku=mapiful-poster-50x70&headline=Paris&divider=France&tagline=48.8318%C2%B0N+%2F+2.4339%C2%B0E&theme=playroom&style=asphalt&hue=0&saturation=100&zoom=13&SWLng=2.3831748962402&SWLat=48.785038892908&NELng=2.4846267700195&NELat=48.878489786571",
-                size: "50×70cm - Portrait (Streetmap)",
+                size: "A",
                 amount: 1,
                 price: 5,
             },
             {
                 url: "https://generator.mapiful.com/streetmaps/?width=5906&height=8268&sku=mapiful-poster-50x70&headline=Paris&divider=France&tagline=48.8318%C2%B0N+%2F+2.4339%C2%B0E&theme=playroom&style=asphalt&hue=0&saturation=100&zoom=13&SWLng=2.3831748962402&SWLat=48.785038892908&NELng=2.4846267700195&NELat=48.878489786571",
-                size: "50×70cm - Portrait (Streetlamp)",
+                size: "B",
                 amount: 1,
                 price: 10,
+            },
+            {
+                url: "https://generator.mapiful.com/streetmaps/?width=5906&height=8268&sku=mapiful-poster-50x70&headline=Paris&divider=France&tagline=48.8318%C2%B0N+%2F+2.4339%C2%B0E&theme=playroom&style=asphalt&hue=0&saturation=100&zoom=13&SWLng=2.3831748962402&SWLat=48.785038892908&NELng=2.4846267700195&NELat=48.878489786571",
+                size: "C",
+                amount: 1,
+                price: 1,
+            },
+            {
+                url: "https://generator.mapiful.com/streetmaps/?width=5906&height=8268&sku=mapiful-poster-50x70&headline=Paris&divider=France&tagline=48.8318%C2%B0N+%2F+2.4339%C2%B0E&theme=playroom&style=asphalt&hue=0&saturation=100&zoom=13&SWLng=2.3831748962402&SWLat=48.785038892908&NELng=2.4846267700195&NELat=48.878489786571",
+                size: "D",
+                amount: 1,
+                price: 2,
             }
         ]
     }

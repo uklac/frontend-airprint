@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-interface Products {
+import { runInThisContext } from 'vm';
+interface Product {
   url: string,
   size: string,
   amount: number,
@@ -15,10 +16,10 @@ interface AmountProducts {
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
-  @Input() products: Array<Products> = [];
+  @Input() products: Array<Product> = [];
   @Input() amounts: Array<AmountProducts> = [];
 
-  basketProducts: Array<Products> = [];
+  basketProducts: Array<Product> = [];
   amountProducts = [1,2,3,4,5,6,7,8,9,10];
   subtotal = 0;
   shipping = 8;
@@ -46,12 +47,23 @@ export class BasketComponent implements OnInit {
   amountChanged(event: any, index: number){
     const { value } = event;
     this.basketProducts[index].amount = value;
-    this.subtotal = this.getSubTotal();
-    this.total = this.getTotal();
+    this.setSubtotalAndTotal();    
   }
 
   getTotal(){
     return this.shipping + this.getSubTotal();   
+    
+  }
+
+  setSubtotalAndTotal(){
+    this.subtotal = this.getSubTotal();
+    this.total = this.getTotal();
+  }
+
+  remove(product : Product){
+    this.basketProducts.splice(this.basketProducts.indexOf(product),1);
+    this.setSubtotalAndTotal();
+
   }
 
 }
