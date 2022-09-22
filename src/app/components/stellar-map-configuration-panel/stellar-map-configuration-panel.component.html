@@ -1,26 +1,53 @@
 <div class="stellar-main-container">
-	<div class="location-bar">
-		<!-- <div class="location-container">
-			<label>Search the location and choose a date</label>
-			<div class="location-input">
-				<input type="search" id="search" name="search">
-				<input type="date" name="date" id="date">
-			</div>
-		</div> -->
-		<app-select-theme
-			[themes]="themes"
-			(onSelectTheme)="selectTheme($event)"
-		>
-		</app-select-theme>
-	</div>
 	<div class="stellar-configuration-panel-container">
-		<div class="stellar-map">
-			<ng-content></ng-content>
+		<div class="stellar-map pattern-checks-sm bg-blue white">
+			<div class="customize-bar">
+				<div class="themes">
+					<app-select-theme
+						[themes]="themes"
+						(onSelectTheme)="selectTheme($event)"
+					>
+					</app-select-theme>
+				</div>
+				<div class="controls">
+					<div class="constellation ctr">
+						<img src="./../../../assets/images/icons/universe.png" alt="universe">
+						<mat-slide-toggle (change)="showConstellations($event)">Constellations</mat-slide-toggle>
+						<!-- <mat-checkbox (change)="showConstellationsNames($event)" class="example-margin">show names</mat-checkbox> -->
+					</div>
+					<div class="grid ctr">
+						<img src="./../../../assets/images/icons/globe.png" alt="globe">
+						<mat-slide-toggle (change)="showGrid($event)">Enable grid</mat-slide-toggle>
+					</div>
+				</div>
+			</div>
+			<div class="render-container">
+				<ng-content></ng-content>
+			</div>
 		</div>
-		<div class="panel-2">
+		<div class="panel-configuration">
 			<div class="header-configuration-container">
 				<label class="header-title">Customize your Stellar Map poster!</label>
 				<label>Change location, labels and appearance</label>
+			</div>
+			<div class="stellar-location-container">
+				<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Location and date
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div class="location-container">
+						<div class="location-input">
+							<input type="search" id="search" name="search">
+							<label>Search and select the location</label>
+						</div>
+						<div class="date-input">
+							<input type="date" name="date" id="date">
+							<label>Enter your specific date</label>
+						</div>
+					</div>
+				</mat-expansion-panel>
 			</div>
 			<div class="stellar-description-container">
 				<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -58,25 +85,8 @@
 						</div>
 					</div>
 				</mat-expansion-panel>
-				<div class="stellar-theme-container">
-					<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-						<mat-expansion-panel-header>
-							<mat-panel-title>
-								Customize the style
-							</mat-panel-title>
-						</mat-expansion-panel-header>
-
-						<div class="properties-container">
-							<mat-slide-toggle (change)="showConstellations($event)">Constellations</mat-slide-toggle>
-							<mat-slide-toggle (change)="showGrid($event)">Enable grid</mat-slide-toggle>
-						</div>
-						<div class="checkbox">
-							<section class="example-section">
-								<mat-checkbox (change)="showConstellationsNames($event)" class="example-margin">show names</mat-checkbox>
-							</section>
-						</div>
-					</mat-expansion-panel>
-				</div>
+				<!-- <div class="stellar-theme-container">
+				</div> -->
 				<div class="stellar-customize-container">
 					<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
 						<mat-expansion-panel-header>

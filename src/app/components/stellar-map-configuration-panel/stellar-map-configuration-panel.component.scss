@@ -1,35 +1,4 @@
 .stellar-main-container {
-	.location-bar {
-		background: white;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-
-		.location-container {
-			width: 400px;
-
-			label {
-				font-size: 12px;
-				opacity: .8;
-				margin-bottom: 5px;
-			}
-
-			.location-input {
-				display: flex;
-
-				input {
-					border: 1px solid #dcdfe6;
-					border-radius: 4px;
-					line-height: 40px;
-					font-size: inherit;
-					height: 40px;
-					color: #606266;
-					margin-right: 10px;
-				}
-			}
-		}
-	}
-
 	.stellar-configuration-panel-container {
 		width: 100%;
 		display: flex;
@@ -38,12 +7,46 @@
 		background: #f7f7f7;
 
 		.stellar-map {
+			display: flex;
+			flex-direction: column;
 			flex-grow: 1;
 			background: #eeeeee;
 			justify-content: center;
 			align-items: center;
-			display: flex;
-			padding: 50px 0;
+
+			.customize-bar {
+				background: white;
+				display: flex;
+				justify-content: space-between;
+				padding: 10px 0;
+				width: 100%;
+
+				.themes {
+					margin-left: 40px;
+				}
+
+				.controls {
+					margin-right: 40px;
+					display: flex;
+
+					img {
+						width: 34px;
+					}
+
+					.ctr {
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						margin-left: 10px;
+					}
+				}
+			}
+
+			.render-container {
+				display: flex;
+				margin: 40px 0;
+			}
 		}
 
 		.header-configuration-container {
@@ -138,7 +141,6 @@
 			}
 		}
 
-
 		.stellar-customize-container {
 			border-bottom: 1px solid #eee;
 			background-color: #f9fafb;
@@ -148,6 +150,62 @@
 				justify-content: center;
 			}
 
+		}
+
+		.panel-configuration {
+			min-width: 340px;
+		}
+	}
+
+	.stellar-location-container {
+		border-bottom: 1px solid #eee;
+		background-color: #f9fafb;
+
+		.location-container {
+			display: flex;
+			flex-direction: column;
+
+			.location-input {
+				display: flex;
+				flex-direction: column;
+				padding-bottom: 15px;
+
+				label {
+					font-size: 12px;
+					opacity: .8;
+				}
+
+				input {
+					border: 1px solid #dcdfe6;
+					border-radius: 4px;
+					line-height: 40px;
+					font-size: inherit;
+					height: 40px;
+					color: #606266;
+					margin-bottom: 8px;
+				}
+			}
+
+			.date-input {
+				display: flex;
+				flex-direction: column;
+				padding-bottom: 15px;
+
+				label {
+					font-size: 12px;
+					opacity: .8;
+				}
+
+				input {
+					border: 1px solid #dcdfe6;
+					border-radius: 4px;
+					line-height: 40px;
+					font-size: inherit;
+					height: 40px;
+					color: #606266;
+					margin-bottom: 8px;
+				}
+			}
 		}
 	}
 }
