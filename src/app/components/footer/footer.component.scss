@@ -1,0 +1,101 @@
+.footer-container {
+	width: 100%;
+	height: 500px;
+	display: flex;
+	font-family: sofia-pro, Helvetica, Arial, sans-serif;
+	justify-content: space-between;
+
+	.footer-left {
+		display: flex;
+		width: 400px;
+		padding-left: 100px;
+		padding-top: 150px;
+		flex-direction: column;
+
+		.footer-img {
+			padding-bottom: 25px;
+
+			img {
+				height: 25px;
+			}
+
+			label {
+				padding-left: 15px;
+				font-size: 25px;
+				color: white;
+			}
+		}
+
+		.description-sing-up {
+			font-size: 16px;
+			color: #d4d4d4;
+			padding-bottom: 20px;
+		}
+
+		.sing-up-content {
+			display: flex;
+			padding-bottom: 15px;
+
+			input {
+				box-sizing: border-box;
+				background: transparent;
+				border-radius: 2px;
+				height: 38px;
+				border: 1px solid rgb(208, 51, 31);
+				color: #d4d4d4;
+				font-size: 14px;
+				font-weight: 400;
+				padding: 0px 0px 0px 16px;
+			}
+
+			::ng-deep {
+				.button-sing-up button {
+					border-radius: 0px;
+					background: white;
+					border-style: solid;
+					color: black;
+					font-size: 14px;
+					font-weight: 400;
+					text-align: center;
+					cursor: pointer;
+				}
+			}
+		}
+
+		.social-networks {
+			img {
+				height: 30px;
+				cursor: pointer;
+			}
+		}
+
+	}
+
+	.footer-right {
+		padding-top: 150px;
+		padding-left: 100px;
+		padding-right: 100px;
+
+		.title {
+			padding-bottom: 30px;
+
+			label {
+				font-size: 20px;
+				color: white;
+				;
+			}
+		}
+
+		.links {
+			.link-container {
+				padding-bottom: 30px;
+				a {
+					color: #d4d4d4;
+					text-decoration: none;
+					font-size: 16px;
+				}
+			}
+
+		}
+	}
+}

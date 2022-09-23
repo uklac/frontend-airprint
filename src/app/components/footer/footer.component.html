@@ -1,0 +1,37 @@
+<div class="pattern-dots-md red">
+	<div class="footer-left">
+		<div class="footer-img">
+			<img class="brand" src="../../../assets/images/airprint-white.svg">
+			<label>AIPRINT</label>
+		</div>
+		<div class="description-sing-up">
+			<label>Sign up to get first dibs on new launches, promos, 5€ 
+				off your first purchase, and other news.</label>
+		</div>
+
+		<div class="sing-up-content">
+			<input  type="email" placeholder="Type your email">
+			<div class="button-sing-up">
+				<app-button color='accent' class="checkout">
+					Sing Up
+				</app-button>
+			</div>
+		</div>
+
+		<div class="social-networks">
+			<img class="brand" src="../../../assets/images/instagram.svg">
+		</div>
+	</div>
+
+	<div class="footer-right">
+		<div class="title">
+			<label>HELP & SUPPORT</label>
+		</div>
+	
+		<div class="links">
+			<div class="link-container" *ngFor="let link of links">
+				<a href="{{link.url}}">{{link.title}}</a>
+			</div>
+		</div>
+	</div>
+</div>
