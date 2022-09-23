@@ -1,129 +1,157 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { ConfigStellarMap } from 'src/app/models/theme-stellar';
 declare var Celestial: any;
-interface StellarMapColor {
-  globe: string;
-  background: string;
-  text: string;
-}
+
 @Component({
-  selector: 'app-stellar-map-preview',
-  templateUrl: './stellar-map-preview.component.html',
-  styleUrls: ['./stellar-map-preview.component.scss']
+	selector: 'app-stellar-map-preview',
+	templateUrl: './stellar-map-preview.component.html',
+	styleUrls: ['./stellar-map-preview.component.scss']
 })
-export class StellarMapPreviewComponent implements OnInit {
-  @Input() city = '';
-  @Input() country = '';
-  @Input() date = '';
-  @Input() coordinates = '';
-  @Input() style: StellarMapColor | undefined;
+export class StellarMapPreviewComponent implements OnInit, OnChanges {
+	@Input() headline = '';
+	@Input() divider = '';
+	@Input() tagline = '';
+	@Input() sublime = '';
+	@Input() constellations = false;
+	@Input() grid = false;
+	@Input() constellationsNames = false;
+	@Input() configuration: ConfigStellarMap = {
+		lines: {
+			graticule: false
+		},
+		constellations: {
+			name: false,
+			lines: false
+		},
+		background: {
+			fill: '#D2001A'
+		},
+		poster: {
+			background: '#f6f6f6',
+			text: '#1d1e2c'
+		}
+	};
 
-  styleColors = {};
-  constructor() { }
+	styleColors = {};
 
-  ngOnInit(): void {
-    this.mapInit();
-    this.styleColors = {
-      background: this.style?.background,
-      color: this.style?.text,
-    }
-  }
+	constructor() { }
 
-  mapInit () {
-    const DATE = new Date("2021-09-25T04:00:00+0000");
-    const [LAT, LON] = [36.525321, -121.815916];
-    const FONT = "Raleway";
+	ngOnInit(): void {
+		this.mapInit(this.configuration);
+	}
 
-    const config = {
-      container: "map",
-      width: 0,
-      datapath: "../../../assets/data/", // Path/URL to data files, empty = subfolder 'data'
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['configuration'] && !changes['configuration'].firstChange) {
+			const { configuration: { currentValue } } = changes;
+			const config = this.getParamsConfiguration(currentValue);
+			Celestial.apply(config);
+		}
+	}
 
-      form: false,
-      advanced: false,
-      interactive: false,
-      disableAnimations: true,
+	mapInit(params: ConfigStellarMap) {
+		const DATE = new Date("2021-09-25T04:00:00+0000");
+		const config = this.getParamsConfiguration(params);
+		Celestial.display(config);
+		Celestial.skyview({ date: DATE });
+	}
 
-      zoomlevel: null,
-      zoomextend: 1,
+	getParamsConfiguration(params?: any) {
+		const { constellations, lines, background, poster } = params;
+		this.styleColors = {
+			background: poster.background,
+			color: poster.text,
+		};
+		const FONT = "Raleway";
+		const [LAT, LON] = [36.525321, -121.815916];
+		return {
+			container: "map",
+			width: 0,
+			datapath: "../../../assets/data/", // Path/URL to data files, empty = subfolder 'data'
 
-      projection: "airy",
-      transform: "equatorial",
+			form: false,
+			advanced: false,
+			interactive: false,
+			disableAnimations: true,
 
-      follow: "zenith",
-      geopos: [LAT, LON],
+			zoomlevel: null,
+			zoomextend: 1,
 
-      lines: {
-        graticule: { show: false },
-        equatorial: { show: false },
-        ecliptic: { show: false },
-        galactic: { show: false },
-        supergalactic: { show: false }
-      },
+			projection: "airy",
+			transform: "equatorial",
 
-      planets: {
-        show: false,
-        which: ["mer", "ven", "ter", "lun", "mar", "jup", "sat"],
+			follow: "zenith",
+			geopos: [LAT, LON],
 
-        symbolType: "disk",
-        names: true,
-        nameStyle: {
-          fill: "#00ccff",
-          font: `14px ${FONT}`,
-          align: "center",
-          baseline: "top"
-        },
-        namesType: "en"
-      },
+			lines: {
+				graticule: { show: lines?.graticule || false },
+				equatorial: { show: false },
+				ecliptic: { show: false },
+				galactic: { show: false },
+				supergalactic: { show: false }
+			},
 
-      dsos: {
-        show: false,
-        names: false
-      },
+			planets: {
+				show: false,
+				which: ["mer", "ven", "ter", "lun", "mar", "jup", "sat"],
 
-      constellations: {
-        names: false,
-        namesType: "iau",
-        nameStyle: {
-          fill: "#ffffff",
-          align: "center",
-          baseline: "middle",
-          font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]
-        },
-        lines: true,
-        lineStyle: { stroke: "#cccccc", width: 1.5, opacity: 1 }
-      },
+				symbolType: "disk",
+				names: true,
+				nameStyle: {
+					fill: "#00ccff",
+					font: `14px ${FONT}`,
+					align: "center",
+					baseline: "top"
+				},
+				namesType: "en"
+			},
 
-      mw: {
-        show: false,
-        style: { fill: "#ffffff", opacity: 0.02 }
-      },
+			dsos: {
+				show: false,
+				names: false
+			},
 
-      background: {
-        fill: this.style?.globe || "#D2001A", // globe color
-        stroke: "#EFEFEF",
-        opacity: 1,
-        width: 2
-      },
+			constellations: {
+				names: constellations?.names || false, //active false
+				namesType: "iau",
+				nameStyle: {
+					fill: "#ffffff",
+					align: "center",
+					baseline: "middle",
+					font: [`14px ${FONT}`, `8px ${FONT}`, `0px ${FONT}`]
+				},
+				lines: constellations?.lines || false,
+				lineStyle: { stroke: "#cccccc", width: 1.5, opacity: 1 }
+			},
 
-      stars: {
-        colors: true,
-        size: 12,
-        limit: 6,
-        exponent: -0.26,
-        designation: false,
+			mw: {
+				show: false,
+				style: { fill: "#ffffff", opacity: 0.02 }
+			},
 
-        propername: false,
-        propernameType: "name",
-        propernameStyle: {
-          fill: "#ddddbb",
-          font: `8px ${FONT}`,
-          align: "right",
-          baseline: "center"
-        },
-        propernameLimit: 2.0
-      }
-    };
-    Celestial.display(config);
-    Celestial.skyview({ date: DATE });
-  }
+			background: {
+				fill: background?.fill || "#D2001A", // globe color
+				stroke: "#EFEFEF",
+				opacity: 1,
+				width: 2
+			},
+
+			stars: {
+				colors: true,
+				size: 12,
+				limit: 6,
+				exponent: -0.26,
+				designation: false,
+
+				propername: false,
+				propernameType: "name",
+				propernameStyle: {
+					fill: "#ddddbb",
+					font: `8px ${FONT}`,
+					align: "right",
+					baseline: "center"
+				},
+				propernameLimit: 2.0
+			}
+		};
+	}
 }
