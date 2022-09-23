@@ -11,7 +11,7 @@ interface Link {
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  
+
   @Input() links: Array<Link> = [];
 
   constructor() { }

@@ -17,16 +17,16 @@ export const FooterPage: Story = () => ({
 	props: {
 		links: [
 			{
-				url:"https://www.mapiful.com/starmap-editor/#/editor",
-				title:"Quality"
+				url: "https://www.mapiful.com/starmap-editor/#/editor",
+				title: "Quality"
 			},
 			{
-				url:"https://docs.angular.lat/tutorial/toh-pt3",
-				title:"FAQ"
+				url: "https://docs.angular.lat/tutorial/toh-pt3",
+				title: "FAQ"
 			},
 			{
-				url:"https://www.yoseomarketing.com/blog/crear-hipervinculos-html-links-enlaces/",
-				title:"Contact"
+				url: "https://www.yoseomarketing.com/blog/crear-hipervinculos-html-links-enlaces/",
+				title: "Contact"
 			}
 		]
 	}
