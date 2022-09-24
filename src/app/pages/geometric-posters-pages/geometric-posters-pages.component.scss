@@ -47,4 +47,18 @@
 			margin: 40px 0;
 		}
 	}
+
+	.categories {
+		display: flex;
+
+		.category {
+			margin-left: 5px;
+			font-size: 16px;
+			cursor: pointer;
+
+			&.selected {
+				font-weight: bold;
+			}
+		}
+	}
 }

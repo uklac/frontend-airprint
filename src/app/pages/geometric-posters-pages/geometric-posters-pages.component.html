@@ -1,10 +1,21 @@
 <div class="geometric-posters-page">
 	<div class="geometric-posters">
 		<div class="customize-bar">
-			here goes controls
+			<div class="categories">
+				<div class="category" *ngFor="let category of categories;"
+					(click)="onSelectCategory(category)"
+					[class.selected]="categorySelected == category.key"
+				>
+					{{category.name}}
+				</div>
+			</div>
 		</div>
 		<div class="render-container">
-			<app-geometric-poster-preview>
+			<app-geometric-poster-preview
+				[headline]="defaultProps.headline"
+				[phrase]="defaultProps.phrase"
+				[style]="defaultProps.style"
+			>
 			</app-geometric-poster-preview>
 		</div>
 	</div>
