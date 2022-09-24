@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend-airprint';
+
+	tabs = [
+		{
+			link: '/',
+			title: 'Home'
+		},
+		{
+			link: '/',
+			title: 'Street Maps'
+		},
+		{
+			link: '/stellar-editor',
+			title: 'Stellar Maps'
+		}
+	]
 }
