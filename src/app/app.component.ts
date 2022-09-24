@@ -20,6 +20,10 @@ export class AppComponent {
 		{
 			link: '/stellar-editor',
 			title: 'Stellar Maps'
-		}
+		},
+		{
+			link: '/geometric-editor',
+			title: 'Geometric Posters'
+		},
 	]
 }

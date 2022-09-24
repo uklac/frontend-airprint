@@ -10,6 +10,7 @@ import { StreetMapConfigurationPanelComponent } from './street-map-configuration
 import { SelectThemeComponent } from './select-theme/select-theme.component';
 import { BasketComponent } from './basket/basket.component';
 import { FooterComponent } from './footer/footer.component';
+import { GeometricPosterPreviewComponent } from './geometric-poster-preview/geometric-poster-preview.component';
 
 const components = [
 	ButtonComponent,
@@ -20,7 +21,8 @@ const components = [
   StreetMapConfigurationPanelComponent,
   FooterComponent,
 	SelectThemeComponent,
-  BasketComponent
+  BasketComponent,
+	GeometricPosterPreviewComponent
 ];
 
 @NgModule({
