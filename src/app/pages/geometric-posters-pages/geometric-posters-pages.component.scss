@@ -1,0 +1,50 @@
+.geometric-posters-page {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	background: #f7f7f7;
+
+	.geometric-posters {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		background: #eeeeee;
+		justify-content: center;
+		align-items: center;
+
+		.customize-bar {
+			background: white;
+			display: flex;
+			justify-content: space-between;
+			padding: 10px 0;
+			width: 100%;
+
+			.themes {
+				margin-left: 40px;
+			}
+
+			.controls {
+				margin-right: 40px;
+				display: flex;
+
+				img {
+					width: 34px;
+				}
+
+				.ctr {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.render-container {
+			display: flex;
+			margin: 40px 0;
+		}
+	}
+}

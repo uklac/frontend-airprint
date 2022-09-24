@@ -28,15 +28,18 @@ export class GeometricPosterPreviewComponent implements OnInit {
 
   generate() {
     const route = "../../../assets/images/poster/kander/piece-";
-    const result = Array.from({length: 25}, () => route + this.randomNumber() + ".svg");
-    this.pieces = result;
+		this.generator(route);
   }
 
   generate2() {
     const route = "../../../assets/images/poster/thur/piece-";
-    const result = Array.from({length: 25}, () => route + this.randomNumber() + ".svg");
-    this.pieces = result;
+		this.generator(route);
   }
+
+	generator(route: string) {
+		const result = Array.from({length: 20}, () => route + this.randomNumber() + ".svg");
+    this.pieces = result;
+	}
 
   randomNumber() {
     return Math.floor(Math.random() * 10) + 1;
