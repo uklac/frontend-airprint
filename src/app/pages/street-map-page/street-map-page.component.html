@@ -1,0 +1,16 @@
+<div class="stella-map-page">
+    <app-street-map-configuration-panel
+    [themes]="themes"
+		(formChange)="updateTextPoster($event)"
+		(themeChange)="updatePoster($event)"
+    >
+    <app-street-map-preview
+		[headline]="poster.headline"
+		[divider]="poster.divider"
+		[tagline]="poster.tagline"
+		[style]="poster.style"
+		[configuration]="selectedTheme"
+    >
+    </app-street-map-preview>
+    </app-street-map-configuration-panel>
+</div>

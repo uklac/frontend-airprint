@@ -1,9 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-interface ThemeStreetMap {
-  url: string,
-  title: string
-}
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PropsStreetPoster } from 'src/app/models/props-street-poster';
+import { ThemeStreetMap } from 'src/app/models/theme-street';
 
 interface FrameStreetMap {
   url: string,
@@ -19,11 +16,30 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
   @Input() themes: Array<ThemeStreetMap> = [];
   @Input() textStyle: Array<String> = [];
   @Input() frames: Array<FrameStreetMap> = [];
+  @Output() formChange = new EventEmitter<PropsStreetPoster>();
+  @Output() themeChange = new EventEmitter<ThemeStreetMap>();
+
 
   panelOpenState = false;
+
+  streetForm : PropsStreetPoster = {
+		city: '',
+		headline: '',
+		divider: '',
+		tagline: '',
+    style: 'basic',
+	}
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  updateMap() {
+		this.formChange.emit(this.streetForm);
+	}
+
+  selectTheme(theme: ThemeStreetMap) {
+		this.themeChange.emit(theme);
+	}
 }
