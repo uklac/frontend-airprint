@@ -3,12 +3,13 @@
     [themes]="themes"
 		(formChange)="updateTextPoster($event)"
 		(themeChange)="updatePoster($event)"
+    (styleTextChange)="updateText($event)"
     >
     <app-street-map-preview
 		[headline]="poster.headline"
 		[divider]="poster.divider"
 		[tagline]="poster.tagline"
-		[style]="poster.style"
+		[textStyle]="poster.textStyle"
 		[configuration]="selectedTheme"
     >
     </app-street-map-preview>

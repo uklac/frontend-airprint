@@ -1,7 +1,4 @@
 export interface ConfigStreetMap {
-	background?: {
-		fill: string;
-	},
 	poster: {
 		background: string;
 		text: string;
@@ -9,6 +6,6 @@ export interface ConfigStreetMap {
 }
 export interface ThemeStreetMap {
   url: string,
-  title: string
+  title: string,
   configuration?: ConfigStreetMap
 }

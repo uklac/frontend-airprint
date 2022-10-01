@@ -3,5 +3,5 @@ export interface PropsStreetPoster {
 	headline: string,
 	divider: string,
 	tagline: string,
-	style: string,
+	textStyle: string,
 }

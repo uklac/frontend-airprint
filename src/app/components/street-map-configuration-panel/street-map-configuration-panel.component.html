@@ -6,6 +6,13 @@
 					<app-select-theme [themes]="themes" (onSelectTheme)="selectTheme($event)">
 					</app-select-theme>
 				</div>
+				<div class="formant-style">
+					<mat-button-toggle-group>
+						<mat-button-toggle *ngFor="let style of textStyles;" (change)="styleTextChanged(style)">
+							{{style}}
+						</mat-button-toggle>
+					</mat-button-toggle-group>
+				</div>
 			</div>
 			<div class="render-container">
 				<ng-content></ng-content>

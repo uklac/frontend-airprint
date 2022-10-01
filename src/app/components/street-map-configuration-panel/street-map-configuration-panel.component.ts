@@ -18,6 +18,7 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
   @Input() frames: Array<FrameStreetMap> = [];
   @Output() formChange = new EventEmitter<PropsStreetPoster>();
   @Output() themeChange = new EventEmitter<ThemeStreetMap>();
+  @Output() styleTextChange = new EventEmitter<string>();
 
 
   panelOpenState = false;
@@ -27,8 +28,14 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
 		headline: '',
 		divider: '',
 		tagline: '',
-    style: 'basic',
+    textStyle: '',
 	}
+
+  textStyles = [
+    'basic',
+    'lineal',
+    'shadow'
+  ];
 
   constructor() { }
 
@@ -41,5 +48,10 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
 
   selectTheme(theme: ThemeStreetMap) {
 		this.themeChange.emit(theme);
+    console.log(theme)
 	}
+
+  styleTextChanged(style: string) {
+    this.styleTextChange.emit(style);
+  }
 }
