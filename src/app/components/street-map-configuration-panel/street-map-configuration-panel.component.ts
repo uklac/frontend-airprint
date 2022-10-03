@@ -28,7 +28,7 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
 		headline: '',
 		divider: '',
 		tagline: '',
-    textStyle: '',
+    textStyle: 'basic',
 	}
 
   textStyles = [
@@ -48,7 +48,6 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
 
   selectTheme(theme: ThemeStreetMap) {
 		this.themeChange.emit(theme);
-    console.log(theme)
 	}
 
   styleTextChanged(style: string) {

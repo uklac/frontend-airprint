@@ -13,8 +13,8 @@ export class StreetMapPageComponent implements OnInit {
   
   defaultTheme = {
 		poster: {
-			background: 'black',
-			text: 'white'
+			background: '#f6f6f6',
+			text: '#1d1e2c'
 		}
 	};
 
@@ -24,7 +24,7 @@ export class StreetMapPageComponent implements OnInit {
   poster = {
 		headline: 'TOKIO',
 		divider: 'JAPAN',
-		tagline: 'SEPTEMBER 10TH 2019',
+		tagline: 'SEPTEMBER 10TH 2020',
 		textStyle: 'basic'
 	}
 
