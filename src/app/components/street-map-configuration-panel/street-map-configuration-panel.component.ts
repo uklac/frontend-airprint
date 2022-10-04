@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PropsStreetPoster } from 'src/app/models/props-street-poster';
 import { ThemeStreetMap } from 'src/app/models/theme-street';
-
-interface FrameStreetMap {
-  url: string,
-  titleFrame: string
-}
+import { Frame } from 'src/app/models/frame';
 
 @Component({
   selector: 'app-street-map-configuration-panel',
@@ -14,12 +10,12 @@ interface FrameStreetMap {
 })
 export class StreetMapConfigurationPanelComponent implements OnInit {
   @Input() themes: Array<ThemeStreetMap> = [];
+  @Input() frames: Array<Frame> = [];
   @Input() textStyle: Array<String> = [];
-  @Input() frames: Array<FrameStreetMap> = [];
   @Output() formChange = new EventEmitter<PropsStreetPoster>();
   @Output() themeChange = new EventEmitter<ThemeStreetMap>();
   @Output() styleTextChange = new EventEmitter<string>();
-
+  @Output() frameChange = new EventEmitter<Frame>();
 
   panelOpenState = false;
 
@@ -53,4 +49,10 @@ export class StreetMapConfigurationPanelComponent implements OnInit {
   styleTextChanged(style: string) {
     this.styleTextChange.emit(style);
   }
+
+  selectFrame(frame: Frame){
+    this.frameChange.emit(frame);
+  }
+
 }
+

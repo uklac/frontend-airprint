@@ -1,42 +1,44 @@
-<div class="street-map-basic-container" *ngIf= "textStyle === 'basic'" [ngStyle]="styleColors">
-	<div class="street-map-basic-content">
-		<div class="street-map-basic">
-			<div class="mapStreet-basic">	
+<div class="frame" [ngStyle]="styleFrame">
+	<div class="street-map-basic-container" *ngIf= "textStyle === 'basic'" [ngStyle]="styleColors">
+		<div class="street-map-basic-content">
+			<div class="street-map-basic">
+				<div class="mapStreet-basic">	
+				</div>
 			</div>
-		</div>
-		<div class="street-map-basic-information" [ngStyle]="styleColors">
-			<span class="city">{{headline}}</span>
-			<span class="mapFrom">------{{divider}}------</span>
-			<span class="country">{{tagline}}</span>
+			<div class="street-map-basic-information" [ngStyle]="styleColors">
+				<span class="city">{{headline}}</span>
+				<span class="mapFrom">------{{divider}}------</span>
+				<span class="country">{{tagline}}</span>
+			</div>
 		</div>
 	</div>
-</div>
-
-<div class="street-map-shadow-container" *ngIf= "textStyle === 'shadow'" [ngStyle]="styleColors">
-	<div class="street-map-shadow-content">
-		<div class="street-map-shadow">
-			<div class="mapStreet-shadow">
+	
+	<div class="street-map-shadow-container" *ngIf= "textStyle === 'shadow'" [ngStyle]="styleColors">
+		<div class="street-map-shadow-content">
+			<div class="street-map-shadow">
+				<div class="mapStreet-shadow">
+				</div>
 			</div>
-		</div>
-		<div class="street-map-shadow-information" [ngStyle]="styleColors">
-			<span class="city">{{headline}}</span>
-			<span class="country">{{divider}}</span>
-			<span class="coordinates">{{tagline}}</span>
-		</div>
-	</div>
-</div>
-
-<div class="street-map-lineal-container" *ngIf= "textStyle === 'lineal'" [ngStyle]="styleColors">
-	<div class="street-map-lineal-content">
-		<div class="street-map-lineal">
-			<div class="mapStreet-lineal">
-			</div>
-		</div>
-		<div class="street-map-lineal-information" [ngStyle]="styleColors">
-			<div class="street-information">
+			<div class="street-map-shadow-information" [ngStyle]="styleColors">
 				<span class="city">{{headline}}</span>
 				<span class="country">{{divider}}</span>
 				<span class="coordinates">{{tagline}}</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="street-map-lineal-container" *ngIf= "textStyle === 'lineal'" [ngStyle]="styleColors">
+		<div class="street-map-lineal-content">
+			<div class="street-map-lineal">
+				<div class="mapStreet-lineal">
+				</div>
+			</div>
+			<div class="street-map-lineal-information" [ngStyle]="styleColors">
+				<div class="street-information">
+					<span class="city">{{headline}}</span>
+					<span class="country">{{divider}}</span>
+					<span class="coordinates">{{tagline}}</span>
+				</div>
 			</div>
 		</div>
 	</div>

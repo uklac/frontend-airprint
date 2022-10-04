@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { ConfigStreetMap } from 'src/app/models/theme-street';
+import { Frame } from 'src/app/models/frame';
 
 @Component({
   selector: 'app-street-map-preview',
@@ -12,8 +13,8 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges {
   @Input() headline = '';
 	@Input() divider = '';
 	@Input() tagline = '';
+  @Input() colorFrame: Frame | undefined;
   @Input() configuration: ConfigStreetMap = {
-
     poster: {
 			background: '#f6f6f6',
 			text: '#1d1e2c'
@@ -21,15 +22,17 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges {
 	};
 
   styleColors = {};
+  styleFrame = {};
 
   constructor() { }
 
   ngOnInit(): void {
-
+    this.styleFrame = {
+      background: this.colorFrame?.color || "#c7c7c7",
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
     if (changes['configuration'] && !changes['configuration'].firstChange) {
 			const { configuration: { currentValue } } = changes;
       this.styleColors = {
@@ -37,5 +40,13 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges {
         color: currentValue.poster.text,
       }
 		}
+
+    if(changes['colorFrame'] && !changes['colorFrame'].firstChange){
+      const {colorFrame: { currentValue } } = changes;
+      this.styleFrame = {
+        background: currentValue.color
+      }
+    }
   }
+
 }

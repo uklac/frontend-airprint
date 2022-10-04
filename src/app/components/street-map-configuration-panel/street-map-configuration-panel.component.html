@@ -165,9 +165,11 @@
 						</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div class="type-frame-container">
-						<div class="frame-preview" *ngFor="let frame of frames">
+						<div class="frame-preview" *ngFor="let frame of frames"
+						(click)="selectFrame(frame)"
+						>
 							<img src="{{frame.url}}">
-							<span>{{frame.titleFrame}}</span>
+							<span>{{frame.title}}</span>
 						</div>
 						<button>Remove Frame</button>
 					</div>

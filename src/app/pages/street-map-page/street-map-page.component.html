@@ -4,6 +4,8 @@
 		(formChange)="updateTextPoster($event)"
 		(themeChange)="updatePoster($event)"
     (styleTextChange)="updateText($event)"
+    [frames]="frames"
+    (frameChange)="updateFrame($event)"
     >
     <app-street-map-preview
 		[headline]="poster.headline"
@@ -11,6 +13,7 @@
 		[tagline]="poster.tagline"
 		[textStyle]="poster.textStyle"
 		[configuration]="selectedTheme"
+    [colorFrame]="frameSelected"
     >
     </app-street-map-preview>
     </app-street-map-configuration-panel>
