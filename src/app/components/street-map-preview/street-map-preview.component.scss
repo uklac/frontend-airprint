@@ -1,47 +1,54 @@
 .street-map-basic-container {
-	background: white;
+	background: black;
 	height: 770.004px;
 	width: 513.33px;
 	display: flex;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	background-image: url('../../../assets/images/map-example-2.png');
+	background-size: cover;
 
 	.street-map-basic-content {
 		width: 100%;
-		font-family: Courier New;
 		margin: 20px;
-		display: flex;
-		flex-direction: column;
+		position: relative;
 
 		.street-map-basic {
-			display: flex;
-			justify-content: center;
+			height: 100%;
 
-			.mapStreet-basic {
+			.render-map {
 				width: 100%;
-				height: 570px;
-				display: flex;
-				background: white;
+				height: 100%;
 			}
 		}
 
 		.street-map-basic-information {
-			// background: #cbb187;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			font-size: 16px;
-			justify-content: end;
-			flex: 1 1 0%;
-			color: black;
-			padding-bottom: 20px;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			z-index: 2;
 
-			.city {
-				font-size: 30px;
+			.headline {
+				font-size: 48px;
 				font-weight: bold;
+  			font-family: 'Gotham';
+				letter-spacing: 2px;
 			}
 
-			.country {
-				font-size: 14px;
+			.divider {
+				font-size: 16px;
+  			font-family: 'Gotham';
+				padding-top: 20px;
+			}
+
+			.tagline {
+				font-size: 12px;
+  			font-family: 'Gotham';
+				padding-top: 22px;
+				padding-bottom: 6px;
 			}
 
 		}

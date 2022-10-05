@@ -22,12 +22,12 @@ export class StreetMapPageComponent implements OnInit {
 
   themes: Array<ThemeStreetMap> = [];
 	frames: Array<Frame> = [];
-	selectedTheme: ConfigStreetMap = this.defaultTheme;
+	selectedTheme: any;
 
   poster = {
-		headline: 'TOKIO',
-		divider: 'JAPAN',
-		tagline: 'SEPTEMBER 10TH 2020',
+		headline: 'NEW YORK',
+		divider: 'MAP OF MANHATTAN',
+		tagline: 'UNITED STATES',
 		textStyle: 'basic'
 	}
 
@@ -52,8 +52,8 @@ export class StreetMapPageComponent implements OnInit {
 					configuration: {
 						styleUrl: 'mapbox://styles/molly98/cl8knaa6w001014mpchwbs57l',
 						poster: {
-							background: '#f7f7f7',
-							text: 'black',
+							background: 'black',
+							text: '#f7f7f7',
 						}
 					}
 				},
@@ -63,7 +63,7 @@ export class StreetMapPageComponent implements OnInit {
 					configuration: {
 						styleUrl: 'mapbox://styles/molly98/cl8kn4un6000y14t9wo8peex8',
 						poster: {
-							background: '#f7f7f7',
+							background: '#eac99f',
 							text: 'black',
 						}
 					}
@@ -100,7 +100,7 @@ export class StreetMapPageComponent implements OnInit {
 		];
 
 		this.frameSelected = this.frames[0];
-		// this.selectedTheme = this.themes[0].configuration;
+		this.selectedTheme = this.themes[1].configuration;
   }
 
   updateTextPoster(props: PropsStreetPoster) {

@@ -22,7 +22,6 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges, AfterViewIn
   styleFrame = {};
 
 	map: any;
-  style = 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2';
   lat = -3.99313;
   lng = -79.20422;
 
@@ -32,6 +31,10 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges, AfterViewIn
     this.styleFrame = {
       background: this.colorFrame?.color || "#c7c7c7",
     }
+		this.styleColors = {
+			background: this.configuration.poster.background,
+			color: this.configuration.poster.text,
+		}
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,11 +57,12 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges, AfterViewIn
   }
 
 	ngAfterViewInit() {
-		debugger
+		// debugger
+		this.configuration
 		this.map = new mapboxgl.Map({
 			accessToken: environment.mapboxAuth,
 			container: 'map',
-			style: this.style,
+			style: this.configuration.styleUrl,
 			zoom: 13,
 			center: [this.lng, this.lat]
 		});

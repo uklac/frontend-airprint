@@ -1,14 +1,13 @@
 <div class="frame" [ngStyle]="styleFrame">
-	<div class="street-map-basic-container" *ngIf= "textStyle === 'basic'" [ngStyle]="styleColors">
+	<div class="street-map-basic-container" *ngIf= "textStyle === 'basic'">
 		<div class="street-map-basic-content">
 			<div class="street-map-basic">
-				<div class="mapStreet-basic" id="map">
-				</div>
+				<div class="render-map" id="map"></div>
 			</div>
 			<div class="street-map-basic-information" [ngStyle]="styleColors">
-				<span class="city">{{headline}}</span>
-				<span class="mapFrom">------{{divider}}------</span>
-				<span class="country">{{tagline}}</span>
+				<span class="headline">{{headline}}</span>
+				<span class="divider">------{{divider}}------</span>
+				<span class="tagline">{{tagline}}</span>
 			</div>
 		</div>
 	</div>
