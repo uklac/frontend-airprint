@@ -84,12 +84,12 @@ export class StreetMapPageComponent implements OnInit {
 		this.frames = [
 			{
 				url:"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg",
-				color:"red",
+				color:"#FCCC8E",
 				title:"1"
 			},
 			{
 				url:"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg",
-				color:"black",
+				color:"#221E1F",
 				title:"2"
 			},
 			{

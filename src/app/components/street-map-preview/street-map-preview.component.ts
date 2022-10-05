@@ -11,7 +11,7 @@ import * as mapboxgl from 'mapbox-gl';
 })
 export class StreetMapPreviewComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() city='';
-  @Input() textStyle='';
+  @Input() textStyle ='basic';
   @Input() headline = '';
 	@Input() divider = '';
 	@Input() tagline = '';
@@ -58,7 +58,6 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges, AfterViewIn
 
 	ngAfterViewInit() {
 		// debugger
-		this.configuration
 		this.map = new mapboxgl.Map({
 			accessToken: environment.mapboxAuth,
 			container: 'map',
