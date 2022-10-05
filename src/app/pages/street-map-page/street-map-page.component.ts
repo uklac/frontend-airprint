@@ -11,13 +11,14 @@ import { Frame } from 'src/app/models/frame';
 export class StreetMapPageComponent implements OnInit {
 
   constructor() { }
-  
-  defaultTheme = {
+
+	defaultTheme = {
+		styleUrl: 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2',
 		poster: {
-			background: '#f6f6f6',
-			text: '#1d1e2c'
+			background: '#f7f7f7',
+			text: 'black',
 		}
-	};
+	}
 
   themes: Array<ThemeStreetMap> = [];
 	frames: Array<Frame> = [];
@@ -36,46 +37,50 @@ export class StreetMapPageComponent implements OnInit {
 		this.themes = [
 				{
 					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Modern",
+					title: "Nieve",
 					configuration: {
+						styleUrl: 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2',
 						poster: {
-							background: 'blue',
-							text: 'white',
+							background: '#f7f7f7',
+							text: 'black',
 						}
 					}
 				},
 				{
 					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Japan",
+					title: "Noche",
 					configuration: {
+						styleUrl: 'mapbox://styles/molly98/cl8knaa6w001014mpchwbs57l',
 						poster: {
-							background: 'black',
-							text: 'white'
+							background: '#f7f7f7',
+							text: 'black',
 						}
 					}
 				},
 				{
 					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Forest",
+					title: "Antaño",
 					configuration: {
+						styleUrl: 'mapbox://styles/molly98/cl8kn4un6000y14t9wo8peex8',
 						poster: {
-							background: '#dad7cd',
-							text: '#182731'
+							background: '#f7f7f7',
+							text: 'black',
 						}
 					}
 				},
 				{
 					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Spacial",
+					title: "Otoño",
 					configuration: {
+						styleUrl: 'mapbox://styles/molly98/cl8knlyuf002t15pcy08xxaow',
 						poster: {
-							background: '#EFEFEF',
-							text: '#182731'
+							background: '#f7f7f7',
+							text: 'black',
 						}
 					}
 				}
 		];
-	
+
 		this.frames = [
 			{
 				url:"https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches-100x100.jpg",
@@ -92,9 +97,10 @@ export class StreetMapPageComponent implements OnInit {
 				color:"white",
 				title:"3"
 			},
-		]
+		];
 
 		this.frameSelected = this.frames[0];
+		// this.selectedTheme = this.themes[0].configuration;
   }
 
   updateTextPoster(props: PropsStreetPoster) {
@@ -114,5 +120,4 @@ export class StreetMapPageComponent implements OnInit {
 	updateFrame(frame: Frame) {
 		this.frameSelected = frame;
 	}
-
 }

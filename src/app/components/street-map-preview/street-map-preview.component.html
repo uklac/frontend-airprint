@@ -2,7 +2,7 @@
 	<div class="street-map-basic-container" *ngIf= "textStyle === 'basic'" [ngStyle]="styleColors">
 		<div class="street-map-basic-content">
 			<div class="street-map-basic">
-				<div class="mapStreet-basic">	
+				<div class="mapStreet-basic" id="map">
 				</div>
 			</div>
 			<div class="street-map-basic-information" [ngStyle]="styleColors">
@@ -12,7 +12,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="street-map-shadow-container" *ngIf= "textStyle === 'shadow'" [ngStyle]="styleColors">
 		<div class="street-map-shadow-content">
 			<div class="street-map-shadow">
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="street-map-lineal-container" *ngIf= "textStyle === 'lineal'" [ngStyle]="styleColors">
 		<div class="street-map-lineal-content">
 			<div class="street-map-lineal">

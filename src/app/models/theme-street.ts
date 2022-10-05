@@ -1,4 +1,5 @@
 export interface ConfigStreetMap {
+	styleUrl?: string;
 	poster: {
 		background: string;
 		text: string;

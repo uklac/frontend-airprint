@@ -1,30 +1,32 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, AfterViewInit} from '@angular/core';
 import { ConfigStreetMap } from 'src/app/models/theme-street';
 import { Frame } from 'src/app/models/frame';
+import { environment } from 'src/environments/environment';
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-street-map-preview',
   templateUrl: './street-map-preview.component.html',
   styleUrls: ['./street-map-preview.component.scss']
 })
-export class StreetMapPreviewComponent implements OnInit, OnChanges {
+export class StreetMapPreviewComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() city='';
   @Input() textStyle='';
   @Input() headline = '';
 	@Input() divider = '';
 	@Input() tagline = '';
   @Input() colorFrame: Frame | undefined;
-  @Input() configuration: ConfigStreetMap = {
-    poster: {
-			background: '#f6f6f6',
-			text: '#1d1e2c'
-		}
-	};
+  @Input() configuration: any;
 
   styleColors = {};
   styleFrame = {};
 
-  constructor() { }
+	map: any;
+  style = 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2';
+  lat = -3.99313;
+  lng = -79.20422;
+
+  constructor() {}
 
   ngOnInit(): void {
     this.styleFrame = {
@@ -39,6 +41,7 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges {
         background: currentValue.poster.background,
         color: currentValue.poster.text,
       }
+			this.map.setStyle(currentValue.styleUrl);
 		}
 
     if(changes['colorFrame'] && !changes['colorFrame'].firstChange){
@@ -47,6 +50,18 @@ export class StreetMapPreviewComponent implements OnInit, OnChanges {
         background: currentValue.color
       }
     }
+
   }
+
+	ngAfterViewInit() {
+		debugger
+		this.map = new mapboxgl.Map({
+			accessToken: environment.mapboxAuth,
+			container: 'map',
+			style: this.style,
+			zoom: 13,
+			center: [this.lng, this.lat]
+		});
+	}
 
 }
