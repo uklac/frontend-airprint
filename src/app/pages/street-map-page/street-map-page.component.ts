@@ -39,6 +39,17 @@ export class StreetMapPageComponent implements OnInit {
 					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
 					title: "Nieve",
 					configuration: {
+						styleUrl: 'mapbox://styles/molly98/cl8kmtw6t000u15s4p140knkm',
+						poster: {
+							background: '#f7f7f7',
+							text: 'black',
+						}
+					}
+				},
+				{
+					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
+					title: "Naval",
+					configuration: {
 						styleUrl: 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2',
 						poster: {
 							background: '#f7f7f7',

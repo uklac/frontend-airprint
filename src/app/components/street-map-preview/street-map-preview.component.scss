@@ -2,8 +2,7 @@
 	height: 770.004px;
 	width: 513.33px;
 	display: flex;
-	// box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	background-image: url('../../../assets/images/map-example.png');
+	background-image: url("../../../assets/images/map-example.png");
 	background-size: cover;
 
 	.street-map-content {
@@ -26,7 +25,8 @@
 			width: 100%;
 			z-index: 2;
 
-			&.basic {
+			&.basic,
+			&.shadow {
 				.fields {
 					display: flex;
 					flex-direction: column;
@@ -35,19 +35,19 @@
 					.headline {
 						font-size: 48px;
 						font-weight: bold;
-						font-family: 'Gotham';
+						font-family: "Gotham";
 						letter-spacing: 2px;
 					}
 
 					.divider {
 						font-size: 16px;
-						font-family: 'Gotham';
+						font-family: "Gotham";
 						padding-top: 20px;
 					}
 
 					.tagline {
 						font-size: 12px;
-						font-family: 'Gotham';
+						font-family: "Gotham";
 						padding-top: 22px;
 						padding-bottom: 6px;
 					}
@@ -63,6 +63,7 @@
 
 				.fields {
 					background: white;
+					color: black;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
@@ -71,19 +72,48 @@
 					.headline {
 						font-size: 27px;
 						font-weight: bold;
-						font-family: 'Gotham';
+						font-family: "Gotham";
 						letter-spacing: 2px;
 					}
 
 					.divider {
 						font-size: 14px;
-						font-family: 'Gotham';
+						font-family: "Gotham";
 						padding-top: 21px;
 					}
 
 					.tagline {
 						font-size: 9px;
-						font-family: 'Gotham';
+						font-family: "Gotham";
+						padding-top: 22px;
+						padding-bottom: 6px;
+					}
+				}
+			}
+
+			&.bottom {
+				.fields {
+					display: flex;
+					flex-direction: column;
+					align-items: end;
+
+					.headline {
+						font-size: 30px;
+						font-weight: bold;
+						font-family: "Gotham";
+						letter-spacing: 2px;
+						padding-top: 10px;
+					}
+
+					.divider {
+						font-size: 16px;
+						font-family: "Gotham";
+						padding-top: 20px;
+					}
+
+					.tagline {
+						font-size: 12px;
+						font-family: "Gotham";
 						padding-top: 22px;
 						padding-bottom: 6px;
 					}
@@ -94,5 +124,6 @@
 }
 
 .frame {
-  padding: 18px;
+	padding: 18px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

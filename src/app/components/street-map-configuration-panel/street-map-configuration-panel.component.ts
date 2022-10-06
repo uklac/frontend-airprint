@@ -4,55 +4,48 @@ import { ThemeStreetMap } from 'src/app/models/theme-street';
 import { Frame } from 'src/app/models/frame';
 
 @Component({
-  selector: 'app-street-map-configuration-panel',
-  templateUrl: './street-map-configuration-panel.component.html',
-  styleUrls: ['./street-map-configuration-panel.component.scss']
+	selector: 'app-street-map-configuration-panel',
+	templateUrl: './street-map-configuration-panel.component.html',
+	styleUrls: ['./street-map-configuration-panel.component.scss'],
 })
 export class StreetMapConfigurationPanelComponent implements OnInit {
-  @Input() themes: Array<ThemeStreetMap> = [];
-  @Input() frames: Array<Frame> = [];
-  @Input() textStyle: Array<String> = [];
-  @Output() formChange = new EventEmitter<PropsStreetPoster>();
-  @Output() themeChange = new EventEmitter<ThemeStreetMap>();
-  @Output() styleTextChange = new EventEmitter<string>();
-  @Output() frameChange = new EventEmitter<Frame>();
+	@Input() themes: Array<ThemeStreetMap> = [];
+	@Input() frames: Array<Frame> = [];
+	@Input() textStyle: Array<String> = [];
+	@Output() formChange = new EventEmitter<PropsStreetPoster>();
+	@Output() themeChange = new EventEmitter<ThemeStreetMap>();
+	@Output() styleTextChange = new EventEmitter<string>();
+	@Output() frameChange = new EventEmitter<Frame>();
 
-  panelOpenState = false;
+	panelOpenState = false;
 
-  streetForm : PropsStreetPoster = {
+	streetForm: PropsStreetPoster = {
 		city: '',
 		headline: '',
 		divider: '',
 		tagline: '',
-    textStyle: 'basic',
-	}
+		textStyle: 'basic',
+	};
 
-  textStyles = [
-    'basic',
-    'lineal',
-    'shadow'
-  ];
+	textStyles = ['basic', 'lineal', 'shadow', 'bottom'];
 
-  constructor() { }
+	constructor() {}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {}
 
-  updateMap() {
+	updateMap() {
 		this.formChange.emit(this.streetForm);
 	}
 
-  selectTheme(theme: ThemeStreetMap) {
+	selectTheme(theme: ThemeStreetMap) {
 		this.themeChange.emit(theme);
 	}
 
-  styleTextChanged(style: string) {
-    this.styleTextChange.emit(style);
-  }
+	styleTextChanged(style: string) {
+		this.styleTextChange.emit(style);
+	}
 
-  selectFrame(frame: Frame){
-    this.frameChange.emit(frame);
-  }
-
+	selectFrame(frame: Frame) {
+		this.frameChange.emit(frame);
+	}
 }
-
