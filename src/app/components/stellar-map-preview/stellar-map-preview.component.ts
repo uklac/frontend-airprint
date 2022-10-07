@@ -1,13 +1,17 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { ConfigStellarMap } from 'src/app/models/theme-stellar';
 declare var Celestial: any;
-
+export interface Frame{
+  url: string
+  color: string,
+  title: string
+}
 @Component({
 	selector: 'app-stellar-map-preview',
 	templateUrl: './stellar-map-preview.component.html',
 	styleUrls: ['./stellar-map-preview.component.scss']
 })
-export class StellarMapPreviewComponent implements OnInit, OnChanges {
+export class StellarMapPreviewComponent implements OnInit, OnChanges, AfterViewInit{
 	@Input() headline = '';
 	@Input() divider = '';
 	@Input() tagline = '';
@@ -15,6 +19,7 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges {
 	@Input() constellations = false;
 	@Input() grid = false;
 	@Input() constellationsNames = false;
+	@Input() colorFrame: Frame | undefined;
 	@Input() configuration: ConfigStellarMap = {
 		lines: {
 			graticule: false
@@ -33,11 +38,17 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges {
 	};
 
 	styleColors = {};
+	styleFrame = {};
 
 	constructor() { }
 
 	ngOnInit(): void {
-		this.mapInit(this.configuration);
+		if (this.colorFrame) {
+			this.styleFrame = {
+				'background': `url(http://tumodaurbana.com/wp-content/uploads/2013/05/tumodaurbana-expo-dali.jpg)`,
+				'border-image': `url(${this.colorFrame.url}) 200 stretch`
+			}
+		}
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
@@ -46,6 +57,14 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges {
 			const config = this.getParamsConfiguration(currentValue);
 			Celestial.apply(config);
 		}
+
+		if(changes['colorFrame'] && !changes['colorFrame'].firstChange){
+      const {colorFrame: { currentValue } } = changes;
+			this.styleFrame = {
+				'background': `url(http://tumodaurbana.com/wp-content/uploads/2013/05/tumodaurbana-expo-dali.jpg)`,
+				'border-image': `url(${currentValue.url}) 200 stretch`
+			}
+    }
 	}
 
 	mapInit(params: ConfigStellarMap) {
@@ -153,5 +172,9 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges {
 				propernameLimit: 2.0
 			}
 		};
+	}
+
+	ngAfterViewInit() {
+		this.mapInit(this.configuration);
 	}
 }

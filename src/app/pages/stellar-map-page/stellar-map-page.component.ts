@@ -20,12 +20,32 @@ export class StellarMapPageComponent implements OnInit {
 
 	themes: Array<ThemeStellarMap> = [];
 	selectedTheme: ConfigStellarMap = this.defaultTheme;
+	selectedFrame: any;
+
 	poster = {
     headline: 'TOKIO',
     divider: 'JAPAN',
     tagline: 'SEPTEMBER 10TH 2019',
     sublime: '48.856 N / 2.3522`E',
   }
+
+	frames = [
+		{
+			url:"https://fotoneac.com/wp-content/uploads/2021/03/NW-e1618505478124.jpg",
+			color:"#FCCC8E",
+			title:"Natural"
+		},
+		{
+			url:"https://st2.depositphotos.com/1040018/6351/i/600/depositphotos_63513719-stock-photo-black-wood-wall-background.jpg",
+			color:"#221E1F",
+			title:"Black"
+		},
+		{
+			url:"https://st.depositphotos.com/1761693/1946/i/600/depositphotos_19460577-stock-photo-wooden-texture-white-wooden-background.jpg",
+			color:"white",
+			title:"White"
+		},
+	];
 
   ngOnInit(): void {
 		this.themes = [
@@ -82,6 +102,8 @@ export class StellarMapPageComponent implements OnInit {
 				}
 			}
 		];
+
+		this.selectedFrame = this.frames[0];
   }
 
 	updateTextPoster(props: PropsStellarPoster) {
@@ -92,6 +114,10 @@ export class StellarMapPageComponent implements OnInit {
 		const copyTheme = JSON.parse(JSON.stringify(this.selectedTheme));
 		const newTheme = Object.assign(copyTheme, theme.configuration);
 		this.selectedTheme = newTheme || this.defaultTheme;
+	}
+
+	updateFrame(frame: any) {
+		this.selectedFrame = frame;
 	}
 
 	showConstellations(show: boolean) {

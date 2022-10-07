@@ -8,6 +8,12 @@
 						(onSelectTheme)="selectTheme($event)"
 					>
 					</app-select-theme>
+
+					<app-select-theme
+					[themes]="frames"
+					(onSelectTheme)="selectFrame($event)"
+				>
+				</app-select-theme>
 				</div>
 				<div class="controls">
 					<div class="constellation ctr">

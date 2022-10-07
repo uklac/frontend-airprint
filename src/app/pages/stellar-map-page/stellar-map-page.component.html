@@ -1,8 +1,10 @@
 <div class="stella-map-page">
   <app-stellar-map-configuration-panel
 		[themes]="themes"
+		[frames]="frames"
 		(formChange)="updateTextPoster($event)"
 		(themeChange)="updatePoster($event)"
+		(frameChange)="updateFrame($event)"
 		(enableConstellations)="showConstellations($event)"
 		(enableGrid)="showGrid($event)"
 		(enableConstellationsNames)="showConstellationsNames($event)"
@@ -16,6 +18,7 @@
 			[constellations]="false"
 			[grid]="false"
 			[constellationsNames]="false"
+			[colorFrame]="selectedFrame"
 		>
 		</app-stellar-map-preview>
 	</app-stellar-map-configuration-panel>
