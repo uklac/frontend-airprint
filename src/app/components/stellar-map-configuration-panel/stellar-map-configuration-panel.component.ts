@@ -19,13 +19,11 @@ export class StellarMapConfigurationPanelComponent implements OnInit {
 
   panelOpenState = true;
 	stellarForm : PropsStellarPoster = {
-		lat: '',
-		long: '',
-		date: '',
 		headline: '',
 		divider: '',
 		tagline: '',
 		sublime: '',
+		phrase: ''
 	}
 
   constructor() { }

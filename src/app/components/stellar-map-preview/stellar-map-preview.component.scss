@@ -1,8 +1,8 @@
 .stellar-map-container {
-	background: white;
 	height: 770.004px;
 	width: 513.33px;
 	display: flex;
+	background-size: cover;
 
 	.stellar-map-content {
 		width: 100%;
@@ -12,7 +12,7 @@
 		.stellar-map {
 			display: flex;
 			justify-content: center;
-			padding: 60px 0 0 0;
+			padding: 44px 0 0 0;
 
 			#map {
 				text-align: center;
@@ -23,24 +23,40 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			font-size: 16px;
 			justify-content: end;
-			flex: 1 1 0%;
-			padding-bottom: 60px;
+			padding: 20px 0 0 0;
 
-			.city {
-				font-weight: bold;
-				font-family: 'Gotham',
-			}
-
-			.country {
-				padding-bottom: 10px;
-			}
-
-			.coordinates {
-				padding-top: 5px;
+			.phrase {
+				text-align: center;
 				font-size: 14px;
-				font-weight: 200;
+				font-family: 'Gotham', sans-serif;
+				font-style: italic;
+				padding: 0 60px;
+			}
+
+			.divider {
+				padding-top: 17px;
+				padding-bottom: 2px;
+				font-family: "Gotham";
+				font-size: 14px;
+			}
+
+			.headline {
+				font-size: 30px;
+				font-weight: bold;
+				font-family: "Gotham";
+				padding-top: 34px;
+			}
+
+			.tagline {
+				font-family: "Gotham";
+				font-size: 14px;
+			}
+
+			.sublime {
+				padding-top: 3px;
+				font-size: 12px;
+				font-family: "Gotham";
 			}
 		}
 	}

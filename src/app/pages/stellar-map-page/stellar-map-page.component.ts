@@ -22,11 +22,12 @@ export class StellarMapPageComponent implements OnInit {
 	selectedTheme: ConfigStellarMap = this.defaultTheme;
 	selectedFrame: any;
 
-	poster = {
+	poster: PropsStellarPoster = {
     headline: 'TOKIO',
     divider: 'JAPAN',
     tagline: 'SEPTEMBER 10TH 2019',
     sublime: '48.856 N / 2.3522`E',
+		phrase: 'Que las estrellas iluminen siempre tu camino y que te permitan brillar tanto o mas que ellas'
   }
 
 	frames = [

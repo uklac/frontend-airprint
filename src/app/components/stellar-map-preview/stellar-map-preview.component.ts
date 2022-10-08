@@ -16,6 +16,7 @@ export class StellarMapPreviewComponent implements OnInit, OnChanges, AfterViewI
 	@Input() divider = '';
 	@Input() tagline = '';
 	@Input() sublime = '';
+	@Input() phrase = '';
 	@Input() constellations = false;
 	@Input() grid = false;
 	@Input() constellationsNames = false;
