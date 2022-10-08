@@ -1,17 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-signature-poster-preview',
   templateUrl: './signature-poster-preview.component.html',
   styleUrls: ['./signature-poster-preview.component.scss']
 })
-export class SignaturePosterPreviewComponent implements OnInit {
+export class SignaturePosterPreviewComponent implements OnInit, OnChanges {
 	@Input() background: string | undefined;
 	@Input() headline = "";
 	@Input() tagline: string | undefined;
 	@Input() sublime: string | undefined;
+	@Input() fullSize: boolean = false;
 
-	style = {};
+	style: any;
 
   constructor() { }
 
@@ -21,4 +22,12 @@ export class SignaturePosterPreviewComponent implements OnInit {
 		}
   }
 
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['background'] && !changes['background'].firstChange) {
+			const { background: { currentValue } } = changes;
+			this.style = {
+				background: currentValue,
+			}
+		}
+	}
 }

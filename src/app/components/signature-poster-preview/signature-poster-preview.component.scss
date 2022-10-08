@@ -6,7 +6,11 @@
 	align-items: center;
 	text-align: center;
 	position: relative;
-	margin: 50px;
+	margin: 40px;
+
+	&.full {
+		margin: 0;
+	}
 
 	.main-text {
 		font-family: 'Palmaton';

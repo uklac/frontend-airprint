@@ -1,5 +1,8 @@
 <app-frame-container>
-	<div class="signature-poster-content" [ngStyle]="style">
+	<div class="signature-poster-content"
+		[ngStyle]="style"
+		[class.full]="fullSize"
+		>
 		<div class="text">
 			<span class="main-text">
 				{{headline}}
