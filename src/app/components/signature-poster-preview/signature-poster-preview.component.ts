@@ -7,7 +7,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 })
 export class SignaturePosterPreviewComponent implements OnInit, OnChanges {
 	@Input() background: string | undefined;
-	@Input() headline = "";
+	@Input() fontColor: string | undefined;
+	@Input() headline: string | undefined
 	@Input() tagline: string | undefined;
 	@Input() sublime: string | undefined;
 	@Input() fullSize: boolean = false;
@@ -18,7 +19,8 @@ export class SignaturePosterPreviewComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
 		this.style = {
-			background: this.background || '#2a4b62'
+			background: this.background || '#2a4b62',
+			color: this.fontColor || '#f7f7f7'
 		}
   }
 
@@ -27,6 +29,13 @@ export class SignaturePosterPreviewComponent implements OnInit, OnChanges {
 			const { background: { currentValue } } = changes;
 			this.style = {
 				background: currentValue,
+			}
+		}
+		if (changes['fontColor'] && !changes['fontColor'].firstChange) {
+			const { fontColor: { currentValue } } = changes;
+			this.style = {
+				background: this.style.background,
+				color: currentValue
 			}
 		}
 	}
