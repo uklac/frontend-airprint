@@ -8,7 +8,7 @@ export default {
   component: SignaturePosterPreviewComponent,
   decorators: [
     moduleMetadata({
-      declarations: [],
+      declarations: [FrameContainerComponent],
       imports: [],
     })
   ]

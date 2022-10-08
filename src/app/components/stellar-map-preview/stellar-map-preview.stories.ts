@@ -1,13 +1,14 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { StellarMapPreviewComponent } from './stellar-map-preview.component';
 import { moduleMetadata } from '@storybook/angular';
+import { FrameContainerComponent } from '../frame-container/frame-container.component';
 
 export default {
   title: 'Stellar Maps',
   component: StellarMapPreviewComponent,
   decorators: [
     moduleMetadata({
-      declarations: [],
+      declarations: [FrameContainerComponent],
       imports: [],
     })
   ]
