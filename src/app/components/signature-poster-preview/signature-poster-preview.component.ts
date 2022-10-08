@@ -29,6 +29,7 @@ export class SignaturePosterPreviewComponent implements OnInit, OnChanges {
 			const { background: { currentValue } } = changes;
 			this.style = {
 				background: currentValue,
+				color: this.style.color
 			}
 		}
 		if (changes['fontColor'] && !changes['fontColor'].firstChange) {
