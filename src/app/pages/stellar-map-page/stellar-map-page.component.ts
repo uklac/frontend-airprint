@@ -3,13 +3,13 @@ import { PropsStellarPoster } from 'src/app/models/props-stellar-poster';
 import { ConfigStellarMap, ThemeStellarMap } from 'src/app/models/theme-stellar';
 
 @Component({
-  selector: 'app-stellar-map-page',
-  templateUrl: './stellar-map-page.component.html',
-  styleUrls: ['./stellar-map-page.component.scss']
+	selector: 'app-stellar-map-page',
+	templateUrl: './stellar-map-page.component.html',
+	styleUrls: ['./stellar-map-page.component.scss']
 })
 export class StellarMapPageComponent implements OnInit {
 
-  constructor() { }
+	constructor() { }
 
 	defaultTheme = {
 		poster: {
@@ -21,17 +21,17 @@ export class StellarMapPageComponent implements OnInit {
 	themes: Array<ThemeStellarMap> = [];
 	selectedTheme: ConfigStellarMap = this.defaultTheme;
 	poster = {
-    headline: 'TOKIO',
-    divider: 'JAPAN',
-    tagline: 'SEPTEMBER 10TH 2019',
-    sublime: '48.856 N / 2.3522`E',
-  }
+		headline: 'TOKIO',
+		divider: 'JAPAN',
+		tagline: 'SEPTEMBER 10TH 2019',
+		sublime: '48.856 N / 2.3522`E',
+	}
 
-  ngOnInit(): void {
+	ngOnInit(): void {
 		this.themes = [
 			{
-				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/modern.jpg",
-				title:"Modern",
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/modern.jpg",
+				title: "Modern",
 				configuration: {
 					background: {
 						fill: '#b9dccd'
@@ -43,8 +43,8 @@ export class StellarMapPageComponent implements OnInit {
 				}
 			},
 			{
-				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/asphalt.jpg",
-				title:"Japan",
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/asphalt.jpg",
+				title: "Japan",
 				configuration: {
 					background: {
 						fill: '#e63946'
@@ -56,8 +56,8 @@ export class StellarMapPageComponent implements OnInit {
 				}
 			},
 			{
-				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/nisshoki.jpg",
-				title:"Forest",
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/nisshoki.jpg",
+				title: "Forest",
 				configuration: {
 					background: {
 						fill: '#3a5a40'
@@ -69,8 +69,8 @@ export class StellarMapPageComponent implements OnInit {
 				}
 			},
 			{
-				url:"https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/nisshoki.jpg",
-				title:"Spacial",
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/starmaps/assets/img/nisshoki.jpg",
+				title: "Spacial",
 				configuration: {
 					background: {
 						fill: '#8ecae6'
@@ -82,7 +82,7 @@ export class StellarMapPageComponent implements OnInit {
 				}
 			}
 		];
-  }
+	}
 
 	updateTextPoster(props: PropsStellarPoster) {
 		this.poster = props;

@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: $white;
-  font-family: 'Lato-Regular';
+  // font-family: 'Lato-Regular';
   font-size: 12px;
 }
 
@@ -21,8 +21,8 @@ body {
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-$airprint-typography: mat-typography-config( $font-family: 'Lato-Regular');
-@include mat-core($airprint-typography);
+// $airprint-typography: mat-typography-config( $font-family: 'Lato-Regular');
+// @include mat-core($airprint-typography);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker

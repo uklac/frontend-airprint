@@ -1,172 +1,129 @@
-.street-map-basic-container {
-	background: white;
-	height: 600px;
-	width: 400px;
+.street-map-container {
+	height: 770.004px;
+	width: 513.33px;
 	display: flex;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	background-image: url("../../../assets/images/map-example.png");
+	background-size: cover;
 
-	.street-map-basic-content {
-		background: #cbb187;
+	.street-map-content {
 		width: 100%;
-		font-family: Courier New;
 		margin: 20px;
-		display: flex;
-		flex-direction: column;
+		position: relative;
 
-		.street-map-basic {
-			display: flex;
-			justify-content: center;
-			padding: 20px 0;
+		.street-map {
+			height: 100%;
 
-			.mapStreet-basic {
-				width: 300px;
-				height: 400px;
-				display: flex;
-				background: #cbb187;
+			.render-map {
+				width: 100%;
+				height: 100%;
 			}
 		}
 
-		.street-map-basic-information {
-			background: #cbb187;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			font-size: 16px;
-			justify-content: end;
-			flex: 1 1 0%;
-			color: black;
-			padding-bottom: 20px;
+		.street-map-information {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			z-index: 2;
 
-			.city {
-				font-size: 30px;
-				font-weight: bold;
+			&.basic,
+			&.shadow {
+				.fields {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+
+					.headline {
+						font-size: 48px;
+						font-weight: bold;
+						font-family: "Gotham";
+						letter-spacing: 2px;
+					}
+
+					.divider {
+						font-size: 16px;
+						font-family: "Gotham";
+						padding-top: 20px;
+					}
+
+					.tagline {
+						font-size: 12px;
+						font-family: "Gotham";
+						padding-top: 22px;
+						padding-bottom: 6px;
+					}
+				}
 			}
 
-			.country {
-				font-size: 14px;
-			}
-
-		}
-	}
-}
-
-.street-map-shadow-container {
-	background: white;
-	height: 600px;
-	width: 400px;
-	display: flex;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-	.street-map-shadow-content {
-		background: #A3DBDC;
-		width: 100%;
-		font-family: Courier New;
-		margin: 20px;
-		display: flex;
-		flex-direction: column;
-
-		.street-map-shadow {
-			display: flex;
-			justify-content: center;
-			padding: 20px 0;
-
-			.mapStreet-shadow {
-				width: 300px;
-				height: 400px;
-				display: flex;
-				background: #f6fae5;
-			}
-		}
-
-		.street-map-shadow-information {
-			background: #A3DBDC;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			font-size: 16px;
-			justify-content: end;
-			flex: 1 1 0%;
-			color: black;
-			padding-bottom: 20px;
-
-			.city {
-				font-size: 30px;
-				font-weight: bold;
-			}
-
-			.country {
-				font-size: 14px;
-			}
-
-			.coordinates {
-				font-size: 12px;
-			}
-		}
-	}
-}
-
-
-
-.street-map-lineal-container {
-	background: white;
-	height: 600px;
-	width: 400px;
-	display: flex;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
-	.street-map-lineal-content {
-		background: #E5C1E6;
-		width: 100%;
-		font-family: Courier New;
-		margin: 20px;
-		display: flex;
-		flex-direction: column;
-
-		.street-map-lineal {
-			display: flex;
-			justify-content: center;
-			padding: 20px 0;
-
-			.mapStreet-lineal {
-				width: 300px;
-				height: 400px;
-				display: flex;
-				background: #E5C1E6;
-			}
-		}
-
-		.street-map-lineal-information {
-			background: #E5C1E6;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
-			.street-information {
-				background: white;
+			&.lineal {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				width: 200px;
-				height: 75px;
-				font-size: 16px;
-				justify-content: end;
-				color: black;
-				padding-bottom: 20px;
+				margin-bottom: 22px;
+				background-color: transparent !important;
 
-				.city {
-					font-size: 30px;
-					font-weight: bold;
-				}
+				.fields {
+					background: white;
+					color: black;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					padding: 2px 22px;
 
-				.country {
-					font-size: 14px;
-				}
+					.headline {
+						font-size: 27px;
+						font-weight: bold;
+						font-family: "Gotham";
+						letter-spacing: 2px;
+					}
 
-				.coordinates {
-					font-size: 12px;
+					.divider {
+						font-size: 14px;
+						font-family: "Gotham";
+						padding-top: 21px;
+					}
+
+					.tagline {
+						font-size: 9px;
+						font-family: "Gotham";
+						padding-top: 22px;
+						padding-bottom: 6px;
+					}
 				}
 			}
 
+			&.bottom {
+				.fields {
+					display: flex;
+					flex-direction: column;
+					align-items: end;
+
+					.headline {
+						font-size: 30px;
+						font-weight: bold;
+						font-family: "Gotham";
+						letter-spacing: 2px;
+						padding-top: 10px;
+					}
+
+					.divider {
+						font-size: 16px;
+						font-family: "Gotham";
+						padding-top: 20px;
+					}
+
+					.tagline {
+						font-size: 12px;
+						font-family: "Gotham";
+						padding-top: 22px;
+						padding-bottom: 6px;
+					}
+				}
+			}
 		}
 	}
+}
+
+.frame {
+	padding: 18px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

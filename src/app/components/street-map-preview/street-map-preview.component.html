@@ -1,42 +1,15 @@
-<div class="street-map-basic-container" *ngIf= "style === 'basic'" >
-	<div class="street-map-basic-content">
-		<div class="street-map-basic">
-			<div class="mapStreet-basic">	
+<div class="frame" [ngStyle]="styleFrame">
+	<div class="street-map-container" [ngStyle]="styleColors">
+		<div class="street-map-content">
+			<div class="street-map">
+				<div class="render-map" id="map"></div>
 			</div>
-		</div>
-		<div class="street-map-basic-information">
-			<span class="city">{{city}}</span>
-			<span class="mapFrom">{{mapFrom}}</span>
-			<span class="country">{{country}}</span>
-		</div>
-	</div>
-</div>
-
-<div class="street-map-shadow-container" *ngIf= "style === 'shadow'">
-	<div class="street-map-shadow-content">
-		<div class="street-map-shadow">
-			<div class="mapStreet-shadow">
-			</div>
-		</div>
-		<div class="street-map-shadow-information">
-			<span class="city">{{city}}</span>
-			<span class="country">{{country}}</span>
-			<span class="coordinates">{{coordinates}}</span>
-		</div>
-	</div>
-</div>
-
-<div class="street-map-lineal-container" *ngIf= "style === 'lineal'">
-	<div class="street-map-lineal-content">
-		<div class="street-map-lineal">
-			<div class="mapStreet-lineal">
-			</div>
-		</div>
-		<div class="street-map-lineal-information">
-			<div class="street-information">
-				<span class="city">{{city}}</span>
-				<span class="country">{{country}}</span>
-				<span class="coordinates">{{coordinates}}</span>
+			<div class="street-map-information {{textStyle}}" [ngStyle]="styleColors">
+				<div class="fields">
+					<span class="headline">{{headline}}</span>
+					<span class="divider">{{divider}}</span>
+					<span class="tagline">{{tagline}}</span>
+				</div>
 			</div>
 		</div>
 	</div>

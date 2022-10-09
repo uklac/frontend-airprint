@@ -3,10 +3,7 @@
 		<div class="stellar-map">
 			<div class="customize-bar">
 				<div class="themes">
-					<app-select-theme
-						[themes]="themes"
-						(onSelectTheme)="selectTheme($event)"
-					>
+					<app-select-theme [themes]="themes" (onSelectTheme)="selectTheme($event)">
 					</app-select-theme>
 				</div>
 				<div class="controls">
@@ -25,6 +22,7 @@
 				<ng-content></ng-content>
 			</div>
 		</div>
+		
 		<div class="panel-configuration">
 			<div class="header-configuration-container">
 				<label class="header-title">Customize your Stellar Map poster!</label>
@@ -59,29 +57,19 @@
 					<div class="description-content">
 						<div class="inline-input">
 							<label>Headline</label>
-							<input type="text" id="text" name="headline"
-								[(ngModel)]="stellarForm.headline"
-								(change)="updateMap()">
+							<input type="text" id="text" name="headline" [(ngModel)]="stellarForm.headline" (change)="updateMap()">
 						</div>
 						<div class="inline-input">
 							<label>Divider</label>
-							<input type="text" id="text" name="divider"
-								[(ngModel)]="stellarForm.divider"
-								(change)="updateMap()">
+							<input type="text" id="text" name="divider" [(ngModel)]="stellarForm.divider" (change)="updateMap()">
 						</div>
 						<div class="inline-input">
 							<label>Tagline</label>
-							<input type="text" id="text" name="tagline"
-								[(ngModel)]="stellarForm.tagline"
-								(change)="updateMap()"
-							>
+							<input type="text" id="text" name="tagline" [(ngModel)]="stellarForm.tagline" (change)="updateMap()">
 						</div>
 						<div class="inline-input">
 							<label>Sublime</label>
-							<input type="text" id="text" name="sublime"
-								[(ngModel)]="stellarForm.sublime"
-								(change)="updateMap()"
-							>
+							<input type="text" id="text" name="sublime" [(ngModel)]="stellarForm.sublime" (change)="updateMap()">
 						</div>
 					</div>
 				</mat-expansion-panel>
@@ -107,4 +95,3 @@
 		</div>
 	</div>
 </div>
-
