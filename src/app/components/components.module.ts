@@ -6,10 +6,12 @@ import { HeaderComponent } from './header/header.component';
 import { StellarMapPreviewComponent } from './stellar-map-preview/stellar-map-preview.component';
 import { StreetMapPreviewComponent } from './street-map-preview/street-map-preview.component';
 import { StellarMapConfigurationPanelComponent } from './stellar-map-configuration-panel/stellar-map-configuration-panel.component';
-import { StreetMapConfigurationPanelComponent } from './street-map-configuration-panel/street-map-configuration-panel.component'
+import { StreetMapConfigurationPanelComponent } from './street-map-configuration-panel/street-map-configuration-panel.component';
+import { SignaturePosterPreviewComponent } from './signature-poster-preview/signature-poster-preview.component';
 import { SelectThemeComponent } from './select-theme/select-theme.component';
 import { BasketComponent } from './basket/basket.component';
 import { FooterComponent } from './footer/footer.component';
+import { FrameContainerComponent } from './frame-container/frame-container.component';
 
 const components = [
 	ButtonComponent,
@@ -18,6 +20,8 @@ const components = [
   StreetMapPreviewComponent,
   StellarMapConfigurationPanelComponent,
   StreetMapConfigurationPanelComponent,
+	SignaturePosterPreviewComponent,
+	FrameContainerComponent,
   FooterComponent,
 	SelectThemeComponent,
   BasketComponent

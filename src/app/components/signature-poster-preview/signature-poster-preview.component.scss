@@ -1,0 +1,34 @@
+.signature-poster-content {
+	width: 100%;
+  display: flex;
+  flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	margin: 40px;
+
+	&.full {
+		margin: 0;
+	}
+
+	.main-text {
+		font-family: 'Palmaton';
+		font-size: 100px;
+		z-index: 0;
+	}
+
+	.secondary-texts {
+		position: absolute;
+		width: 100%;
+		bottom: 50px;
+		left: 0px;
+		font-family: 'Gotham';
+		font-size: 10px;
+		z-index: 2;
+
+		.tagline {
+			margin-bottom: 30px;
+		}
+	}
+}
