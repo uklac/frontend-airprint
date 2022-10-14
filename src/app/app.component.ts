@@ -14,7 +14,7 @@ export class AppComponent {
 			title: 'Home'
 		},
 		{
-			link: '/',
+			link: '/street-editor',
 			title: 'Street Maps'
 		},
 		{
