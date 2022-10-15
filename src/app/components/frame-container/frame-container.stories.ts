@@ -15,19 +15,7 @@ export default {
 
 export const Basic: Story = () => ({
   props: {
-    headline: 'TOKIO',
-    divider: 'JAPAN',
-    tagline: 'SEPTEMBER 10TH 2019',
-    sublime: '48.856 N / 2.3522`E',
-    configuration: {
-			background: {
-				fill: '#e63946'
-			},
-			poster: {
-				background: '#EFEFEF',
-				text: '#182731'
-			}
-    }
-  },
+		url: 'https://fotoneac.com/wp-content/uploads/2021/03/NW-e1618505478124.jpg'
+  }
 });
 

@@ -31,65 +31,67 @@ export class StreetMapPageComponent implements OnInit {
 		textStyle: 'basic'
 	}
 
+	token = ''; //add token
+
 	frameSelected: Frame | undefined;
 
   ngOnInit(): void {
 		this.themes = [
-				{
-					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Nieve",
-					configuration: {
-						styleUrl: 'mapbox://styles/molly98/cl8kmtw6t000u15s4p140knkm',
-						poster: {
-							background: '#f7f7f7',
-							text: 'black',
-						}
-					}
-				},
-				{
-					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Naval",
-					configuration: {
-						styleUrl: 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2',
-						poster: {
-							background: '#f7f7f7',
-							text: 'black',
-						}
-					}
-				},
-				{
-					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Noche",
-					configuration: {
-						styleUrl: 'mapbox://styles/molly98/cl8knaa6w001014mpchwbs57l',
-						poster: {
-							background: 'black',
-							text: '#f7f7f7',
-						}
-					}
-				},
-				{
-					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Antaño",
-					configuration: {
-						styleUrl: 'mapbox://styles/molly98/cl8kn4un6000y14t9wo8peex8',
-						poster: {
-							background: '#eac99f',
-							text: 'black',
-						}
-					}
-				},
-				{
-					url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
-					title: "Otoño",
-					configuration: {
-						styleUrl: 'mapbox://styles/molly98/cl8knlyuf002t15pcy08xxaow',
-						poster: {
-							background: '#f7f7f7',
-							text: 'black',
-						}
+			{
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
+				title: "Nieve",
+				configuration: {
+					styleUrl: 'mapbox://styles/molly98/cl8kmtw6t000u15s4p140knkm',
+					poster: {
+						background: '#f7f7f7',
+						text: 'black',
 					}
 				}
+			},
+			{
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
+				title: "Naval",
+				configuration: {
+					styleUrl: 'mapbox://styles/molly98/cl8kn16ml001o15mim9pwerw2',
+					poster: {
+						background: '#f7f7f7',
+						text: 'black',
+					}
+				}
+			},
+			{
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
+				title: "Noche",
+				configuration: {
+					styleUrl: 'mapbox://styles/molly98/cl8knaa6w001014mpchwbs57l',
+					poster: {
+						background: 'black',
+						text: '#f7f7f7',
+					}
+				}
+			},
+			{
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
+				title: "Antaño",
+				configuration: {
+					styleUrl: 'mapbox://styles/molly98/cl8kn4un6000y14t9wo8peex8',
+					poster: {
+						background: '#eac99f',
+						text: 'black',
+					}
+				}
+			},
+			{
+				url: "https://mapiful-static.s3.eu-central-1.amazonaws.com/live/streetmap/assets/img/modern.jpg",
+				title: "Otoño",
+				configuration: {
+					styleUrl: 'mapbox://styles/molly98/cl8knlyuf002t15pcy08xxaow',
+					poster: {
+						background: '#f7f7f7',
+						text: 'black',
+					}
+				}
+			}
 		];
 
 		this.frames = [
