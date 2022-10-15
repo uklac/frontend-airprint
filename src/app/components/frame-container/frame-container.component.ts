@@ -23,9 +23,13 @@ export class FrameContainerComponent implements OnInit {
 	ngOnChanges(changes: SimpleChanges): void {
 		if(changes['url'] && !changes['url'].firstChange){
       const { url: { currentValue } } = changes;
-			this.styleFrame = {
-				'background': `url(http://tumodaurbana.com/wp-content/uploads/2013/05/tumodaurbana-expo-dali.jpg)`,
-				'border-image': `url(${currentValue}) 200 stretch`
+			if (currentValue === null) {
+				this.styleFrame = currentValue;
+			} else {
+				this.styleFrame = {
+					'background': `url(http://tumodaurbana.com/wp-content/uploads/2013/05/tumodaurbana-expo-dali.jpg)`,
+					'border-image': `url(${currentValue}) 200 stretch`
+				}
 			}
     }
 	}

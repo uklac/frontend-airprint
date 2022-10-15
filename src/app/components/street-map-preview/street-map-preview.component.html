@@ -1,10 +1,11 @@
 <app-frame-container [url]="urlFrame">
-	<div class="street-map-container" [ngStyle]="styleColors">
+	<div class="street-map-container" [ngStyle]="{'background': posterBackground}">
 		<div class="street-map-content">
 			<div class="street-map">
 				<div class="render-map" id="map"></div>
 			</div>
-			<div class="street-map-information {{textStyle}}" [ngStyle]="styleColors">
+			<div class="street-map-information {{textStyle}}"
+				[ngStyle]="{'color': posterColorText, 'background': posterBackground}">
 				<div class="fields">
 					<span class="headline">{{headline}}</span>
 					<span class="divider">{{divider}}</span>

@@ -1,11 +1,16 @@
 .frame {
-	padding: 10px;
+	// padding: 10px;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	height: 770.004px;
 	width: 513.33px;
   background-size: cover;
   border: #2e1a12 solid 18px;
   -webkit-box-shadow: inset 0px 0px 10px rgba(0,0,0,1);
+
+	&.empty {
+		padding: 0;
+		border: 0;
+	}
 
 	.poster-container {
     height: 770.004px;

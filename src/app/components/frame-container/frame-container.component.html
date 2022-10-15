@@ -1,4 +1,4 @@
-<div class="frame" [ngStyle]="styleFrame">
+<div class="frame" [ngStyle]="styleFrame" [class.empty]="!(!!this.styleFrame)">
 	<div class="poster-container">
 		<ng-content></ng-content>
 	</div>
