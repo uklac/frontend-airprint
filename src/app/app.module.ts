@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
 import { ComponentsModule } from './components/components.module'
-import { PagesModule } from './pages/pages.module';
+
+import  { Injector} from '@angular/core';
+import { StreetMapPreviewComponent } from './components/street-map-preview/street-map-preview.component';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,13 @@ import { PagesModule } from './pages/pages.module';
     BrowserAnimationsModule,
     MaterialModule,
     ComponentsModule,
-    PagesModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, StreetMapPreviewComponent]
 })
-export class AppModule { }
+export class AppModule {
+	constructor(private injector: Injector) {
+		const el = createCustomElement(StreetMapPreviewComponent, { injector });
+		customElements.define('street-map-preview', el);
+	}
+}
